@@ -30,6 +30,8 @@ const translations = {
       openMenu: "Open navigation menu",
       closeMenu: "Close navigation menu",
       languageLabel: "Language switcher",
+      languageGerman: "Switch to German",
+      languageEnglish: "Switch to English",
     },
     hero: {
       sectionAria: "Hero",
@@ -131,6 +133,8 @@ const translations = {
       openMenu: "Navigation öffnen",
       closeMenu: "Navigation schließen",
       languageLabel: "Sprachauswahl",
+      languageGerman: "Auf Deutsch wechseln",
+      languageEnglish: "Auf Englisch wechseln",
     },
     hero: {
       sectionAria: "Hero-Bereich",
