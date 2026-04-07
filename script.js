@@ -254,44 +254,47 @@ if (carousel) {
     renderCarousel({ animate: true });
   };
 
-  const normalizeLoopPosition = (shouldAnimate = false) => {
+  const prepareLoopMove = (direction) => {
     if (!hasLoopClones) {
       return;
     }
 
-    if (currentIndex < setSize) {
-      currentIndex += setSize;
-      renderCarousel({ animate: shouldAnimate });
+    if (direction < 0 && currentIndex <= setSize) {
+      jumpToIndex(currentIndex + setSize);
       return;
     }
 
-    if (currentIndex >= setSize * 2) {
-      currentIndex -= setSize;
-      renderCarousel({ animate: shouldAnimate });
+    if (direction > 0 && currentIndex >= setSize * 2 - 1) {
+      jumpToIndex(currentIndex - setSize);
     }
   };
 
+  const moveCarousel = (direction) => {
+    if (!cards.length) {
+      return;
+    }
+
+    prepareLoopMove(direction);
+    goToIndex(currentIndex + direction);
+  };
+
   prevButton?.addEventListener("click", () => {
-    goToIndex(currentIndex - 1);
+    moveCarousel(-1);
   });
 
   nextButton?.addEventListener("click", () => {
-    goToIndex(currentIndex + 1);
-  });
-
-  track?.addEventListener("transitionend", () => {
-    normalizeLoopPosition(false);
+    moveCarousel(1);
   });
 
   viewport?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      goToIndex(currentIndex - 1);
+      moveCarousel(-1);
     }
 
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      goToIndex(currentIndex + 1);
+      moveCarousel(1);
     }
   });
 
@@ -311,11 +314,11 @@ if (carousel) {
     }
 
     if (deltaX > 0) {
-      goToIndex(currentIndex - 1);
+      moveCarousel(-1);
       return;
     }
 
-    goToIndex(currentIndex + 1);
+    moveCarousel(1);
   });
 
   window.addEventListener("resize", () => {
