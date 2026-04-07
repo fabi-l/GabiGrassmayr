@@ -88,7 +88,7 @@ button {
 }
 
 .brand img {
-  width: clamp(40px, 5vw, 56px);
+  width: clamp(62px, 7vw, 82px);
   height: auto;
 }
 
@@ -104,7 +104,7 @@ button {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 0.84rem;
+  font-size: 1.1rem;
 }
 
 .site-nav a {
@@ -832,7 +832,7 @@ button {
   }
 
   .brand img {
-    width: 42px;
+    width: 58px;
   }
 
   .site-header.menu-open .site-nav {
