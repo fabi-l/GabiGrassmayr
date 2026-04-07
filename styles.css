@@ -67,9 +67,12 @@ button {
 }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
-  z-index: 20;
+  z-index: 40;
+  background: rgba(38, 38, 38, 0.84);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
 }
 
 .nav-shell {
@@ -830,14 +833,6 @@ button {
 
 .logo-item-ripple {
   --logo-width: 96%;
-}
-
-.about-page .site-header {
-  position: sticky;
-  top: 0;
-  background: rgba(38, 38, 38, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
 }
 
 .about-main {
