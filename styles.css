@@ -64,7 +64,7 @@ button {
   min-height: var(--nav-height);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1.5rem;
   padding: 1rem 0;
 }
@@ -76,7 +76,7 @@ button {
 }
 
 .brand img {
-  width: clamp(58px, 9vw, 88px);
+  width: clamp(40px, 5vw, 56px);
   height: auto;
 }
 
@@ -301,6 +301,10 @@ button {
 }
 
 @media (max-width: 760px) {
+  .nav-shell {
+    justify-content: space-between;
+  }
+
   .menu-toggle {
     display: inline-block;
   }
