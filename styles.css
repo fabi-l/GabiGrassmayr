@@ -345,10 +345,15 @@ button {
   outline-offset: 3px;
 }
 
+.social-link img,
 .social-link svg {
   width: 48%;
   height: 48%;
   display: block;
+}
+
+.social-link img {
+  object-fit: contain;
 }
 
 .worked-with {
