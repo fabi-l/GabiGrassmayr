@@ -836,7 +836,7 @@ button {
 }
 
 .about-main {
-  padding: clamp(2.25rem, 3vw, 3.2rem) 0 clamp(5rem, 7vw, 7rem);
+  padding: calc(var(--nav-height) + clamp(1.4rem, 2vw, 2rem)) 0 clamp(5rem, 7vw, 7rem);
 }
 
 .about-intro {
@@ -1047,7 +1047,7 @@ button {
 
 @media (max-width: 680px) {
   .about-main {
-    padding-top: 1.4rem;
+    padding-top: calc(var(--nav-height) + 0.9rem);
   }
 
   .about-name {
