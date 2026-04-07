@@ -812,6 +812,10 @@ button {
   --logo-width: 100%;
 }
 
+.logo-item-landjugend .logo-image {
+  filter: brightness(0) invert(1);
+}
+
 .logo-item-yepp {
   --logo-width: 86%;
 }
