@@ -271,41 +271,20 @@ button {
   letter-spacing: 0.08em;
 }
 
-.logo-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+.logo-showcase {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(0.95rem, 2vw, 1.4rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
 }
 
-.logo-card {
-  min-height: 128px;
-  display: grid;
-  place-items: center;
-  padding: 1.25rem;
-  border: 1px solid var(--line);
-  color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.02);
-  font-family: var(--anton);
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease;
-}
-
-.logo-card:hover,
-.logo-card:focus-visible {
-  border-color: var(--line-strong);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-}
-
-@media (max-width: 900px) {
-  .logo-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.logo-sheet {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: lighten;
+  opacity: 0.96;
+  filter: grayscale(1) brightness(1.22) contrast(1.05);
 }
 
 @media (max-width: 760px) {
@@ -409,18 +388,6 @@ button {
     letter-spacing: 0.045em;
   }
 
-  .logo-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-
-  .logo-card {
-    min-height: 94px;
-    padding: 1rem 0.75rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-  }
-
   .worked-with {
     padding: 3.6rem 0 4.2rem;
   }
@@ -428,6 +395,10 @@ button {
   .worked-with h2 {
     margin-bottom: 1.5rem;
     font-size: clamp(1.9rem, 9vw, 2.6rem);
+  }
+
+  .logo-showcase {
+    padding: 0.85rem;
   }
 }
 
@@ -452,9 +423,8 @@ button {
     letter-spacing: 0.04em;
   }
 
-  .logo-card {
-    min-height: 86px;
-    font-size: 0.76rem;
+  .logo-showcase {
+    padding: 0.7rem;
   }
 }
 
@@ -478,8 +448,8 @@ button {
     letter-spacing: 0.03em;
   }
 
-  .logo-grid {
-    gap: 0.6rem;
+  .logo-showcase {
+    padding: 0.6rem;
   }
 }
 
