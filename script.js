@@ -166,9 +166,10 @@ if (carousel) {
   const originalCards = track ? Array.from(track.querySelectorAll(".project-card")) : [];
   let cards = originalCards;
   let currentIndex = 0;
-  let scrollSyncTimer = 0;
   const setSize = originalCards.length;
   const hasLoopClones = Boolean(track && originalCards.length > 1);
+  let touchStartX = 0;
+  let touchStartY = 0;
 
   if (track && hasLoopClones) {
     const prependClones = originalCards.map((card) => {
@@ -201,99 +202,120 @@ if (carousel) {
     nextButton.disabled = false;
   };
 
-  const getAlignedScrollLeft = (card) => {
-    if (!viewport || !card) {
+  const getTrackOffset = (index) => {
+    if (!viewport || !cards.length || !cards[index]) {
       return 0;
     }
 
+    const card = cards[index];
     return card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
   };
 
+  const clampIndex = (index) => {
+    if (!cards.length) {
+      return 0;
+    }
+
+    return Math.min(Math.max(index, 0), cards.length - 1);
+  };
+
+  const renderCarousel = ({ animate } = { animate: true }) => {
+    if (!track || !viewport || !cards.length) {
+      return;
+    }
+
+    track.classList.toggle("is-jumping", !animate || prefersReducedMotion.matches);
+    track.style.transform = `translate3d(${-getTrackOffset(currentIndex)}px, 0, 0)`;
+
+    if (!animate || prefersReducedMotion.matches) {
+      window.requestAnimationFrame(() => {
+        track.classList.remove("is-jumping");
+      });
+    }
+
+    syncButtons();
+  };
+
   const jumpToIndex = (index) => {
-    if (!viewport || !cards.length) {
+    if (!cards.length) {
       return;
     }
 
-    currentIndex = index;
-    viewport.scrollTo({
-      left: getAlignedScrollLeft(cards[currentIndex]),
-      behavior: "auto",
-    });
-    syncButtons();
+    currentIndex = clampIndex(index);
+    renderCarousel({ animate: false });
   };
 
-  const scrollToIndex = (index) => {
-    if (!viewport || !cards.length) {
+  const goToIndex = (index) => {
+    if (!cards.length) {
       return;
     }
 
-    const lastIndex = cards.length - 1;
-    currentIndex = Math.min(Math.max(index, 0), lastIndex);
-    viewport.scrollTo({
-      left: getAlignedScrollLeft(cards[currentIndex]),
-      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-    });
-    syncButtons();
+    currentIndex = clampIndex(index);
+    renderCarousel({ animate: true });
   };
 
-  const normalizeLoopPosition = () => {
+  const normalizeLoopPosition = (shouldAnimate = false) => {
     if (!hasLoopClones) {
       return;
     }
 
     if (currentIndex < setSize) {
-      jumpToIndex(currentIndex + setSize);
+      currentIndex += setSize;
+      renderCarousel({ animate: shouldAnimate });
       return;
     }
 
     if (currentIndex >= setSize * 2) {
-      jumpToIndex(currentIndex - setSize);
+      currentIndex -= setSize;
+      renderCarousel({ animate: shouldAnimate });
     }
-  };
-
-  const syncIndexFromScroll = () => {
-    if (!viewport || !cards.length) {
-      return;
-    }
-
-    const nearestIndex = cards.reduce((closestIndex, card, index) => {
-      const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
-      const closestCard = cards[closestIndex];
-      const closestDistance = Math.abs(
-        closestCard.offsetLeft + closestCard.offsetWidth / 2 - viewportCenter,
-      );
-      const currentDistance = Math.abs(card.offsetLeft + card.offsetWidth / 2 - viewportCenter);
-      return currentDistance < closestDistance ? index : closestIndex;
-    }, 0);
-
-    currentIndex = nearestIndex;
-    normalizeLoopPosition();
-    syncButtons();
   };
 
   prevButton?.addEventListener("click", () => {
-    scrollToIndex(currentIndex - 1);
+    goToIndex(currentIndex - 1);
   });
 
   nextButton?.addEventListener("click", () => {
-    scrollToIndex(currentIndex + 1);
+    goToIndex(currentIndex + 1);
   });
 
-  viewport?.addEventListener("scroll", () => {
-    window.clearTimeout(scrollSyncTimer);
-    scrollSyncTimer = window.setTimeout(syncIndexFromScroll, 70);
+  track?.addEventListener("transitionend", () => {
+    normalizeLoopPosition(false);
   });
 
   viewport?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      scrollToIndex(currentIndex - 1);
+      goToIndex(currentIndex - 1);
     }
 
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      scrollToIndex(currentIndex + 1);
+      goToIndex(currentIndex + 1);
     }
+  });
+
+  viewport?.addEventListener("touchstart", (event) => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  });
+
+  viewport?.addEventListener("touchend", (event) => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+
+    if (Math.abs(deltaX) < 36 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+      return;
+    }
+
+    if (deltaX > 0) {
+      goToIndex(currentIndex - 1);
+      return;
+    }
+
+    goToIndex(currentIndex + 1);
   });
 
   window.addEventListener("resize", () => {
@@ -304,6 +326,8 @@ if (carousel) {
     window.requestAnimationFrame(() => {
       jumpToIndex(setSize);
     });
+  } else {
+    renderCarousel({ animate: false });
   }
 
   syncButtons();

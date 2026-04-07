@@ -396,18 +396,10 @@ button {
 }
 
 .projects-viewport {
-  overflow: auto hidden;
+  overflow: hidden;
   width: 100%;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
   padding-inline: var(--project-peek);
-  scroll-padding-inline: var(--project-peek);
-}
-
-.projects-viewport::-webkit-scrollbar {
-  display: none;
+  touch-action: pan-y;
 }
 
 .projects-track {
@@ -415,6 +407,12 @@ button {
   grid-auto-flow: column;
   grid-auto-columns: calc(100% - (var(--project-peek) * 2));
   gap: var(--project-gap);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.projects-track.is-jumping {
+  transition: none;
 }
 
 .project-card {
@@ -422,7 +420,6 @@ button {
   min-height: clamp(19rem, 42vw, 29rem);
   overflow: hidden;
   border-radius: 1rem;
-  scroll-snap-align: center;
   background: #1f1f1f;
   box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.22),
@@ -922,7 +919,7 @@ button {
     display: none;
   }
 
-  .projects-viewport {
-    scroll-behavior: auto;
+  .projects-track {
+    transition: none;
   }
 }
