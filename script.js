@@ -37,13 +37,10 @@ if (heroVideo) {
   heroVideo.muted = true;
   heroVideo.defaultMuted = true;
   heroVideo.loop = true;
+  heroVideo.playsInline = true;
 
   heroVideo.addEventListener("canplay", playHeroVideo);
   heroVideo.addEventListener("loadeddata", playHeroVideo);
-  heroVideo.addEventListener("ended", () => {
-    heroVideo.currentTime = 0;
-    playHeroVideo();
-  });
 
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {

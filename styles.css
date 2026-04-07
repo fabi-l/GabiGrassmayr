@@ -168,7 +168,10 @@ button {
 
 .hero-video {
   object-fit: cover;
-  filter: brightness(1.14) contrast(1.03);
+  object-position: center center;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .hero-overlay {
