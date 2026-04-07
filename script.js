@@ -48,8 +48,11 @@ if (heroVideo) {
     }
   });
 
-  window.addEventListener("pageshow", () => {
-    restartHeroTyping();
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      restartHeroTyping();
+    }
+
     playHeroVideo();
   });
 }
