@@ -6,7 +6,260 @@ const heroVideo = document.querySelector(".hero-video");
 const heroTitle = document.querySelector(".hero h1");
 const heroLines = Array.from(document.querySelectorAll(".hero-line-typed"));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 let heroTypingRun = 0;
+let currentLanguage = "en";
+
+const translations = {
+  en: {
+    meta: {
+      homeTitle: "Gabriel Grassmayr | Portfolio",
+      homeDescription: "Cinematic filmmaker portfolio focused on extreme sports and travel content.",
+      aboutTitle: "Gabriel Grassmayr | About Me",
+      aboutDescription:
+        "Adventure filmmaker and photographer Gabriel Grassmayr. Discover a concise profile, cinematic introduction, and behind-the-lens gallery.",
+    },
+    nav: {
+      primaryAria: "Primary navigation",
+      home: "Home",
+      work: "Work",
+      projects: "Projects",
+      contact: "Contact",
+      about: "About Me",
+      brandHome: "Gabriel Grassmayr home",
+      openMenu: "Open navigation menu",
+      closeMenu: "Close navigation menu",
+      languageLabel: "Language switcher",
+    },
+    hero: {
+      sectionAria: "Hero",
+      titleAria: "Capturing The Impossible",
+      titleTop: "Capturing",
+      titleBottom: "The Impossible",
+      subAria: "Specialized in extreme sports and travel content",
+      subTop: "SPECIALIZED IN EXTREME SPORTS",
+      subBottom: "AND TRAVEL CONTENT",
+    },
+    social: {
+      linksAria: "Social links",
+      email: "Email",
+    },
+    worked: {
+      title: "Worked With",
+      gridAria: "Worked with brands",
+      visit: {
+        redbull: "Visit Red Bull homepage",
+        ama: "Visit AMA Guetesiegel homepage",
+        funk: "Visit Funk Austria homepage",
+        ard: "Visit Das Erste homepage",
+        innsbruck: "Visit Innsbruck homepage",
+        landjugend: "Visit Landjugend Tirol homepage",
+        yepp: "Visit YEPP homepage",
+        ripple: "Visit Ripple homepage",
+      },
+    },
+    featured: {
+      title: "Featured Projects",
+      prevAria: "Show previous featured project",
+      nextAria: "Show next featured project",
+      carouselAria: "Featured projects carousel",
+      project1Aria: "Open featured project: Die Vulkanfrau",
+      project2Aria: "Open featured project: Instagram reel with Red Bull event crew",
+      project3Aria: "Open featured project: Instagram reel with fire and molten metal",
+      project4Aria: "Open featured project: YouTube film about bell making",
+      project1Alt: "Nighttime filmmaker scene in front of glowing volcanic lava",
+      project2Alt: "Crew portrait in front of a Red Bull branded bus",
+      project3Alt: "Molten metal and flames in a dark industrial setting",
+      project4Alt: "Worker standing beside a large cast bell in a workshop",
+      viewProject: "View Project",
+      moreProjects: "discover more Projects on LinkedIn",
+    },
+    contact: {
+      title: "LET'S CAPTURE YOUR NEXT ADVENTURE TOGETHER!",
+      subtitle: "TELL ME YOUR STORY:",
+      nameLabel: "Name *",
+      subjectLabel: "Subject *",
+      messageLabel: "Message *",
+      namePlaceholder: "Your Name...",
+      subjectPlaceholder: "Your Subject...",
+      messagePlaceholder: "Your Message...",
+      notice: "Attention: This will open your mail app to send the message!",
+      submit: "Submit",
+      formBodyName: "Name",
+      formBodyMessage: "Message:",
+    },
+    about: {
+      title: "About Me",
+      subtitle: "Adventure Filmmaker. Storyteller. Creator.",
+      introText:
+        "Gabriel captures stories where real adventure happens - from fast-paced productions to cinematic moments in extraordinary environments. His work combines emotion, movement and atmosphere for brands, documentaries and digital storytelling.",
+      profileAria: "Profile highlights",
+      profile: {
+        based: "Based in Austria",
+        age: "21 Years Old",
+        role: "Adventure Filmmaker & Photographer",
+        focus: "Extreme Sports, Travel & Storytelling",
+        clients: "Worked with Red Bull, FUNK & Ripple",
+        coFounder: "Co-Founder of MC Media",
+      },
+      galleryLabel: "Behind the Lens",
+      alt: {
+        suit: "Gabriel Grassmayr smiling in a blue suit portrait.",
+        rescue: "Gabriel Grassmayr in a red rescue uniform portrait.",
+        onSet: "Gabriel Grassmayr filming with a camera alongside a collaborator.",
+        field: "Gabriel Grassmayr holding a camera outdoors while wearing headphones.",
+      },
+    },
+  },
+  de: {
+    meta: {
+      homeTitle: "Gabriel Grassmayr | Portfolio",
+      homeDescription:
+        "Cineastisches Filmemacher-Portfolio mit Fokus auf Extremsport- und Reise-Content.",
+      aboutTitle: "Gabriel Grassmayr | Über mich",
+      aboutDescription:
+        "Abenteuerfilmer und Fotograf Gabriel Grassmayr. Entdecke ein kompaktes Profil, eine cineastische Einführung und eine Galerie hinter der Kamera.",
+    },
+    nav: {
+      primaryAria: "Hauptnavigation",
+      home: "Start",
+      work: "Partner",
+      projects: "Projekte",
+      contact: "Kontakt",
+      about: "Über mich",
+      brandHome: "Zur Startseite von Gabriel Grassmayr",
+      openMenu: "Navigation öffnen",
+      closeMenu: "Navigation schließen",
+      languageLabel: "Sprachauswahl",
+    },
+    hero: {
+      sectionAria: "Hero-Bereich",
+      titleAria: "Das Unmögliche einfangen",
+      titleTop: "DAS UNMÖGLICHE",
+      titleBottom: "EINFANGEN",
+      subAria: "Spezialisiert auf Extremsport und Reise-Content",
+      subTop: "SPEZIALISIERT AUF EXTREMSPORT",
+      subBottom: "UND REISE-CONTENT",
+    },
+    social: {
+      linksAria: "Social-Media-Links",
+      email: "E-Mail",
+    },
+    worked: {
+      title: "Partner",
+      gridAria: "Marken und Partner",
+      visit: {
+        redbull: "Zur Webseite von Red Bull",
+        ama: "Zur Webseite des AMA Gütesiegels",
+        funk: "Zur Webseite von Funk Austria",
+        ard: "Zur Webseite von Das Erste",
+        innsbruck: "Zur Webseite von Innsbruck",
+        landjugend: "Zur Webseite der Landjugend Tirol",
+        yepp: "Zur Webseite von YEPP",
+        ripple: "Zur Webseite von Ripple",
+      },
+    },
+    featured: {
+      title: "Ausgewählte Projekte",
+      prevAria: "Vorheriges Projekt anzeigen",
+      nextAria: "Nächstes Projekt anzeigen",
+      carouselAria: "Karussell mit ausgewählten Projekten",
+      project1Aria: "Projekt öffnen: Die Vulkanfrau",
+      project2Aria: "Projekt öffnen: Instagram Reel mit Red-Bull-Event-Crew",
+      project3Aria: "Projekt öffnen: Instagram Reel mit Feuer und flüssigem Metall",
+      project4Aria: "Projekt öffnen: YouTube-Film über Glockenguss",
+      project1Alt: "Nächtliche Filmszene vor glühender Vulkanlava",
+      project2Alt: "Crew-Porträt vor einem Red-Bull-Bus",
+      project3Alt: "Flüssiges Metall und Flammen in einer dunklen Werkshalle",
+      project4Alt: "Arbeiter neben einer großen gegossenen Glocke in einer Werkstatt",
+      viewProject: "Projekt ansehen",
+      moreProjects: "Weitere Projekte auf LinkedIn entdecken",
+    },
+    contact: {
+      title: "LASS UNS DEIN NÄCHSTES ABENTEUER GEMEINSAM FESTHALTEN!",
+      subtitle: "ERZÄHL MIR DEINE STORY:",
+      nameLabel: "Name *",
+      subjectLabel: "Betreff *",
+      messageLabel: "Nachricht *",
+      namePlaceholder: "Dein Name...",
+      subjectPlaceholder: "Dein Betreff...",
+      messagePlaceholder: "Deine Nachricht...",
+      notice: "Achtung: Dadurch öffnet sich deine Mail-App zum Senden der Nachricht!",
+      submit: "Absenden",
+      formBodyName: "Name",
+      formBodyMessage: "Nachricht:",
+    },
+    about: {
+      title: "Über mich",
+      subtitle: "Abenteuerfilmer. Storyteller. Creator.",
+      introText:
+        "Gabriel erzählt Geschichten dort, wo echtes Abenteuer entsteht - von dynamischen Produktionen bis zu cineastischen Momenten in außergewöhnlichen Umgebungen. Seine Arbeit verbindet Emotion, Bewegung und Atmosphäre für Marken, Dokumentationen und digitales Storytelling.",
+      profileAria: "Profil-Highlights",
+      profile: {
+        based: "Mit Sitz in Österreich",
+        age: "21 Jahre alt",
+        role: "Abenteuerfilmer & Fotograf",
+        focus: "Extremsport, Reise & Storytelling",
+        clients: "Projekte mit Red Bull, FUNK & Ripple",
+        coFounder: "Mitgründer von MC Media",
+      },
+      galleryLabel: "Hinter der Kamera",
+      alt: {
+        suit: "Gabriel Grassmayr lächelnd in einem blauen Anzug.",
+        rescue: "Gabriel Grassmayr in einem roten Rettungsdienst-Porträt.",
+        onSet: "Gabriel Grassmayr beim Filmen mit Kamera zusammen mit einem Kollegen.",
+        field: "Gabriel Grassmayr draußen mit Kamera und Kopfhörern.",
+      },
+    },
+  },
+};
+
+const heroLineConfig = {
+  en: {
+    topWidth: "12ch",
+    topOffset: "2ch",
+  },
+  de: {
+    topWidth: "max-content",
+    topOffset: "0ch",
+  },
+};
+
+const getStoredLanguage = () => {
+  const storedLanguage = window.localStorage.getItem("site-language");
+  return storedLanguage === "de" || storedLanguage === "en" ? storedLanguage : "en";
+};
+
+const getTranslation = (key, language = currentLanguage) => {
+  const resolve = (source) =>
+    key.split(".").reduce((value, segment) => {
+      if (value && typeof value === "object" && segment in value) {
+        return value[segment];
+      }
+
+      return undefined;
+    }, source);
+
+  return resolve(translations[language]) ?? resolve(translations.en) ?? "";
+};
+
+const updateHeroLineLayout = () => {
+  if (!heroTitle) {
+    return;
+  }
+
+  const config = heroLineConfig[currentLanguage] || heroLineConfig.en;
+  heroTitle.style.setProperty("--hero-line-top-width", config.topWidth);
+  heroTitle.style.setProperty("--hero-line-top-offset", config.topOffset);
+};
+
+const updateLanguageButtons = () => {
+  languageButtons.forEach((button) => {
+    const isActive = button.dataset.languageOption === currentLanguage;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+};
 
 const playHeroVideo = () => {
   if (!heroVideo) {
@@ -99,6 +352,60 @@ const restartHeroTyping = () => {
   });
 };
 
+let setMenuState = () => {};
+
+const updateMenuToggleLabel = () => {
+  if (!menuToggle || !header) {
+    return;
+  }
+
+  const isOpen = header.classList.contains("menu-open");
+  menuToggle.setAttribute(
+    "aria-label",
+    getTranslation(isOpen ? "nav.closeMenu" : "nav.openMenu"),
+  );
+};
+
+const applyTranslations = (language) => {
+  currentLanguage = language === "de" ? "de" : "en";
+  window.localStorage.setItem("site-language", currentLanguage);
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dataset.language = currentLanguage;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = getTranslation(element.dataset.i18n);
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    element.setAttribute("placeholder", getTranslation(element.dataset.i18nPlaceholder));
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    element.setAttribute("aria-label", getTranslation(element.dataset.i18nAriaLabel));
+  });
+
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+    element.setAttribute("alt", getTranslation(element.dataset.i18nAlt));
+  });
+
+  document.querySelectorAll("[data-i18n-content]").forEach((element) => {
+    element.setAttribute("content", getTranslation(element.dataset.i18nContent));
+  });
+
+  updateHeroLineLayout();
+
+  heroLines.forEach((line) => {
+    line.dataset.fullText = line.textContent;
+  });
+
+  updateLanguageButtons();
+  updateMenuToggleLabel();
+
+  if (heroTitle && document.readyState !== "loading") {
+    restartHeroTyping();
+  }
+};
+
 if (heroVideo) {
   heroVideo.muted = true;
   heroVideo.defaultMuted = true;
@@ -123,19 +430,11 @@ if (heroVideo) {
   });
 }
 
-window.addEventListener("load", () => {
-  restartHeroTyping();
-  playHeroVideo();
-});
-
 if (header && menuToggle && nav) {
-  const setMenuState = (isOpen) => {
+  setMenuState = (isOpen) => {
     header.classList.toggle("menu-open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu",
-    );
+    updateMenuToggleLabel();
   };
 
   menuToggle.addEventListener("click", () => {
@@ -155,6 +454,27 @@ if (header && menuToggle && nav) {
     }
   });
 }
+
+languageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const requestedLanguage = button.dataset.languageOption;
+
+    if (!requestedLanguage || requestedLanguage === currentLanguage) {
+      return;
+    }
+
+    applyTranslations(requestedLanguage);
+    setMenuState(false);
+  });
+});
+
+currentLanguage = getStoredLanguage();
+applyTranslations(currentLanguage);
+
+window.addEventListener("load", () => {
+  restartHeroTyping();
+  playHeroVideo();
+});
 
 const carousel = document.querySelector("[data-carousel]");
 
@@ -364,9 +684,9 @@ if (contactForm) {
     const subject = String(formData.get("subject") || "").trim();
     const message = String(formData.get("message") || "").trim();
     const body = [
-      `Name: ${name}`,
+      `${getTranslation("contact.formBodyName")}: ${name}`,
       "",
-      "Message:",
+      getTranslation("contact.formBodyMessage"),
       message,
     ].join("\n");
 

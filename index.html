@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gabriel Grassmayr | Portfolio</title>
+    <title data-i18n="meta.homeTitle">Gabriel Grassmayr | Portfolio</title>
     <meta
       name="description"
+      data-i18n-content="meta.homeDescription"
       content="Cinematic filmmaker portfolio focused on extreme sports and travel content."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,7 +17,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-page="home">
     <header class="site-header">
       <div class="container nav-shell">
         <button
@@ -31,22 +32,30 @@
           <span></span>
         </button>
 
-        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-          <a href="#hero" aria-current="page">Home</a>
-          <a href="#worked-with">Work</a>
-          <a href="#featured-projects">Projects</a>
-          <a href="#contact-form">Contact</a>
-          <a href="about-me.html">About Me</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-i18n-aria-label="nav.primaryAria">
+          <a href="#hero" aria-current="page" data-i18n="nav.home">Home</a>
+          <a href="#worked-with" data-i18n="nav.work">Work</a>
+          <a href="#featured-projects" data-i18n="nav.projects">Projects</a>
+          <a href="#contact-form" data-i18n="nav.contact">Contact</a>
+          <a href="about-me.html" data-i18n="nav.about">About Me</a>
+          <div class="language-switcher" aria-label="Language switcher" data-i18n-aria-label="nav.languageLabel">
+            <button class="language-button" type="button" data-language-option="de" aria-pressed="false">
+              DE
+            </button>
+            <button class="language-button" type="button" data-language-option="en" aria-pressed="true">
+              EN
+            </button>
+          </div>
         </nav>
 
-        <a class="brand" href="#hero" aria-label="Gabriel Grassmayr home">
+        <a class="brand" href="#hero" aria-label="Gabriel Grassmayr home" data-i18n-aria-label="nav.brandHome">
           <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
         </a>
       </div>
     </header>
 
     <main>
-      <section class="hero" id="hero" aria-label="Hero">
+      <section class="hero" id="hero" aria-label="Hero" data-i18n-aria-label="hero.sectionAria">
         <video
           class="hero-video"
           autoplay
@@ -63,21 +72,25 @@
 
         <div class="hero-content container">
           <p class="hero-kicker">Gabriel Grassmayr</p>
-          <h1 aria-label="Capturing The Impossible">
+          <h1 aria-label="Capturing The Impossible" data-i18n-aria-label="hero.titleAria">
             <span class="hero-line hero-line-top">
-              <span class="hero-line-static">Capturing</span>
-              <span class="hero-line-typed">Capturing</span>
+              <span class="hero-line-static" data-i18n="hero.titleTop">Capturing</span>
+              <span class="hero-line-typed" data-i18n="hero.titleTop">Capturing</span>
             </span>
             <span class="hero-line hero-line-bottom">
-              <span class="hero-line-static">The Impossible</span>
-              <span class="hero-line-typed">The Impossible</span>
+              <span class="hero-line-static" data-i18n="hero.titleBottom">The Impossible</span>
+              <span class="hero-line-typed" data-i18n="hero.titleBottom">The Impossible</span>
             </span>
           </h1>
-          <p class="hero-subheadline" aria-label="SPECIALIZED IN EXTREME SPORTS AND TRAVEL CONTENT">
-            <span>SPECIALIZED IN EXTREME SPORTS</span>
-            <span>AND TRAVEL CONTENT</span>
+          <p
+            class="hero-subheadline"
+            aria-label="SPECIALIZED IN EXTREME SPORTS AND TRAVEL CONTENT"
+            data-i18n-aria-label="hero.subAria"
+          >
+            <span data-i18n="hero.subTop">SPECIALIZED IN EXTREME SPORTS</span>
+            <span data-i18n="hero.subBottom">AND TRAVEL CONTENT</span>
           </p>
-          <div class="hero-social" id="contact" aria-label="Social links">
+          <div class="hero-social" id="contact" aria-label="Social links" data-i18n-aria-label="social.linksAria">
             <a
               class="social-link"
               href="https://www.linkedin.com/in/gabrielgrassmayr/"
@@ -124,6 +137,7 @@
               class="social-link"
               href="mailto:Gabrielgrassmayr@icloud.com"
               aria-label="Email"
+              data-i18n-aria-label="social.email"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -138,10 +152,10 @@
 
       <section class="worked-with" id="worked-with" aria-labelledby="worked-with-title">
         <div class="container">
-          <h2 id="worked-with-title">Worked With</h2>
+          <h2 id="worked-with-title" data-i18n="worked.title">Worked With</h2>
           <div class="logo-panel">
             <!-- Swap the classes or labels below later if you want to replace individual logo entries. -->
-            <div class="logo-grid" aria-label="Worked with brands">
+            <div class="logo-grid" aria-label="Worked with brands" data-i18n-aria-label="worked.gridAria">
               <figure class="logo-item logo-item-redbull">
                 <a
                   class="logo-link"
@@ -149,6 +163,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Red Bull homepage"
+                  data-i18n-aria-label="worked.visit.redbull"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="red-bull-svgrepo.svg" alt="Red Bull logo" />
@@ -162,6 +177,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit AMA Guetesiegel homepage"
+                  data-i18n-aria-label="worked.visit.ama"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="ama-guetesiegel-logo.png" alt="AMA Guetesiegel logo" />
@@ -175,6 +191,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Funk Austria homepage"
+                  data-i18n-aria-label="worked.visit.funk"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="funk-logo.png" alt="Funk logo" />
@@ -188,6 +205,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Das Erste homepage"
+                  data-i18n-aria-label="worked.visit.ard"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="ard-mediathek-logo.png" alt="ARD Mediathek logo" />
@@ -201,6 +219,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Innsbruck homepage"
+                  data-i18n-aria-label="worked.visit.innsbruck"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="innsbruck-new.svg" alt="Innsbruck logo" />
@@ -214,6 +233,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Landjugend Tirol homepage"
+                  data-i18n-aria-label="worked.visit.landjugend"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="landjugend-logo.webp" alt="Landjugend logo" />
@@ -227,6 +247,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit YEPP homepage"
+                  data-i18n-aria-label="worked.visit.yepp"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="yepp-new.svg" alt="Yepp logo" />
@@ -240,6 +261,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Ripple homepage"
+                  data-i18n-aria-label="worked.visit.ripple"
                 >
                   <div class="logo-inner">
                     <img class="logo-image" src="ripple-logo.png" alt="Ripple logo" />
@@ -257,12 +279,13 @@
         aria-labelledby="featured-projects-title"
       >
         <div class="container">
-          <h2 id="featured-projects-title">Featured Projects</h2>
+          <h2 id="featured-projects-title" data-i18n="featured.title">Featured Projects</h2>
           <div class="projects-shell" data-carousel>
             <button
               class="carousel-button carousel-button-prev"
               type="button"
               aria-label="Show previous featured project"
+              data-i18n-aria-label="featured.prevAria"
               data-carousel-prev
             >
               <span aria-hidden="true">&#8592;</span>
@@ -272,6 +295,7 @@
               class="projects-viewport"
               tabindex="0"
               aria-label="Featured projects carousel"
+              data-i18n-aria-label="featured.carouselAria"
               data-carousel-viewport
             >
               <div class="projects-track">
@@ -281,12 +305,14 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open featured project: Die Vulkanfrau"
+                  data-i18n-aria-label="featured.project1Aria"
                 >
                   <img
                     src="featured-project-1.jpg"
                     alt="Nighttime filmmaker scene in front of glowing volcanic lava"
+                    data-i18n-alt="featured.project1Alt"
                   />
-                  <span class="project-overlay"><span>View Project</span></span>
+                  <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
                 <a
@@ -295,12 +321,14 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open featured project: Instagram reel with Red Bull event crew"
+                  data-i18n-aria-label="featured.project2Aria"
                 >
                   <img
                     src="featured-project-2.jpeg"
                     alt="Crew portrait in front of a Red Bull branded bus"
+                    data-i18n-alt="featured.project2Alt"
                   />
-                  <span class="project-overlay"><span>View Project</span></span>
+                  <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
                 <a
@@ -309,12 +337,14 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open featured project: Instagram reel with fire and molten metal"
+                  data-i18n-aria-label="featured.project3Aria"
                 >
                   <img
                     src="featured-project-3.jpg"
                     alt="Molten metal and flames in a dark industrial setting"
+                    data-i18n-alt="featured.project3Alt"
                   />
-                  <span class="project-overlay"><span>View Project</span></span>
+                  <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
                 <a
@@ -323,12 +353,14 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open featured project: YouTube film about bell making"
+                  data-i18n-aria-label="featured.project4Aria"
                 >
                   <img
                     src="featured-project-4.jpg"
                     alt="Worker standing beside a large cast bell in a workshop"
+                    data-i18n-alt="featured.project4Alt"
                   />
-                  <span class="project-overlay"><span>View Project</span></span>
+                  <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
               </div>
             </div>
@@ -337,6 +369,7 @@
               class="carousel-button carousel-button-next"
               type="button"
               aria-label="Show next featured project"
+              data-i18n-aria-label="featured.nextAria"
               data-carousel-next
             >
               <span aria-hidden="true">&#8594;</span>
@@ -348,6 +381,7 @@
               href="https://www.linkedin.com/in/gabrielgrassmayr/details/projects/"
               target="_blank"
               rel="noopener noreferrer"
+              data-i18n="featured.moreProjects"
             >
               discover more Projects on LinkedIn
             </a>
@@ -359,48 +393,51 @@
         <div class="container">
           <div class="contact-shell">
             <div class="contact-heading">
-              <h2 id="contact-title">LET’S CAPTURE YOUR NEXT ADVENTURE TOGETHER!</h2>
-              <p>TELL ME YOUR STORY:</p>
+              <h2 id="contact-title" data-i18n="contact.title">LET’S CAPTURE YOUR NEXT ADVENTURE TOGETHER!</h2>
+              <p data-i18n="contact.subtitle">TELL ME YOUR STORY:</p>
             </div>
 
             <form class="contact-form" action="#" method="post" novalidate data-contact-form>
               <div class="form-field">
-                <label for="contact-name">Name *</label>
+                <label for="contact-name" data-i18n="contact.nameLabel">Name *</label>
                 <input
                   id="contact-name"
                   name="name"
                   type="text"
                   placeholder="Your Name..."
+                  data-i18n-placeholder="contact.namePlaceholder"
                   required
                 />
               </div>
 
               <div class="form-field">
-                <label for="contact-subject">Subject *</label>
+                <label for="contact-subject" data-i18n="contact.subjectLabel">Subject *</label>
                 <input
                   id="contact-subject"
                   name="subject"
                   type="text"
                   placeholder="Your Subject..."
+                  data-i18n-placeholder="contact.subjectPlaceholder"
                   required
                 />
               </div>
 
               <div class="form-field">
-                <label for="contact-message">Message *</label>
+                <label for="contact-message" data-i18n="contact.messageLabel">Message *</label>
                 <textarea
                   id="contact-message"
                   name="message"
                   placeholder="Your Message..."
+                  data-i18n-placeholder="contact.messagePlaceholder"
                   required
                 ></textarea>
               </div>
 
               <p class="contact-note">
                 <img src="contact-warning.svg" alt="" aria-hidden="true" />
-                <span>Attention: This will open your mail app to send the message!</span>
+                <span data-i18n="contact.notice">Attention: This will open your mail app to send the message!</span>
               </p>
-              <button class="contact-submit" type="submit">Submit</button>
+              <button class="contact-submit" type="submit" data-i18n="contact.submit">Submit</button>
             </form>
           </div>
         </div>

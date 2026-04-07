@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gabriel Grassmayr | About Me</title>
+    <title data-i18n="meta.aboutTitle">Gabriel Grassmayr | About Me</title>
     <meta
       name="description"
+      data-i18n-content="meta.aboutDescription"
       content="Adventure filmmaker and photographer Gabriel Grassmayr. Discover a concise profile, cinematic introduction, and behind-the-lens gallery."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,7 +17,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="about-page">
+  <body class="about-page" data-page="about">
     <header class="site-header">
       <div class="container nav-shell">
         <button
@@ -31,15 +32,23 @@
           <span></span>
         </button>
 
-        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-          <a href="index.html#hero">Home</a>
-          <a href="index.html#worked-with">Work</a>
-          <a href="index.html#featured-projects">Projects</a>
-          <a href="index.html#contact-form">Contact</a>
-          <a href="about-me.html" aria-current="page">About Me</a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-i18n-aria-label="nav.primaryAria">
+          <a href="index.html#hero" data-i18n="nav.home">Home</a>
+          <a href="index.html#worked-with" data-i18n="nav.work">Work</a>
+          <a href="index.html#featured-projects" data-i18n="nav.projects">Projects</a>
+          <a href="index.html#contact-form" data-i18n="nav.contact">Contact</a>
+          <a href="about-me.html" aria-current="page" data-i18n="nav.about">About Me</a>
+          <div class="language-switcher" aria-label="Language switcher" data-i18n-aria-label="nav.languageLabel">
+            <button class="language-button" type="button" data-language-option="de" aria-pressed="false">
+              DE
+            </button>
+            <button class="language-button" type="button" data-language-option="en" aria-pressed="true">
+              EN
+            </button>
+          </div>
         </nav>
 
-        <a class="brand" href="index.html#hero" aria-label="Gabriel Grassmayr home">
+        <a class="brand" href="index.html#hero" aria-label="Gabriel Grassmayr home" data-i18n-aria-label="nav.brandHome">
           <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
         </a>
       </div>
@@ -49,24 +58,24 @@
       <section class="about-intro" aria-labelledby="about-title">
         <div class="container about-intro-grid">
           <div class="about-copy">
-            <h1 id="about-title">About Me</h1>
+            <h1 id="about-title" data-i18n="about.title">About Me</h1>
             <p class="about-name">Gabriel Grassmayr</p>
-            <p class="about-subtitle">Adventure Filmmaker. Storyteller. Creator.</p>
-            <p class="about-intro-text">
+            <p class="about-subtitle" data-i18n="about.subtitle">Adventure Filmmaker. Storyteller. Creator.</p>
+            <p class="about-intro-text" data-i18n="about.introText">
               Gabriel captures stories where real adventure happens — from fast-paced productions
               to cinematic moments in extraordinary environments. His work combines emotion,
               movement and atmosphere for brands, documentaries and digital storytelling.
             </p>
           </div>
 
-          <section class="about-profile-panel" aria-label="Profile highlights">
+          <section class="about-profile-panel" aria-label="Profile highlights" data-i18n-aria-label="about.profileAria">
             <ul class="about-profile-list">
-              <li>Based in Austria</li>
-              <li>21 Years Old</li>
-              <li>Adventure Filmmaker &amp; Photographer</li>
-              <li>Extreme Sports, Travel &amp; Storytelling</li>
-              <li>Worked with Red Bull, FUNK &amp; Ripple</li>
-              <li>Co-Founder of MC Media</li>
+              <li data-i18n="about.profile.based">Based in Austria</li>
+              <li data-i18n="about.profile.age">21 Years Old</li>
+              <li data-i18n="about.profile.role">Adventure Filmmaker &amp; Photographer</li>
+              <li data-i18n="about.profile.focus">Extreme Sports, Travel &amp; Storytelling</li>
+              <li data-i18n="about.profile.clients">Worked with Red Bull, FUNK &amp; Ripple</li>
+              <li data-i18n="about.profile.coFounder">Co-Founder of MC Media</li>
             </ul>
           </section>
         </div>
@@ -74,12 +83,13 @@
 
       <section class="about-gallery-section" aria-labelledby="behind-the-lens-title">
         <div class="container">
-          <p class="about-gallery-label" id="behind-the-lens-title">Behind the Lens</p>
+          <p class="about-gallery-label" id="behind-the-lens-title" data-i18n="about.galleryLabel">Behind the Lens</p>
           <div class="about-gallery-grid">
             <figure class="about-gallery-card about-gallery-card--feature">
               <img
                 src="about-portrait-suit.jpeg"
                 alt="Gabriel Grassmayr smiling in a blue suit portrait."
+                data-i18n-alt="about.alt.suit"
                 loading="eager"
               />
             </figure>
@@ -87,6 +97,7 @@
               <img
                 src="about-portrait-rescue.jpeg"
                 alt="Gabriel Grassmayr in a red rescue uniform portrait."
+                data-i18n-alt="about.alt.rescue"
                 loading="lazy"
               />
             </figure>
@@ -94,6 +105,7 @@
               <img
                 src="about-on-set.jpeg"
                 alt="Gabriel Grassmayr filming with a camera alongside a collaborator."
+                data-i18n-alt="about.alt.onSet"
                 loading="lazy"
               />
             </figure>
@@ -101,6 +113,7 @@
               <img
                 src="about-in-the-field.jpg"
                 alt="Gabriel Grassmayr holding a camera outdoors while wearing headphones."
+                data-i18n-alt="about.alt.field"
                 loading="lazy"
               />
             </figure>
