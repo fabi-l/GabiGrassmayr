@@ -235,11 +235,17 @@ button {
 }
 
 .hero-subheadline {
-  max-width: 22ch;
+  max-width: 25ch;
+  display: grid;
+  justify-items: center;
   font-size: clamp(1rem, 2vw, 1.5rem);
   line-height: 1.12;
   letter-spacing: 0.1em;
   color: var(--text-soft);
+}
+
+.hero-subheadline span {
+  display: block;
 }
 
 .hero-cta {
@@ -392,7 +398,7 @@ button {
   }
 
   .hero-subheadline {
-    max-width: 19ch;
+    max-width: 20ch;
     font-size: clamp(0.94rem, 3.8vw, 1.1rem);
   }
 
