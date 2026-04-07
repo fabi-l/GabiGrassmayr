@@ -165,37 +165,7 @@ if (carousel) {
   const cards = Array.from(carousel.querySelectorAll(".project-card"));
   let currentIndex = 0;
   let scrollSyncTimer = 0;
-
-  const getGap = () => {
-    if (!viewport) {
-      return 0;
-    }
-
-    const track = viewport.querySelector(".projects-track");
-    if (!track) {
-      return 0;
-    }
-
-    return Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
-  };
-
-  const getVisibleCards = () => {
-    if (!viewport || !cards.length) {
-      return 1;
-    }
-
-    const firstCard = cards[0];
-    const cardWidth = firstCard.getBoundingClientRect().width;
-    const gap = getGap();
-
-    if (!cardWidth) {
-      return 1;
-    }
-
-    return Math.max(1, Math.round((viewport.clientWidth + gap) / (cardWidth + gap)));
-  };
-
-  const getMaxIndex = () => Math.max(0, cards.length - getVisibleCards());
+  const getMaxIndex = () => Math.max(0, cards.length - 1);
 
   const syncButtons = () => {
     if (!prevButton || !nextButton) {
@@ -214,9 +184,10 @@ if (carousel) {
 
     const maxIndex = getMaxIndex();
     currentIndex = Math.min(Math.max(index, 0), maxIndex);
-    viewport.scrollTo({
-      left: cards[currentIndex].offsetLeft,
+    cards[currentIndex].scrollIntoView({
       behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "nearest",
+      inline: "center",
     });
     syncButtons();
   };
@@ -227,12 +198,16 @@ if (carousel) {
     }
 
     const nearestIndex = cards.reduce((closestIndex, card, index) => {
-      const closestDistance = Math.abs(cards[closestIndex].offsetLeft - viewport.scrollLeft);
-      const currentDistance = Math.abs(card.offsetLeft - viewport.scrollLeft);
+      const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+      const closestCard = cards[closestIndex];
+      const closestDistance = Math.abs(
+        closestCard.offsetLeft + closestCard.offsetWidth / 2 - viewportCenter,
+      );
+      const currentDistance = Math.abs(card.offsetLeft + card.offsetWidth / 2 - viewportCenter);
       return currentDistance < closestDistance ? index : closestIndex;
     }, 0);
 
-    currentIndex = Math.min(nearestIndex, getMaxIndex());
+    currentIndex = nearestIndex;
     syncButtons();
   };
 
