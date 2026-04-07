@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriel Grassmayr | Portfolio</title>
+    <meta
+      name="description"
+      content="Cinematic filmmaker portfolio focused on extreme sports and travel content."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="#hero" aria-label="Gabriel Grassmayr home">
+          <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#hero">Home</a>
+          <a href="#worked-with">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-label="Hero">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="GabrielG.png"
+        >
+          <source src="VulkanSlomo.mp4" type="video/mp4" />
+        </video>
+
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content container">
+          <p class="hero-kicker">Gabriel Grassmayr</p>
+          <h1>Capturing the Impossible</h1>
+          <p class="hero-subheadline">
+            Specialized in Extreme Sports and Travel Content
+          </p>
+          <a class="hero-cta" href="#hero">Watch Showreel</a>
+        </div>
+      </section>
+
+      <section class="worked-with" id="worked-with" aria-labelledby="worked-with-title">
+        <div class="container">
+          <h2 id="worked-with-title">Worked With</h2>
+          <div class="logo-grid">
+            <!-- Replace each placeholder block with a real client logo image when ready. -->
+            <div class="logo-card">Logo 1</div>
+            <div class="logo-card">Logo 2</div>
+            <div class="logo-card">Logo 3</div>
+            <div class="logo-card">Logo 4</div>
+            <div class="logo-card">Logo 5</div>
+            <div class="logo-card">Logo 6</div>
+            <div class="logo-card">Logo 7</div>
+            <div class="logo-card">Logo 8</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="contact" hidden></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
