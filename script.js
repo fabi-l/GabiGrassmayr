@@ -256,17 +256,20 @@ if (carousel) {
 
   const prepareLoopMove = (direction) => {
     if (!hasLoopClones) {
-      return;
+      return false;
     }
 
     if (direction < 0 && currentIndex <= setSize) {
       jumpToIndex(currentIndex + setSize);
-      return;
+      return true;
     }
 
     if (direction > 0 && currentIndex >= setSize * 2 - 1) {
       jumpToIndex(currentIndex - setSize);
+      return true;
     }
+
+    return false;
   };
 
   const moveCarousel = (direction) => {
@@ -274,8 +277,18 @@ if (carousel) {
       return;
     }
 
-    prepareLoopMove(direction);
-    goToIndex(currentIndex + direction);
+    const didPrepareLoop = prepareLoopMove(direction);
+
+    if (!didPrepareLoop) {
+      goToIndex(currentIndex + direction);
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        goToIndex(currentIndex + direction);
+      });
+    });
   };
 
   prevButton?.addEventListener("click", () => {
