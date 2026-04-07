@@ -258,7 +258,8 @@ button {
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  clip-path: inset(0 100% 0 0);
+  width: 0;
+  border-right: 0.08em solid currentColor;
 }
 
 .hero-line-top .hero-line-static {
@@ -267,27 +268,17 @@ button {
 
 .hero-line-top .hero-line-typed {
   --line-left: 2ch;
-  width: 10ch;
-  animation: hero-reveal-line-1 0.82s linear 0.2s forwards;
+  animation:
+    hero-type-line-1 0.82s steps(10, end) 0.2s forwards,
+    hero-caret-blink 0.7s step-end 2 0.2s,
+    hero-caret-hide 0s linear 1.02s forwards;
 }
 
 .hero-line-bottom .hero-line-typed {
-  width: 14ch;
-  animation: hero-reveal-line-2 0.98s linear 1.3s forwards;
-}
-
-.hero-caret {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0.08em;
-  height: 0.92em;
-  background: currentColor;
-  transform: translate(2ch, 0);
   animation:
-    hero-caret-path 2.45s linear 0.2s forwards,
-    hero-caret-blink 0.7s step-end 4 0.2s,
-    hero-caret-hide 0s linear 2.65s forwards;
+    hero-type-line-2 0.98s steps(14, end) 1.22s forwards,
+    hero-caret-blink 0.7s step-end 3 1.22s,
+    hero-caret-hide 0s linear 2.2s forwards;
 }
 
 .hero-subheadline {
@@ -628,50 +619,23 @@ button {
   }
 }
 
-@keyframes hero-reveal-line-1 {
+@keyframes hero-type-line-1 {
   from {
-    clip-path: inset(0 100% 0 0);
+    width: 0;
   }
 
   to {
-    clip-path: inset(0 0 0 0);
+    width: 10ch;
   }
 }
 
-@keyframes hero-reveal-line-2 {
+@keyframes hero-type-line-2 {
   from {
-    clip-path: inset(0 100% 0 0);
+    width: 0;
   }
 
   to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes hero-caret-path {
-  0% {
-    opacity: 1;
-    transform: translate(2ch, 0);
-  }
-
-  36% {
-    opacity: 1;
-    transform: translate(12ch, 0);
-  }
-
-  46% {
-    opacity: 1;
-    transform: translate(12ch, 0);
-  }
-
-  58% {
-    opacity: 1;
-    transform: translate(0, 0.98em);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(14ch, 0.98em);
+    width: 14ch;
   }
 }
 
@@ -707,8 +671,7 @@ button {
     visibility: visible;
   }
 
-  .hero-line-typed,
-  .hero-caret {
+  .hero-line-typed {
     display: none;
   }
 }
