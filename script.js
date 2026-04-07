@@ -162,16 +162,25 @@ if (carousel) {
   const viewport = carousel.querySelector("[data-carousel-viewport]");
   const prevButton = carousel.querySelector("[data-carousel-prev]");
   const nextButton = carousel.querySelector("[data-carousel-next]");
-  const cards = Array.from(carousel.querySelectorAll(".project-card"));
+  const track = carousel.querySelector(".projects-track");
+  const originalCards = track ? Array.from(track.querySelectorAll(".project-card")) : [];
+  let cards = originalCards;
   let currentIndex = 0;
   let scrollSyncTimer = 0;
-  const getWrappedIndex = (index) => {
-    if (!cards.length) {
-      return 0;
-    }
+  const hasLoopClones = Boolean(track && originalCards.length > 1);
 
-    return ((index % cards.length) + cards.length) % cards.length;
-  };
+  if (track && hasLoopClones) {
+    const firstClone = originalCards[0].cloneNode(true);
+    const lastClone = originalCards[originalCards.length - 1].cloneNode(true);
+
+    firstClone.dataset.clone = "true";
+    lastClone.dataset.clone = "true";
+
+    track.prepend(lastClone);
+    track.append(firstClone);
+    cards = Array.from(track.querySelectorAll(".project-card"));
+    currentIndex = 1;
+  }
 
   const syncButtons = () => {
     if (!prevButton || !nextButton) {
@@ -182,18 +191,54 @@ if (carousel) {
     nextButton.disabled = false;
   };
 
+  const getAlignedScrollLeft = (card) => {
+    if (!viewport || !card) {
+      return 0;
+    }
+
+    return card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
+  };
+
+  const jumpToIndex = (index) => {
+    if (!viewport || !cards.length) {
+      return;
+    }
+
+    currentIndex = index;
+    viewport.scrollTo({
+      left: getAlignedScrollLeft(cards[currentIndex]),
+      behavior: "auto",
+    });
+    syncButtons();
+  };
+
   const scrollToIndex = (index) => {
     if (!viewport || !cards.length) {
       return;
     }
 
-    currentIndex = getWrappedIndex(index);
-    cards[currentIndex].scrollIntoView({
+    const lastIndex = cards.length - 1;
+    currentIndex = Math.min(Math.max(index, 0), lastIndex);
+    viewport.scrollTo({
+      left: getAlignedScrollLeft(cards[currentIndex]),
       behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center",
     });
     syncButtons();
+  };
+
+  const normalizeLoopPosition = () => {
+    if (!hasLoopClones) {
+      return;
+    }
+
+    if (currentIndex === 0) {
+      jumpToIndex(cards.length - 2);
+      return;
+    }
+
+    if (currentIndex === cards.length - 1) {
+      jumpToIndex(1);
+    }
   };
 
   const syncIndexFromScroll = () => {
@@ -212,6 +257,7 @@ if (carousel) {
     }, 0);
 
     currentIndex = nearestIndex;
+    normalizeLoopPosition();
     syncButtons();
   };
 
@@ -241,8 +287,14 @@ if (carousel) {
   });
 
   window.addEventListener("resize", () => {
-    scrollToIndex(currentIndex);
+    jumpToIndex(currentIndex);
   });
+
+  if (hasLoopClones) {
+    window.requestAnimationFrame(() => {
+      jumpToIndex(1);
+    });
+  }
 
   syncButtons();
 }
