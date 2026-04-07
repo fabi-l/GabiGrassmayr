@@ -165,16 +165,21 @@ if (carousel) {
   const cards = Array.from(carousel.querySelectorAll(".project-card"));
   let currentIndex = 0;
   let scrollSyncTimer = 0;
-  const getMaxIndex = () => Math.max(0, cards.length - 1);
+  const getWrappedIndex = (index) => {
+    if (!cards.length) {
+      return 0;
+    }
+
+    return ((index % cards.length) + cards.length) % cards.length;
+  };
 
   const syncButtons = () => {
     if (!prevButton || !nextButton) {
       return;
     }
 
-    const maxIndex = getMaxIndex();
-    prevButton.disabled = currentIndex <= 0;
-    nextButton.disabled = currentIndex >= maxIndex;
+    prevButton.disabled = false;
+    nextButton.disabled = false;
   };
 
   const scrollToIndex = (index) => {
@@ -182,8 +187,7 @@ if (carousel) {
       return;
     }
 
-    const maxIndex = getMaxIndex();
-    currentIndex = Math.min(Math.max(index, 0), maxIndex);
+    currentIndex = getWrappedIndex(index);
     cards[currentIndex].scrollIntoView({
       behavior: prefersReducedMotion.matches ? "auto" : "smooth",
       block: "nearest",
