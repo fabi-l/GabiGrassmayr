@@ -167,19 +167,29 @@ if (carousel) {
   let cards = originalCards;
   let currentIndex = 0;
   let scrollSyncTimer = 0;
+  const setSize = originalCards.length;
   const hasLoopClones = Boolean(track && originalCards.length > 1);
 
   if (track && hasLoopClones) {
-    const firstClone = originalCards[0].cloneNode(true);
-    const lastClone = originalCards[originalCards.length - 1].cloneNode(true);
+    const prependClones = originalCards.map((card) => {
+      const clone = card.cloneNode(true);
+      clone.dataset.clone = "true";
+      return clone;
+    });
+    const appendClones = originalCards.map((card) => {
+      const clone = card.cloneNode(true);
+      clone.dataset.clone = "true";
+      return clone;
+    });
 
-    firstClone.dataset.clone = "true";
-    lastClone.dataset.clone = "true";
-
-    track.prepend(lastClone);
-    track.append(firstClone);
+    prependClones.slice().reverse().forEach((clone) => {
+      track.prepend(clone);
+    });
+    appendClones.forEach((clone) => {
+      track.append(clone);
+    });
     cards = Array.from(track.querySelectorAll(".project-card"));
-    currentIndex = 1;
+    currentIndex = setSize;
   }
 
   const syncButtons = () => {
@@ -231,13 +241,13 @@ if (carousel) {
       return;
     }
 
-    if (currentIndex === 0) {
-      jumpToIndex(cards.length - 2);
+    if (currentIndex < setSize) {
+      jumpToIndex(currentIndex + setSize);
       return;
     }
 
-    if (currentIndex === cards.length - 1) {
-      jumpToIndex(1);
+    if (currentIndex >= setSize * 2) {
+      jumpToIndex(currentIndex - setSize);
     }
   };
 
@@ -292,7 +302,7 @@ if (carousel) {
 
   if (hasLoopClones) {
     window.requestAnimationFrame(() => {
-      jumpToIndex(1);
+      jumpToIndex(setSize);
     });
   }
 
