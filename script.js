@@ -3,7 +3,7 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".site-nav a");
 const heroVideo = document.querySelector(".hero-video");
-const heroLines = document.querySelectorAll(".hero-line");
+const heroLines = document.querySelectorAll(".hero-line-typed");
 const heroCaret = document.querySelector(".hero-caret");
 
 const playHeroVideo = () => {

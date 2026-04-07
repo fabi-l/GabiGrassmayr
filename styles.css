@@ -234,18 +234,44 @@ button {
 
 .hero-line {
   display: block;
+  position: relative;
+  white-space: nowrap;
+}
+
+.hero-line-top {
+  width: 12ch;
+}
+
+.hero-line-bottom {
+  width: 14ch;
+}
+
+.hero-line-static {
+  display: block;
+  visibility: hidden;
+}
+
+.hero-line-typed {
+  position: absolute;
+  top: 0;
+  left: var(--line-left, 0);
+  display: block;
   overflow: hidden;
   white-space: nowrap;
   clip-path: inset(0 100% 0 0);
 }
 
-.hero-line-top {
-  margin-left: 2ch;
+.hero-line-top .hero-line-static {
+  padding-left: 2ch;
+}
+
+.hero-line-top .hero-line-typed {
+  --line-left: 2ch;
   width: 10ch;
   animation: hero-reveal-line-1 0.82s linear 0.2s forwards;
 }
 
-.hero-line-bottom {
+.hero-line-bottom .hero-line-typed {
   width: 14ch;
   animation: hero-reveal-line-2 0.98s linear 1.3s forwards;
 }
@@ -671,9 +697,13 @@ button {
 
   .hero-line {
     width: auto;
-    clip-path: none;
   }
 
+  .hero-line-static {
+    visibility: visible;
+  }
+
+  .hero-line-typed,
   .hero-caret {
     display: none;
   }
