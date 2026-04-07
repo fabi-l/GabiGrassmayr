@@ -365,7 +365,6 @@ if (contactForm) {
     const message = String(formData.get("message") || "").trim();
     const body = [
       `Name: ${name}`,
-      `Subject: ${subject}`,
       "",
       "Message:",
       message,
