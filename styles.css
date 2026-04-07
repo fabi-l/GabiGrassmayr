@@ -238,6 +238,7 @@ button {
 }
 
 .hero-subheadline {
+  width: min(100%, 46rem);
   max-width: 100%;
   display: grid;
   justify-items: center;
@@ -250,6 +251,8 @@ button {
 
 .hero-subheadline span {
   display: block;
+  width: 100%;
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -403,6 +406,7 @@ button {
   }
 
   .hero-subheadline {
+    width: min(100%, 24rem);
     font-size: clamp(0.7rem, 2.9vw, 0.95rem);
     letter-spacing: 0.06em;
   }
