@@ -222,7 +222,7 @@ button {
   margin: 0;
   max-width: 14.5ch;
   display: grid;
-  justify-items: start;
+  justify-items: center;
   position: relative;
   font-family: var(--anton);
   font-style: normal;
@@ -230,6 +230,7 @@ button {
   font-size: clamp(2.9rem, 8.8vw, 6.6rem);
   line-height: 0.96;
   letter-spacing: 0.03em;
+  text-align: center;
 }
 
 .hero-line {
