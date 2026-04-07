@@ -361,12 +361,11 @@ if (contactForm) {
 
     const formData = new FormData(contactForm);
     const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
+    const subject = String(formData.get("subject") || "").trim();
     const message = String(formData.get("message") || "").trim();
-    const subject = `Portfolio Inquiry from ${name || "Website Visitor"}`;
     const body = [
       `Name: ${name}`,
-      `Email: ${email}`,
+      `Subject: ${subject}`,
       "",
       "Message:",
       message,
