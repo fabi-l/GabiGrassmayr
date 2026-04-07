@@ -350,44 +350,44 @@ button {
 }
 
 .logo-image {
-  width: min(100%, var(--logo-width, 84%));
+  width: min(100%, var(--logo-width, 92%));
   display: block;
   align-self: center;
   justify-self: center;
-  max-height: 88px;
+  max-height: 104px;
   object-fit: contain;
 }
 
 .logo-item-redbull {
-  --logo-width: 88%;
+  --logo-width: 94%;
 }
 
 .logo-item-ama {
-  --logo-width: 76%;
+  --logo-width: 84%;
 }
 
 .logo-item-bk {
-  --logo-width: 58%;
+  --logo-width: 66%;
 }
 
 .logo-item-ard {
-  --logo-width: 72%;
+  --logo-width: 80%;
 }
 
 .logo-item-innsbruck {
-  --logo-width: 74%;
+  --logo-width: 82%;
 }
 
 .logo-item-landjugend {
-  --logo-width: 92%;
+  --logo-width: 98%;
 }
 
 .logo-item-yepp {
-  --logo-width: 70%;
+  --logo-width: 80%;
 }
 
 .logo-item-ripple {
-  --logo-width: 84%;
+  --logo-width: 92%;
 }
 
 @media (max-width: 900px) {
@@ -527,7 +527,7 @@ button {
   }
 
   .logo-image {
-    max-height: 72px;
+    max-height: 82px;
   }
 }
 
@@ -562,7 +562,7 @@ button {
   }
 
   .logo-image {
-    max-height: 66px;
+    max-height: 74px;
   }
 }
 
@@ -604,7 +604,7 @@ button {
   }
 
   .logo-image {
-    max-height: 58px;
+    max-height: 64px;
   }
 }
 
