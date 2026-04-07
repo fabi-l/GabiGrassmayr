@@ -288,6 +288,53 @@
           </div>
         </div>
       </section>
+
+      <section class="contact-section" id="contact-form" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact-shell">
+            <div class="contact-heading">
+              <h2 id="contact-title">LET’S CAPTURE YOUR NEXT ADVENTURE TOGETHER!</h2>
+              <p>TELL ME YOUR STORY:</p>
+            </div>
+
+            <form class="contact-form" action="#" method="post" novalidate data-contact-form>
+              <div class="form-field">
+                <label for="contact-name">Name *</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your Name..."
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="contact-email">Email Address *</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  placeholder="Your Email Address..."
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="contact-message">Message *</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="Your Message..."
+                  required
+                ></textarea>
+              </div>
+
+              <button class="contact-submit" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="script.js"></script>

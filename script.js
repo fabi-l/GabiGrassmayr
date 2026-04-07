@@ -348,3 +348,17 @@ if (carousel) {
 
   syncButtons();
 }
+
+const contactForm = document.querySelector("[data-contact-form]");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!contactForm.reportValidity()) {
+      return;
+    }
+
+    contactForm.reset();
+  });
+}
