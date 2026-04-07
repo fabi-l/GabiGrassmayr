@@ -4,8 +4,8 @@
   --text-soft: rgba(255, 255, 255, 0.8);
   --line: rgba(255, 255, 255, 0.2);
   --line-strong: rgba(255, 255, 255, 0.38);
-  --overlay-top: rgba(0, 0, 0, 0.72);
-  --overlay-bottom: rgba(0, 0, 0, 0.48);
+  --overlay-top: rgba(0, 0, 0, 0.6);
+  --overlay-bottom: rgba(0, 0, 0, 0.34);
   --header-bg-mobile: rgba(18, 18, 18, 0.94);
   --container: 1200px;
   --nav-height: 96px;
@@ -168,12 +168,13 @@ button {
 
 .hero-video {
   object-fit: cover;
+  filter: brightness(1.14) contrast(1.03);
 }
 
 .hero-overlay {
   background:
-    linear-gradient(to bottom, var(--overlay-top), rgba(0, 0, 0, 0.22) 38%, var(--overlay-bottom)),
-    radial-gradient(circle at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.56));
+    linear-gradient(to bottom, var(--overlay-top), rgba(0, 0, 0, 0.16) 38%, var(--overlay-bottom)),
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46));
   z-index: 1;
 }
 
