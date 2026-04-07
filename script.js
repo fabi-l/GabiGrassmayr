@@ -155,3 +155,115 @@ if (header && menuToggle && nav) {
     }
   });
 }
+
+const carousel = document.querySelector("[data-carousel]");
+
+if (carousel) {
+  const viewport = carousel.querySelector("[data-carousel-viewport]");
+  const prevButton = carousel.querySelector("[data-carousel-prev]");
+  const nextButton = carousel.querySelector("[data-carousel-next]");
+  const cards = Array.from(carousel.querySelectorAll(".project-card"));
+  let currentIndex = 0;
+  let scrollSyncTimer = 0;
+
+  const getGap = () => {
+    if (!viewport) {
+      return 0;
+    }
+
+    const track = viewport.querySelector(".projects-track");
+    if (!track) {
+      return 0;
+    }
+
+    return Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
+  };
+
+  const getVisibleCards = () => {
+    if (!viewport || !cards.length) {
+      return 1;
+    }
+
+    const firstCard = cards[0];
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const gap = getGap();
+
+    if (!cardWidth) {
+      return 1;
+    }
+
+    return Math.max(1, Math.round((viewport.clientWidth + gap) / (cardWidth + gap)));
+  };
+
+  const getMaxIndex = () => Math.max(0, cards.length - getVisibleCards());
+
+  const syncButtons = () => {
+    if (!prevButton || !nextButton) {
+      return;
+    }
+
+    const maxIndex = getMaxIndex();
+    prevButton.disabled = currentIndex <= 0;
+    nextButton.disabled = currentIndex >= maxIndex;
+  };
+
+  const scrollToIndex = (index) => {
+    if (!viewport || !cards.length) {
+      return;
+    }
+
+    const maxIndex = getMaxIndex();
+    currentIndex = Math.min(Math.max(index, 0), maxIndex);
+    viewport.scrollTo({
+      left: cards[currentIndex].offsetLeft,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+    syncButtons();
+  };
+
+  const syncIndexFromScroll = () => {
+    if (!viewport || !cards.length) {
+      return;
+    }
+
+    const nearestIndex = cards.reduce((closestIndex, card, index) => {
+      const closestDistance = Math.abs(cards[closestIndex].offsetLeft - viewport.scrollLeft);
+      const currentDistance = Math.abs(card.offsetLeft - viewport.scrollLeft);
+      return currentDistance < closestDistance ? index : closestIndex;
+    }, 0);
+
+    currentIndex = Math.min(nearestIndex, getMaxIndex());
+    syncButtons();
+  };
+
+  prevButton?.addEventListener("click", () => {
+    scrollToIndex(currentIndex - 1);
+  });
+
+  nextButton?.addEventListener("click", () => {
+    scrollToIndex(currentIndex + 1);
+  });
+
+  viewport?.addEventListener("scroll", () => {
+    window.clearTimeout(scrollSyncTimer);
+    scrollSyncTimer = window.setTimeout(syncIndexFromScroll, 70);
+  });
+
+  viewport?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollToIndex(currentIndex - 1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollToIndex(currentIndex + 1);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    scrollToIndex(currentIndex);
+  });
+
+  syncButtons();
+}
