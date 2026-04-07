@@ -358,17 +358,6 @@ button {
   object-fit: contain;
 }
 
-.logo-item figcaption {
-  text-align: center;
-  font-family: var(--body);
-  font-size: 0.78rem;
-  font-style: italic;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.74);
-}
-
 .logo-item-redbull {
   --logo-width: 88%;
 }
