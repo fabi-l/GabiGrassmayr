@@ -305,6 +305,52 @@ button {
   white-space: nowrap;
 }
 
+.hero-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.65rem;
+}
+
+.social-link {
+  width: clamp(3.55rem, 4.9vw, 4.35rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #262626;
+  text-decoration: none;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  transform: translateY(-2px);
+  background: #ffffff;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 3px;
+}
+
+.social-link svg {
+  width: 48%;
+  height: 48%;
+  display: block;
+}
+
 .worked-with {
   background: var(--bg);
   padding: clamp(4.5rem, 8vw, 7rem) 0 clamp(5rem, 7vw, 7rem);
@@ -465,6 +511,10 @@ button {
     padding-top: calc(var(--nav-height) + 1.1rem);
     padding-bottom: 2.2rem;
   }
+
+  .hero-social {
+    gap: 0.85rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -503,6 +553,15 @@ button {
     font-size: clamp(0.56rem, 2.48vw, 0.72rem);
     line-height: 1.08;
     letter-spacing: 0.045em;
+  }
+
+  .hero-social {
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-link {
+    width: 3.3rem;
   }
 
   .worked-with {
@@ -560,6 +619,14 @@ button {
     letter-spacing: 0.04em;
   }
 
+  .hero-social {
+    gap: 0.6rem;
+  }
+
+  .social-link {
+    width: 3rem;
+  }
+
   .logo-item {
     min-height: 112px;
     padding: 0.7rem;
@@ -592,6 +659,10 @@ button {
     width: fit-content;
     font-size: 0.47rem;
     letter-spacing: 0.03em;
+  }
+
+  .social-link {
+    width: 2.7rem;
   }
 
   .logo-grid {
