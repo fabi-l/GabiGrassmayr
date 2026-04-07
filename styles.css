@@ -233,7 +233,7 @@ button {
 }
 
 .hero-line-bottom {
-  animation: hero-type-line-2 1.1s steps(14, end) 1.15s forwards;
+  animation: hero-type-line-2 1.1s steps(14, end) 1.35s forwards;
 }
 
 .hero-caret {
@@ -245,9 +245,9 @@ button {
   background: currentColor;
   transform: translate(2ch, 0);
   animation:
-    hero-caret-path 2.25s linear 0.2s forwards,
+    hero-caret-path 2.45s linear 0.2s forwards,
     hero-caret-blink 0.7s step-end 4 0.2s,
-    hero-caret-hide 0s linear 2.45s forwards;
+    hero-caret-hide 0s linear 2.65s forwards;
 }
 
 .hero-subheadline {
@@ -585,12 +585,17 @@ button {
     transform: translate(2ch, 0);
   }
 
-  40% {
+  36% {
     opacity: 1;
     transform: translate(12ch, 0);
   }
 
-  50% {
+  46% {
+    opacity: 1;
+    transform: translate(12ch, 0);
+  }
+
+  58% {
     opacity: 1;
     transform: translate(0, 0.98em);
   }
