@@ -288,13 +288,15 @@ button {
   background: rgba(255, 255, 255, 0.015);
 }
 
-.logo-mark {
+.logo-svg {
   width: 100%;
   aspect-ratio: 2.7 / 1;
-  background-image: url("worked-with-logos-white.svg");
-  background-repeat: no-repeat;
-  background-size: 400% 200%;
-  background-position: var(--logo-x) var(--logo-y);
+  display: block;
+}
+
+.logo-svg image {
+  width: 100%;
+  height: 100%;
 }
 
 .logo-item figcaption {
@@ -306,46 +308,6 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.74);
-}
-
-.logo-redbull {
-  --logo-x: 0%;
-  --logo-y: 0%;
-}
-
-.logo-ama {
-  --logo-x: 33.333%;
-  --logo-y: 0%;
-}
-
-.logo-bk {
-  --logo-x: 66.666%;
-  --logo-y: 0%;
-}
-
-.logo-ard {
-  --logo-x: 100%;
-  --logo-y: 0%;
-}
-
-.logo-innsbruck {
-  --logo-x: 0%;
-  --logo-y: 100%;
-}
-
-.logo-landjugend {
-  --logo-x: 33.333%;
-  --logo-y: 100%;
-}
-
-.logo-yepp {
-  --logo-x: 66.666%;
-  --logo-y: 100%;
-}
-
-.logo-ripple {
-  --logo-x: 100%;
-  --logo-y: 100%;
 }
 
 @media (max-width: 900px) {
