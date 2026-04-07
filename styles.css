@@ -244,7 +244,7 @@ button {
 }
 
 .hero-line-bottom {
-  width: 14ch;
+  width: max-content;
 }
 
 .hero-line-static {
