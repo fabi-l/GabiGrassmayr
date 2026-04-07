@@ -4,6 +4,7 @@ const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".site-nav a");
 const heroVideo = document.querySelector(".hero-video");
 const heroLines = document.querySelectorAll(".hero-line");
+const heroCaret = document.querySelector(".hero-caret");
 
 const playHeroVideo = () => {
   if (!heroVideo) {
@@ -26,10 +27,18 @@ const restartHeroTyping = () => {
     line.style.animation = "none";
   });
 
+  if (heroCaret) {
+    heroCaret.style.animation = "none";
+  }
+
   requestAnimationFrame(() => {
     heroLines.forEach((line) => {
       line.style.animation = "";
     });
+
+    if (heroCaret) {
+      heroCaret.style.animation = "";
+    }
   });
 };
 
