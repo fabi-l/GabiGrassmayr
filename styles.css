@@ -657,6 +657,17 @@ button {
   resize: vertical;
 }
 
+.contact-note {
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-family: var(--anton);
+  font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .contact-submit {
   margin-top: 2rem;
   min-width: 10.5rem;
@@ -976,6 +987,11 @@ button {
     min-height: 13rem;
   }
 
+  .contact-note {
+    margin-top: 0.85rem;
+    font-size: 0.76rem;
+  }
+
   .contact-submit {
     margin-top: 1.65rem;
   }
@@ -1133,6 +1149,11 @@ button {
 
   .form-field textarea {
     min-height: 11.5rem;
+  }
+
+  .contact-note {
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
   }
 
   .logo-grid {
