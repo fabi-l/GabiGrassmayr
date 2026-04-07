@@ -362,6 +362,8 @@ button {
   justify-self: center;
   max-height: 112px;
   object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .logo-item-redbull {
