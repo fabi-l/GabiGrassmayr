@@ -950,6 +950,7 @@ button {
 }
 
 .about-gallery-card {
+  position: relative;
   margin: 0;
   overflow: hidden;
   border-radius: 1.25rem;
@@ -964,6 +965,29 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.about-gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent);
+  pointer-events: none;
+}
+
+.about-gallery-card figcaption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  font-family: var(--anton);
+  font-style: normal;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
 }
 
 .about-gallery-card--feature {
