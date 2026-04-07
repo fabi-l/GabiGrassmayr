@@ -248,18 +248,14 @@ button {
 
 .hero-line-static {
   display: block;
-  visibility: hidden;
 }
 
 .hero-line-typed {
   position: absolute;
   top: 0;
   left: var(--line-left, 0);
-  display: block;
-  overflow: hidden;
+  display: none;
   white-space: nowrap;
-  width: 0;
-  border-right: 0.08em solid currentColor;
 }
 
 .hero-line-top .hero-line-static {
@@ -268,17 +264,25 @@ button {
 
 .hero-line-top .hero-line-typed {
   --line-left: 2ch;
-  animation:
-    hero-type-line-1 0.82s steps(10, end) 0.2s forwards,
-    hero-caret-blink 0.7s step-end 2 0.2s,
-    hero-caret-hide 0s linear 1.02s forwards;
 }
 
-.hero-line-bottom .hero-line-typed {
-  animation:
-    hero-type-line-2 0.98s steps(14, end) 1.22s forwards,
-    hero-caret-blink 0.7s step-end 3 1.22s,
-    hero-caret-hide 0s linear 2.2s forwards;
+.hero h1.typing-active .hero-line-static {
+  visibility: hidden;
+}
+
+.hero h1.typing-active .hero-line-typed {
+  display: block;
+}
+
+.hero-line-typed.is-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 0.08em;
+  height: 0.84em;
+  margin-left: 0.06em;
+  vertical-align: -0.06em;
+  background: currentColor;
+  animation: hero-caret-blink 0.85s step-end infinite;
 }
 
 .hero-subheadline {
@@ -608,34 +612,8 @@ button {
   }
 }
 
-@keyframes hero-type-line-1 {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 10ch;
-  }
-}
-
-@keyframes hero-type-line-2 {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 14ch;
-  }
-}
-
 @keyframes hero-caret-blink {
   50% {
-    opacity: 0;
-  }
-}
-
-@keyframes hero-caret-hide {
-  to {
     opacity: 0;
   }
 }

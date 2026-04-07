@@ -3,7 +3,10 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".site-nav a");
 const heroVideo = document.querySelector(".hero-video");
-const heroLines = document.querySelectorAll(".hero-line-typed");
+const heroTitle = document.querySelector(".hero h1");
+const heroLines = Array.from(document.querySelectorAll(".hero-line-typed"));
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let heroTypingRun = 0;
 
 const playHeroVideo = () => {
   if (!heroVideo) {
@@ -18,18 +21,77 @@ const playHeroVideo = () => {
 };
 
 const restartHeroTyping = () => {
-  if (!heroLines.length) {
+  if (!heroTitle || !heroLines.length) {
     return;
   }
 
+  if (prefersReducedMotion.matches) {
+    heroTitle.classList.remove("typing-active");
+    heroLines.forEach((line) => {
+      line.textContent = line.dataset.fullText || line.textContent;
+      line.classList.remove("is-cursor");
+    });
+    return;
+  }
+
+  heroTypingRun += 1;
+  const currentRun = heroTypingRun;
+
+  heroTitle.classList.add("typing-active");
+
   heroLines.forEach((line) => {
-    line.style.animation = "none";
+    if (!line.dataset.fullText) {
+      line.dataset.fullText = line.textContent;
+    }
+
+    line.textContent = "";
+    line.classList.remove("is-cursor");
   });
 
-  requestAnimationFrame(() => {
-    heroLines.forEach((line) => {
-      line.style.animation = "";
-    });
+  const typeLine = (line, delay, onComplete) => {
+    const fullText = line.dataset.fullText || "";
+    let charIndex = 0;
+
+    line.classList.add("is-cursor");
+
+    const step = () => {
+      if (currentRun !== heroTypingRun) {
+        return;
+      }
+
+      if (charIndex < fullText.length) {
+        charIndex += 1;
+        line.textContent = fullText.slice(0, charIndex);
+        window.setTimeout(step, delay);
+        return;
+      }
+
+      line.classList.remove("is-cursor");
+      onComplete?.();
+    };
+
+    window.setTimeout(step, 180);
+  };
+
+  typeLine(heroLines[0], 72, () => {
+    if (currentRun !== heroTypingRun || !heroLines[1]) {
+      heroTitle.classList.remove("typing-active");
+      return;
+    }
+
+    window.setTimeout(() => {
+      typeLine(heroLines[1], 58, () => {
+        if (currentRun !== heroTypingRun) {
+          return;
+        }
+
+        window.setTimeout(() => {
+          if (currentRun === heroTypingRun) {
+            heroTitle.classList.remove("typing-active");
+          }
+        }, 120);
+      });
+    }, 140);
   });
 };
 
