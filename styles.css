@@ -204,14 +204,13 @@ button {
 
 .hero h1 {
   margin: 0;
-  max-width: 11ch;
+  max-width: 9.5ch;
   font-family: var(--anton);
   font-style: normal;
   text-transform: uppercase;
-  font-size: clamp(3.3rem, 10vw, 7.8rem);
-  line-height: 0.94;
-  letter-spacing: 0.04em;
-  text-wrap: balance;
+  font-size: clamp(2.9rem, 8.8vw, 6.6rem);
+  line-height: 0.96;
+  letter-spacing: 0.03em;
 }
 
 .hero-subheadline {
