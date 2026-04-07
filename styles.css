@@ -224,16 +224,18 @@ button {
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  width: 0;
+  clip-path: inset(0 100% 0 0);
 }
 
 .hero-line-top {
   margin-left: 2ch;
-  animation: hero-type-line-1 0.9s steps(10, end) 0.2s forwards;
+  width: 10ch;
+  animation: hero-reveal-line-1 0.82s linear 0.2s forwards;
 }
 
 .hero-line-bottom {
-  animation: hero-type-line-2 1.1s steps(14, end) 1.35s forwards;
+  width: 14ch;
+  animation: hero-reveal-line-2 0.98s linear 1.3s forwards;
 }
 
 .hero-caret {
@@ -559,23 +561,23 @@ button {
   }
 }
 
-@keyframes hero-type-line-1 {
+@keyframes hero-reveal-line-1 {
   from {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
   }
 
   to {
-    width: 10ch;
+    clip-path: inset(0 0 0 0);
   }
 }
 
-@keyframes hero-type-line-2 {
+@keyframes hero-reveal-line-2 {
   from {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
   }
 
   to {
-    width: 14ch;
+    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -632,6 +634,7 @@ button {
 
   .hero-line {
     width: auto;
+    clip-path: none;
   }
 
   .hero-caret {
