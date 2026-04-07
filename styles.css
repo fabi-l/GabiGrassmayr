@@ -266,11 +266,13 @@ button {
   --line-left: 2ch;
 }
 
-.hero h1.typing-active .hero-line-static {
+.hero h1.typing-active .hero-line-static,
+.hero h1.typing-complete .hero-line-static {
   visibility: hidden;
 }
 
-.hero h1.typing-active .hero-line-typed {
+.hero h1.typing-active .hero-line-typed,
+.hero h1.typing-complete .hero-line-typed {
   display: block;
 }
 

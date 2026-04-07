@@ -27,6 +27,7 @@ const restartHeroTyping = () => {
 
   if (prefersReducedMotion.matches) {
     heroTitle.classList.remove("typing-active");
+    heroTitle.classList.add("typing-complete");
     heroLines.forEach((line) => {
       line.textContent = line.dataset.fullText || line.textContent;
       line.classList.remove("is-cursor");
@@ -37,6 +38,7 @@ const restartHeroTyping = () => {
   heroTypingRun += 1;
   const currentRun = heroTypingRun;
 
+  heroTitle.classList.remove("typing-complete");
   heroTitle.classList.add("typing-active");
 
   heroLines.forEach((line) => {
@@ -76,6 +78,7 @@ const restartHeroTyping = () => {
   typeLine(heroLines[0], 72, () => {
     if (currentRun !== heroTypingRun || !heroLines[1]) {
       heroTitle.classList.remove("typing-active");
+      heroTitle.classList.add("typing-complete");
       return;
     }
 
@@ -88,6 +91,7 @@ const restartHeroTyping = () => {
         window.setTimeout(() => {
           if (currentRun === heroTypingRun) {
             heroTitle.classList.remove("typing-active");
+            heroTitle.classList.add("typing-complete");
           }
         }, 120);
       });
