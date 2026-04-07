@@ -935,10 +935,6 @@ button {
   text-transform: uppercase;
 }
 
-.about-profile-list li:last-child {
-  grid-column: 1 / -1;
-}
-
 .about-gallery-section {
   padding: 0;
 }
@@ -1050,10 +1046,6 @@ button {
 
   .about-profile-list {
     grid-template-columns: 1fr;
-  }
-
-  .about-profile-list li:last-child {
-    grid-column: auto;
   }
 
   .about-gallery-grid {
