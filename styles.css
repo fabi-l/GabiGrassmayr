@@ -659,9 +659,11 @@ button {
 
 .contact-note {
   margin: 1rem 0 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  width: 100%;
   color: rgba(255, 255, 255, 0.56);
   font-family: var(--anton);
   font-size: clamp(0.72rem, 1.2vw, 0.9rem);
@@ -672,8 +674,8 @@ button {
 }
 
 .contact-note img {
-  width: 0.92rem;
-  height: 0.92rem;
+  width: 1em;
+  height: 1em;
   flex: 0 0 auto;
 }
 
