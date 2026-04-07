@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriel Grassmayr | About Me</title>
+    <meta
+      name="description"
+      content="Adventure filmmaker and photographer Gabriel Grassmayr. Discover a concise profile, cinematic introduction, and behind-the-lens gallery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="about-page">
+    <header class="site-header">
+      <div class="container nav-shell">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="index.html#hero">Home</a>
+          <a href="index.html#worked-with">Work</a>
+          <a href="about-me.html" aria-current="page">About Me</a>
+          <a href="index.html#contact-form">Contact</a>
+        </nav>
+
+        <a class="brand" href="index.html#hero" aria-label="Gabriel Grassmayr home">
+          <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
+        </a>
+      </div>
+    </header>
+
+    <main class="about-main">
+      <section class="about-intro" aria-labelledby="about-title">
+        <div class="container about-intro-grid">
+          <div class="about-copy">
+            <p class="about-name">Gabriel Grassmayr</p>
+            <h1 id="about-title">About Me</h1>
+            <p class="about-subtitle">Adventure Filmmaker. Storyteller. Creator.</p>
+            <p class="about-intro-text">
+              Gabriel captures stories where real adventure happens — from fast-paced productions
+              to cinematic moments in extraordinary environments. His work combines emotion,
+              movement and atmosphere for brands, documentaries and digital storytelling.
+            </p>
+          </div>
+
+          <section class="about-profile-panel" aria-label="Profile highlights">
+            <ul class="about-profile-list">
+              <li>Adventure Filmmaker &amp; Photographer</li>
+              <li>Based in Austria</li>
+              <li>Extreme Sports, Travel &amp; Storytelling</li>
+              <li>Worked with Red Bull, FUNK &amp; Ripple</li>
+              <li>Co-Founder of MC Media</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="about-gallery-section" aria-labelledby="behind-the-lens-title">
+        <div class="container">
+          <p class="about-gallery-label" id="behind-the-lens-title">Behind the Lens</p>
+          <div class="about-gallery-grid">
+            <figure class="about-gallery-card about-gallery-card--feature">
+              <img
+                src="0DCC2D0A-9F80-490F-9A9A-DE540B8B7918.jpeg"
+                alt="Gabriel Grassmayr smiling in a blue suit portrait."
+                loading="eager"
+              />
+            </figure>
+            <figure class="about-gallery-card about-gallery-card--portrait-a">
+              <img
+                src="7B26BEA7-DDB7-4D62-BCEA-D65DC65C6CBD.jpeg"
+                alt="Gabriel Grassmayr in a red rescue uniform portrait."
+                loading="lazy"
+              />
+            </figure>
+            <figure class="about-gallery-card about-gallery-card--portrait-b">
+              <img
+                src="FA0E4318-8F17-41F2-A5E3-E6A732E0A0A4.jpeg"
+                alt="Gabriel Grassmayr filming with a camera alongside a collaborator."
+                loading="lazy"
+              />
+            </figure>
+            <figure class="about-gallery-card about-gallery-card--wide">
+              <img
+                src="549540435_18323845540238316_8312988276996283453_n.jpg"
+                alt="Gabriel Grassmayr holding a camera outdoors while wearing headphones."
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
