@@ -271,20 +271,87 @@ button {
   letter-spacing: 0.08em;
 }
 
-.logo-showcase {
-  position: relative;
-  isolation: isolate;
-  padding: clamp(0.95rem, 2vw, 1.4rem);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.01);
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.logo-sheet {
+.logo-item {
+  margin: 0;
+  min-height: 158px;
+  display: grid;
+  align-content: center;
+  gap: 0.95rem;
+  padding: 1.2rem 1rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.logo-mark {
   width: 100%;
-  height: auto;
-  mix-blend-mode: lighten;
-  opacity: 0.96;
-  filter: grayscale(1) brightness(1.22) contrast(1.05);
+  aspect-ratio: 2.7 / 1;
+  background-image: url("worked-with-logos-white.svg");
+  background-repeat: no-repeat;
+  background-size: 400% 200%;
+  background-position: var(--logo-x) var(--logo-y);
+}
+
+.logo-item figcaption {
+  text-align: center;
+  font-family: var(--body);
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.logo-redbull {
+  --logo-x: 0%;
+  --logo-y: 0%;
+}
+
+.logo-ama {
+  --logo-x: 33.333%;
+  --logo-y: 0%;
+}
+
+.logo-bk {
+  --logo-x: 66.666%;
+  --logo-y: 0%;
+}
+
+.logo-ard {
+  --logo-x: 100%;
+  --logo-y: 0%;
+}
+
+.logo-innsbruck {
+  --logo-x: 0%;
+  --logo-y: 100%;
+}
+
+.logo-landjugend {
+  --logo-x: 33.333%;
+  --logo-y: 100%;
+}
+
+.logo-yepp {
+  --logo-x: 66.666%;
+  --logo-y: 100%;
+}
+
+.logo-ripple {
+  --logo-x: 100%;
+  --logo-y: 100%;
+}
+
+@media (max-width: 900px) {
+  .logo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
@@ -397,8 +464,20 @@ button {
     font-size: clamp(1.9rem, 9vw, 2.6rem);
   }
 
-  .logo-showcase {
-    padding: 0.85rem;
+  .logo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .logo-item {
+    min-height: 132px;
+    gap: 0.75rem;
+    padding: 1rem 0.8rem 0.85rem;
+  }
+
+  .logo-item figcaption {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -423,8 +502,13 @@ button {
     letter-spacing: 0.04em;
   }
 
-  .logo-showcase {
-    padding: 0.7rem;
+  .logo-item {
+    min-height: 118px;
+    padding: 0.9rem 0.7rem 0.75rem;
+  }
+
+  .logo-item figcaption {
+    font-size: 0.62rem;
   }
 }
 
@@ -448,8 +532,17 @@ button {
     letter-spacing: 0.03em;
   }
 
-  .logo-showcase {
-    padding: 0.6rem;
+  .logo-grid {
+    gap: 0.65rem;
+  }
+
+  .logo-item {
+    min-height: 110px;
+    padding: 0.8rem 0.6rem 0.7rem;
+  }
+
+  .logo-item figcaption {
+    font-size: 0.56rem;
   }
 }
 
