@@ -766,6 +766,7 @@ button {
 .projects-shell {
   --project-gap: 1.15rem;
   --project-peek: clamp(1.2rem, 4vw, 3.1rem);
+  --carousel-button-size: 3.77rem;
   position: relative;
   width: 100%;
 }
@@ -856,8 +857,8 @@ button {
   position: absolute;
   top: 50%;
   z-index: 3;
-  width: 3.77rem;
-  height: 3.77rem;
+  width: var(--carousel-button-size);
+  height: var(--carousel-button-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -892,11 +893,11 @@ button {
 }
 
 .carousel-button-prev {
-  left: 0;
+  left: calc((var(--project-peek) - var(--carousel-button-size)) / 2);
 }
 
 .carousel-button-next {
-  right: 0;
+  right: calc((var(--project-peek) - var(--carousel-button-size)) / 2);
 }
 
 .carousel-button:hover,
@@ -1617,11 +1618,7 @@ button {
 
   .projects-shell {
     padding-inline: 0.2rem;
-  }
-
-  .carousel-button {
-    width: 3.38rem;
-    height: 3.38rem;
+    --carousel-button-size: 3.38rem;
   }
 }
 
@@ -1866,11 +1863,7 @@ button {
 
   .projects-shell {
     --project-peek: 0.45rem;
-  }
-
-  .carousel-button {
-    width: 3.04rem;
-    height: 3.04rem;
+    --carousel-button-size: 3.04rem;
   }
 
   .projects-link {
