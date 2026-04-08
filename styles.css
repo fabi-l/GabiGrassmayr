@@ -195,11 +195,9 @@ button {
   align-content: start;
   gap: 0.8rem;
   padding: 1rem;
-  border: 1px solid transparent;
+  border: 0;
   border-radius: 1rem;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)) padding-box,
-    var(--box-border-gradient) border-box;
+  background: transparent;
 }
 
 .nav-group-title {
