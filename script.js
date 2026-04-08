@@ -46,6 +46,15 @@ const translations = {
       linksAria: "Social links",
       email: "Email",
     },
+    aboutTeaser: {
+      name: "Gabriel Grassmayr",
+      factsAria: "Short profile facts",
+      fact1: "Based in Austria",
+      fact2: "21 years old",
+      fact3: "5+ years of experience",
+      button: "About Me",
+      portraitAlt: "Gabriel Grassmayr smiling in a blue suit portrait.",
+    },
     worked: {
       title: "Worked With",
       gridAria: "Worked with brands",
@@ -148,6 +157,15 @@ const translations = {
     social: {
       linksAria: "Social-Media-Links",
       email: "E-Mail",
+    },
+    aboutTeaser: {
+      name: "Gabriel Grassmayr",
+      factsAria: "Kurze Profilinfos",
+      fact1: "Mit Sitz in Österreich",
+      fact2: "21 Jahre alt",
+      fact3: "5+ Jahre Erfahrung",
+      button: "Über mich",
+      portraitAlt: "Gabriel Grassmayr lächelnd in einem blauen Anzug.",
     },
     worked: {
       title: "Partner",
