@@ -251,8 +251,8 @@ const translations = {
 
 const heroLineConfig = {
   en: {
-    topWidth: "12ch",
-    topOffset: "2ch",
+    topWidth: "max-content",
+    topOffset: "0ch",
   },
   de: {
     topWidth: "max-content",
