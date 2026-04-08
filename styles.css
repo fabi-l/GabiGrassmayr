@@ -6,7 +6,9 @@
   --line-strong: rgba(255, 255, 255, 0.38);
   --overlay-top: rgba(0, 0, 0, 0.6);
   --overlay-bottom: rgba(0, 0, 0, 0.34);
-  --header-bg-mobile: rgba(18, 18, 18, 0.94);
+  --header-gradient: linear-gradient(90deg, #c16c19 0%, #281812 100%);
+  --header-bg-mobile:
+    linear-gradient(90deg, rgba(193, 108, 25, 0.96) 0%, rgba(40, 24, 18, 0.97) 100%);
   --container: 1200px;
   --nav-height: 96px;
   --anton: "Anton", sans-serif;
@@ -70,9 +72,12 @@ button {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 40;
-  background: rgba(38, 38, 38, 0.84);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08)),
+    var(--header-gradient);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .nav-shell {
