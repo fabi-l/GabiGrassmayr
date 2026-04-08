@@ -102,7 +102,7 @@ button {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  margin-right: -0.35rem;
+  margin-right: -0.7rem;
 }
 
 .brand img {
@@ -1564,7 +1564,7 @@ button {
   }
 
   .brand {
-    margin-right: -0.2rem;
+    margin-right: -0.45rem;
   }
 
   .site-header.menu-open .menu-toggle span:nth-child(1) {
