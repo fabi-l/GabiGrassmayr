@@ -1348,12 +1348,6 @@ button {
   object-fit: contain;
   object-position: center center;
   margin: auto;
-  border: 1px solid var(--box-border-color);
-  border-radius: 1.25rem;
-  background: #1c1c1c;
-  box-shadow:
-    0 20px 44px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .about-gallery-card--portrait-a {
@@ -1380,8 +1374,6 @@ button {
   width: min(100%, 13.125rem);
   max-width: 100%;
   max-height: 82%;
-  border: 1px solid var(--box-border-color);
-  border-radius: 0;
   background: transparent;
   padding: 0;
 }
