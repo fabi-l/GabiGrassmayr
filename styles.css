@@ -121,7 +121,7 @@ button {
   border-radius: 1.35rem;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-    rgba(24, 17, 15, 0.92);
+    var(--header-gradient);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -1421,7 +1421,7 @@ button {
     padding: 1rem;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-      var(--header-bg-mobile);
+      var(--header-gradient);
   }
 
   .site-nav a {
