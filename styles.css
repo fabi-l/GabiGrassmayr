@@ -209,6 +209,20 @@ button {
   color: rgba(255, 255, 255, 0.74);
 }
 
+.nav-group-title-link {
+  width: fit-content;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
+.nav-group-title-link:hover,
+.nav-group-title-link:focus-visible {
+  color: rgba(255, 255, 255, 0.96);
+  opacity: 1;
+}
+
 .language-switcher {
   display: inline-flex;
   align-items: center;
