@@ -1003,11 +1003,9 @@ button {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 0.55rem;
-  background:
-    linear-gradient(var(--bg), var(--bg)) padding-box,
-    var(--box-border-gradient) border-box;
+  background: var(--bg);
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--body);
   font-size: clamp(1.15rem, 2.2vw, 1.55rem);
