@@ -80,12 +80,10 @@ button {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 40;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08)),
-    var(--header-gradient);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .nav-shell {
