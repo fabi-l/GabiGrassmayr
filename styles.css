@@ -105,7 +105,7 @@ button {
 }
 
 .brand img {
-  width: clamp(62px, 7vw, 82px);
+  width: clamp(77.5px, 8.75vw, 102.5px);
   height: auto;
 }
 
@@ -1484,7 +1484,7 @@ button {
   }
 
   .brand img {
-    width: 58px;
+    width: 72.5px;
   }
 
   .site-header.menu-open .menu-toggle span:nth-child(1) {
