@@ -343,7 +343,22 @@
               data-i18n-aria-label="featured.prevAria"
               data-carousel-prev
             >
-              <span aria-hidden="true">&#8592;</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <defs>
+                  <linearGradient id="carousel-prev-gradient" x1="4" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#C16C19" />
+                    <stop offset="100%" stop-color="#281812" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M18 12H7.75M7.75 12 12 7.75M7.75 12 12 16.25"
+                  fill="none"
+                  stroke="url(#carousel-prev-gradient)"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.3"
+                />
+              </svg>
             </button>
 
             <div
@@ -427,7 +442,22 @@
               data-i18n-aria-label="featured.nextAria"
               data-carousel-next
             >
-              <span aria-hidden="true">&#8594;</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <defs>
+                  <linearGradient id="carousel-next-gradient" x1="4" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#C16C19" />
+                    <stop offset="100%" stop-color="#281812" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M6 12h10.25M16.25 12 12 7.75M16.25 12 12 16.25"
+                  fill="none"
+                  stroke="url(#carousel-next-gradient)"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.3"
+                />
+              </svg>
             </button>
           </div>
           <div class="projects-cta">

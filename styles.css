@@ -865,10 +865,10 @@ button {
   translate: 0 -50%;
 }
 
-.carousel-button span {
-  font-family: var(--anton);
-  font-size: 1.2rem;
-  line-height: 1;
+.carousel-button svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  display: block;
 }
 
 .carousel-button-prev {
