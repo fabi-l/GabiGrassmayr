@@ -537,6 +537,9 @@ if (carousel) {
   const hasLoopClones = Boolean(track && originalCards.length > 1);
   let touchStartX = 0;
   let touchStartY = 0;
+  let wheelDeltaX = 0;
+  let wheelDeltaY = 0;
+  let wheelResetTimer = 0;
 
   if (track && hasLoopClones) {
     const prependClones = originalCards.map((card) => {
@@ -700,6 +703,36 @@ if (carousel) {
 
     moveCarousel(1);
   });
+
+  viewport?.addEventListener(
+    "wheel",
+    (event) => {
+      wheelDeltaX += event.deltaX;
+      wheelDeltaY += event.deltaY;
+
+      window.clearTimeout(wheelResetTimer);
+      wheelResetTimer = window.setTimeout(() => {
+        wheelDeltaX = 0;
+        wheelDeltaY = 0;
+      }, 140);
+
+      if (Math.abs(wheelDeltaX) < 40 || Math.abs(wheelDeltaX) <= Math.abs(wheelDeltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (wheelDeltaX > 0) {
+        moveCarousel(1);
+      } else {
+        moveCarousel(-1);
+      }
+
+      wheelDeltaX = 0;
+      wheelDeltaY = 0;
+    },
+    { passive: false },
+  );
 
   window.addEventListener("resize", () => {
     jumpToIndex(currentIndex);
