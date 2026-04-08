@@ -858,8 +858,9 @@ button {
   z-index: 3;
   width: 3.77rem;
   height: 3.77rem;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: visible;
   border: 1px solid var(--box-border-color);
   border-radius: 1.35rem;
@@ -881,9 +882,13 @@ button {
 }
 
 .carousel-button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 4.35rem;
   height: 4.35rem;
   display: block;
+  transform: translate(-50%, -50%);
 }
 
 .carousel-button-prev {
