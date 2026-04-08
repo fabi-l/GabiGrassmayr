@@ -7,6 +7,7 @@
   --overlay-top: rgba(0, 0, 0, 0.6);
   --overlay-bottom: rgba(0, 0, 0, 0.34);
   --header-gradient: linear-gradient(90deg, #c16c19 0%, #281812 100%);
+  --box-border-gradient: linear-gradient(90deg, #c16c19 0%, #281812 100%);
   --header-bg-mobile:
     linear-gradient(90deg, rgba(193, 108, 25, 0.96) 0%, rgba(40, 24, 18, 0.97) 100%);
   --container: 1200px;
@@ -115,7 +116,7 @@ button {
   display: grid;
   gap: 1.15rem;
   padding: 1.2rem 1.2rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.72);
   border-radius: 1.35rem;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03) 42%, rgba(255, 255, 255, 0.01)),
@@ -194,9 +195,11 @@ button {
   align-content: start;
   gap: 0.8rem;
   padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)) padding-box,
+    var(--box-border-gradient) border-box;
 }
 
 .nav-group-title {
@@ -237,11 +240,12 @@ button {
   width: 2.9rem;
   height: 2rem;
   padding: 0.08rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid transparent;
   border-radius: 0.85rem;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-    rgba(14, 14, 14, 0.28);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)) padding-box,
+    linear-gradient(180deg, rgba(14, 14, 14, 0.28), rgba(14, 14, 14, 0.28)) padding-box,
+    var(--box-border-gradient) border-box;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -302,9 +306,11 @@ button {
   min-width: 48px;
   min-height: 48px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid transparent;
   border-radius: 0.95rem;
-  background: rgba(18, 18, 18, 0.18);
+  background:
+    linear-gradient(rgba(18, 18, 18, 0.18), rgba(18, 18, 18, 0.18)) padding-box,
+    var(--box-border-gradient) border-box;
   color: var(--text);
   cursor: pointer;
   box-shadow:
@@ -562,9 +568,11 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
   border-radius: 1.35rem;
-  background: rgba(20, 20, 20, 0.82);
+  background:
+    linear-gradient(rgba(20, 20, 20, 0.82), rgba(20, 20, 20, 0.82)) padding-box,
+    var(--box-border-gradient) border-box;
   box-shadow:
     0 14px 28px rgba(0, 0, 0, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -680,9 +688,11 @@ button {
   align-items: center;
   min-height: 3.35rem;
   padding: 0.95rem 1.15rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
   border-radius: 0.95rem;
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)) padding-box,
+    var(--box-border-gradient) border-box;
   color: rgba(255, 255, 255, 0.88);
   font-family: var(--body);
   font-size: 0.92rem;
@@ -813,9 +823,11 @@ button {
   display: inline-flex;
   align-items: center;
   padding: 0.55rem 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.34);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.34)) padding-box,
+    var(--box-border-gradient) border-box;
   color: var(--text);
   font-family: var(--body);
   font-size: 0.72rem;
@@ -849,9 +861,11 @@ button {
   height: 3.35rem;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) padding-box,
+    var(--box-border-gradient) border-box;
   color: var(--text);
   cursor: pointer;
   transition:
@@ -991,9 +1005,11 @@ button {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid transparent;
   border-radius: 0.55rem;
-  background: var(--bg);
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    var(--box-border-gradient) border-box;
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--body);
   font-size: clamp(1.15rem, 2.2vw, 1.55rem);
@@ -1082,8 +1098,10 @@ button {
 .logo-panel {
   padding: clamp(1.6rem, 2vw, 2.1rem);
   border-radius: 1.45rem;
-  background: var(--bg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    var(--box-border-gradient) border-box;
+  border: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
@@ -1100,8 +1118,10 @@ button {
   justify-items: center;
   align-items: stretch;
   padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--bg);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    var(--box-border-gradient) border-box;
 }
 
 .logo-link {
@@ -1252,11 +1272,12 @@ button {
   display: grid;
   gap: 1.35rem;
   padding: clamp(1.2rem, 2.4vw, 1.7rem);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
   border-radius: 1.35rem;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
-    #222222;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)) padding-box,
+    linear-gradient(#222222, #222222) padding-box,
+    var(--box-border-gradient) border-box;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 18px 40px rgba(0, 0, 0, 0.18);
@@ -1296,9 +1317,11 @@ button {
   align-items: center;
   min-height: 5.2rem;
   padding: 1rem 1.05rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.02);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)) padding-box,
+    var(--box-border-gradient) border-box;
   color: var(--text);
   font-size: 0.88rem;
   line-height: 1.45;
@@ -1333,8 +1356,10 @@ button {
   padding: 1rem;
   overflow: hidden;
   border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #1c1c1c;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#1c1c1c, #1c1c1c) padding-box,
+    var(--box-border-gradient) border-box;
   box-shadow:
     0 20px 44px rgba(0, 0, 0, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
