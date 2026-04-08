@@ -142,6 +142,7 @@ button {
 .menu-toggle {
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 1.1rem;
@@ -206,6 +207,7 @@ button {
   margin: 0;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   font-size: 1.1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -393,6 +395,7 @@ button {
   margin: 0;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -663,6 +666,7 @@ button {
   margin: 0;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   font-size: clamp(2.2rem, 5.3vw, 4.2rem);
   line-height: 0.96;
   letter-spacing: 0.04em;
@@ -707,6 +711,7 @@ button {
   color: #222222;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   font-size: 1.04rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -735,6 +740,7 @@ button {
   text-align: center;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   letter-spacing: 0.08em;
@@ -750,6 +756,7 @@ button {
   text-align: center;
   font-family: var(--anton);
   font-style: normal;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   letter-spacing: 0.08em;
@@ -1238,6 +1245,12 @@ button {
   font-style: normal;
   text-transform: uppercase;
   color: var(--text);
+}
+
+.about-subtitle,
+.about-gallery-label,
+.about-copy h1 {
+  font-weight: 600;
 }
 
 .about-name {
