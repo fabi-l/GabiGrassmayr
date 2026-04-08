@@ -1346,6 +1346,7 @@ button {
   object-fit: contain;
   object-position: center center;
   margin: auto;
+  border-radius: 1.25rem;
 }
 
 .about-gallery-card--portrait-a {
