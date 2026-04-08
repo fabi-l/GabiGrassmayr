@@ -312,6 +312,105 @@ button {
   text-align: center;
 }
 
+.hero-title--magma .hero-line {
+  overflow: visible;
+}
+
+.hero-title--magma .hero-line-top {
+  --magma-specks:
+    radial-gradient(circle at 15% 30%, rgba(255, 220, 145, 0.98) 0 1.6%, rgba(255, 151, 44, 0.96) 1.7% 3.1%, rgba(102, 30, 10, 0.88) 3.2% 4.2%, transparent 4.4%),
+    radial-gradient(circle at 36% 68%, rgba(255, 214, 130, 0.95) 0 1.5%, rgba(239, 119, 26, 0.92) 1.6% 2.8%, rgba(88, 27, 10, 0.85) 2.9% 3.9%, transparent 4.1%),
+    radial-gradient(circle at 72% 20%, rgba(255, 205, 120, 0.96) 0 1.35%, rgba(230, 103, 23, 0.9) 1.45% 2.7%, rgba(74, 24, 10, 0.82) 2.8% 3.8%, transparent 4%),
+    radial-gradient(circle at 86% 56%, rgba(255, 198, 104, 0.94) 0 1.2%, rgba(223, 89, 20, 0.88) 1.3% 2.45%, rgba(66, 22, 9, 0.78) 2.55% 3.4%, transparent 3.6%);
+}
+
+.hero-title--magma .hero-line-bottom {
+  --magma-specks:
+    radial-gradient(circle at 11% 71%, rgba(255, 220, 142, 0.98) 0 1.55%, rgba(247, 129, 35, 0.95) 1.65% 3.05%, rgba(100, 31, 10, 0.86) 3.15% 4.15%, transparent 4.35%),
+    radial-gradient(circle at 41% 25%, rgba(255, 210, 122, 0.96) 0 1.45%, rgba(236, 109, 26, 0.9) 1.55% 2.8%, rgba(79, 25, 10, 0.82) 2.9% 3.85%, transparent 4.05%),
+    radial-gradient(circle at 64% 61%, rgba(255, 202, 112, 0.96) 0 1.35%, rgba(231, 103, 24, 0.9) 1.45% 2.65%, rgba(76, 24, 10, 0.8) 2.75% 3.7%, transparent 3.9%),
+    radial-gradient(circle at 92% 34%, rgba(255, 194, 100, 0.94) 0 1.1%, rgba(216, 84, 18, 0.88) 1.2% 2.2%, rgba(63, 21, 9, 0.76) 2.3% 3.2%, transparent 3.4%);
+}
+
+.hero-title--magma .hero-line-static,
+.hero-title--magma .hero-line-typed {
+  position: relative;
+  color: #ffffff;
+  z-index: 2;
+  text-shadow:
+    0 0 0.02em rgba(255, 255, 255, 0.92),
+    0 0 0.22em rgba(255, 255, 255, 0.08);
+}
+
+.hero-title--magma .hero-line-static::before,
+.hero-title--magma .hero-line-typed::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background-image: var(--magma-specks);
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.94;
+  pointer-events: none;
+  animation: hero-magma-glow 4.8s ease-in-out infinite alternate;
+}
+
+.hero-title--magma .hero-line-bottom .hero-line-static::before,
+.hero-title--magma .hero-line-bottom .hero-line-typed::before {
+  animation-delay: 1.1s;
+}
+
+.hero-title--magma .hero-line::before,
+.hero-title--magma .hero-line::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 999px;
+  box-shadow: 0 0 0.45em rgba(255, 118, 33, 0.18);
+}
+
+.hero-title--magma .hero-line-top::before {
+  top: 0.14em;
+  left: 2.55em;
+  width: 0.44em;
+  height: 0.22em;
+  background:
+    radial-gradient(circle at 34% 48%, rgba(255, 221, 148, 0.98) 0 22%, rgba(255, 144, 38, 0.94) 24% 60%, rgba(92, 28, 10, 0.88) 62% 76%, transparent 78%);
+  transform: rotate(-10deg);
+}
+
+.hero-title--magma .hero-line-top::after {
+  right: 1.18em;
+  bottom: 0.11em;
+  width: 0.3em;
+  height: 0.18em;
+  background:
+    radial-gradient(circle at 42% 44%, rgba(255, 207, 122, 0.94) 0 22%, rgba(241, 116, 27, 0.9) 24% 58%, rgba(80, 26, 10, 0.84) 60% 74%, transparent 76%);
+  transform: rotate(18deg);
+}
+
+.hero-title--magma .hero-line-bottom::before {
+  left: 0.54em;
+  bottom: 0.08em;
+  width: 0.34em;
+  height: 0.2em;
+  background:
+    radial-gradient(circle at 40% 46%, rgba(255, 217, 138, 0.96) 0 20%, rgba(246, 128, 33, 0.92) 22% 58%, rgba(87, 27, 10, 0.86) 60% 74%, transparent 76%);
+  transform: rotate(-22deg);
+}
+
+.hero-title--magma .hero-line-bottom::after {
+  right: 2.3em;
+  top: 0.03em;
+  width: 0.26em;
+  height: 0.16em;
+  background:
+    radial-gradient(circle at 44% 46%, rgba(255, 204, 116, 0.94) 0 20%, rgba(229, 101, 23, 0.88) 22% 55%, rgba(73, 23, 9, 0.8) 57% 72%, transparent 74%);
+  transform: rotate(16deg);
+}
+
 .hero-line {
   display: block;
   position: relative;
@@ -365,6 +464,7 @@ button {
   margin-left: 0.06em;
   vertical-align: -0.06em;
   background: currentColor;
+  box-shadow: 0 0 0.18em rgba(255, 255, 255, 0.28);
   animation: hero-caret-blink 0.85s step-end infinite;
 }
 
@@ -1546,6 +1646,18 @@ button {
 @keyframes hero-caret-blink {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes hero-magma-glow {
+  0% {
+    opacity: 0.84;
+    filter: drop-shadow(0 0 0.08em rgba(255, 120, 30, 0.16));
+  }
+
+  100% {
+    opacity: 0.98;
+    filter: drop-shadow(0 0 0.14em rgba(255, 145, 44, 0.24));
   }
 }
 
