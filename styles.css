@@ -108,8 +108,6 @@ button {
   width: clamp(77.5px, 8.75vw, 102.5px);
   height: auto;
   display: block;
-  border: 1px solid var(--box-border-color);
-  border-radius: 0;
 }
 
 .site-nav {
