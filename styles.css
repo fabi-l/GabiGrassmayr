@@ -1380,13 +1380,13 @@ button {
 }
 
 .about-gallery-card--logo img {
-  width: min(100%, 10.5rem);
+  width: min(100%, 13.125rem);
   max-width: 100%;
   max-height: 82%;
   border: 1px solid var(--box-border-color);
   border-radius: 0;
-  background: rgba(0, 0, 0, 0.18);
-  padding: 0.45rem;
+  background: transparent;
+  padding: 0;
 }
 
 @media (max-width: 980px) {
