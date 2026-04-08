@@ -299,7 +299,7 @@ button {
 }
 
 .hero h1 {
-  margin: 0;
+  margin: 0 0 2rem;
   max-width: 14.5ch;
   display: grid;
   justify-items: center;
