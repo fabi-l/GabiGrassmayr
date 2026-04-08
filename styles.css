@@ -1318,9 +1318,9 @@ button {
 .about-gallery-label {
   margin: 0 0 1.5rem;
   text-align: center;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  letter-spacing: 0.08em;
+  color: var(--text);
 }
 
 .about-gallery-grid {
