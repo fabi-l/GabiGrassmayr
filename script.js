@@ -115,6 +115,7 @@ const translations = {
       profile: {
         based: "Based in Austria",
         age: "21 Years Old",
+        experience: "5+ Years of Experience",
         role: "Adventure Filmmaker & Photographer",
         focus: "Extreme Sports, Travel & Storytelling",
         clients: "Worked with Red Bull, FUNK & Ripple",
@@ -233,6 +234,7 @@ const translations = {
       profile: {
         based: "Mit Sitz in Österreich",
         age: "21 Jahre alt",
+        experience: "5+ Jahre Erfahrung",
         role: "Abenteuerfilmer & Fotograf",
         focus: "Extremsport, Reise & Storytelling",
         clients: "Projekte mit Red Bull, FUNK & Ripple",

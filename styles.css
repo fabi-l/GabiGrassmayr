@@ -1325,6 +1325,22 @@ button {
   text-transform: uppercase;
 }
 
+.about-profile-list-wide {
+  grid-column: 1 / -1;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-profile-list-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.about-profile-list-right {
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .about-gallery-section {
   padding: 0;
 }
@@ -1451,6 +1467,14 @@ button {
 
   .about-profile-list {
     grid-template-columns: 1fr;
+  }
+
+  .about-profile-list-wide,
+  .about-profile-list-left,
+  .about-profile-list-right {
+    grid-column: auto;
+    justify-content: center;
+    text-align: center;
   }
 
   .about-profile-portrait {
