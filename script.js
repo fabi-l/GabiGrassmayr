@@ -5,6 +5,7 @@ const navLinks = document.querySelectorAll(".site-nav a");
 const heroVideo = document.querySelector(".hero-video");
 const heroTitle = document.querySelector(".hero h1");
 const heroLines = Array.from(document.querySelectorAll(".hero-line-typed"));
+const scrollTopButton = document.querySelector("[data-scroll-top]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 let heroTypingRun = 0;
@@ -32,6 +33,9 @@ const translations = {
       languageLabel: "Language switcher",
       languageGerman: "Switch to German",
       languageEnglish: "Switch to English",
+    },
+    ui: {
+      scrollTop: "Scroll to top",
     },
     hero: {
       sectionAria: "Hero",
@@ -144,6 +148,9 @@ const translations = {
       languageLabel: "Sprachauswahl",
       languageGerman: "Auf Deutsch wechseln",
       languageEnglish: "Auf Englisch wechseln",
+    },
+    ui: {
+      scrollTop: "Nach oben scrollen",
     },
     hero: {
       sectionAria: "Hero-Bereich",
@@ -692,6 +699,13 @@ if (carousel) {
 }
 
 const contactForm = document.querySelector("[data-contact-form]");
+const toggleScrollTopButton = () => {
+  if (!scrollTopButton) {
+    return;
+  }
+
+  scrollTopButton.classList.toggle("is-visible", window.scrollY > 180);
+};
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
@@ -714,4 +728,16 @@ if (contactForm) {
 
     window.location.href = `mailto:Gabrielgrassmayr@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
+}
+
+if (scrollTopButton) {
+  scrollTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+  });
+
+  window.addEventListener("scroll", toggleScrollTopButton, { passive: true });
+  toggleScrollTopButton();
 }

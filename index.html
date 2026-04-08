@@ -483,6 +483,31 @@
       </section>
     </main>
 
+    <button
+      class="scroll-top-button"
+      type="button"
+      aria-label="Scroll to top"
+      data-i18n-aria-label="ui.scrollTop"
+      data-scroll-top
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <defs>
+          <linearGradient id="scroll-top-gradient" x1="12" y1="4" x2="12" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C16C19" />
+            <stop offset="100%" stop-color="#281812" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M12 18V7.75M12 7.75 7.75 12M12 7.75 16.25 12"
+          fill="none"
+          stroke="url(#scroll-top-gradient)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.3"
+        />
+      </svg>
+    </button>
+
     <script src="script.js"></script>
   </body>
 </html>

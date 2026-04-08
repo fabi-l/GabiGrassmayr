@@ -438,6 +438,70 @@ button {
   object-fit: contain;
 }
 
+.scroll-top-button {
+  position: fixed;
+  right: clamp(1rem, 2.6vw, 2rem);
+  bottom: clamp(1rem, 2.8vw, 2rem);
+  z-index: 70;
+  width: 3.7rem;
+  height: 3.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.2rem;
+  background: rgba(20, 20, 20, 0.82);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.7rem) scale(0.96);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    visibility 180ms ease;
+}
+
+.scroll-top-button.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top-button:hover,
+.scroll-top-button:focus-visible {
+  border-color: rgba(193, 108, 25, 0.34);
+  background: rgba(26, 23, 22, 0.9);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.scroll-top-button:active {
+  transform: translateY(0.1rem) scale(0.97);
+}
+
+.scroll-top-button:focus-visible {
+  outline: 2px solid rgba(193, 108, 25, 0.34);
+  outline-offset: 3px;
+}
+
+.scroll-top-button svg {
+  width: 1.28rem;
+  height: 1.28rem;
+  display: block;
+}
+
 .about-teaser {
   background: var(--bg);
   padding: clamp(4.25rem, 8vw, 6.5rem) 0 clamp(4rem, 7vw, 6rem);
@@ -1370,6 +1434,17 @@ button {
     gap: 0.75rem;
     padding-top: calc(var(--nav-height) + 0.8rem);
     padding-bottom: 1.8rem;
+  }
+
+  .scroll-top-button {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 1rem;
+  }
+
+  .scroll-top-button svg {
+    width: 1.12rem;
+    height: 1.12rem;
   }
 
   .hero-kicker {
