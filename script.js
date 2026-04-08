@@ -488,6 +488,18 @@ if (header && menuToggle && nav) {
       setMenuState(false);
     }
   });
+
+  document.addEventListener("click", (event) => {
+    if (!header.classList.contains("menu-open")) {
+      return;
+    }
+
+    if (nav.contains(event.target) || menuToggle.contains(event.target)) {
+      return;
+    }
+
+    setMenuState(false);
+  });
 }
 
 languageButtons.forEach((button) => {
