@@ -287,7 +287,6 @@ const restartHeroTyping = () => {
     heroTitle.classList.add("typing-complete");
     heroLines.forEach((line) => {
       line.textContent = line.dataset.fullText || line.textContent;
-      line.dataset.text = line.textContent;
       line.classList.remove("is-cursor");
     });
     return;
@@ -305,7 +304,6 @@ const restartHeroTyping = () => {
     }
 
     line.textContent = "";
-    line.dataset.text = "";
     line.classList.remove("is-cursor");
   });
 
@@ -323,7 +321,6 @@ const restartHeroTyping = () => {
       if (charIndex < fullText.length) {
         charIndex += 1;
         line.textContent = fullText.slice(0, charIndex);
-        line.dataset.text = line.textContent;
         window.setTimeout(step, delay);
         return;
       }
@@ -380,12 +377,7 @@ const applyTranslations = (language) => {
   document.documentElement.dataset.language = currentLanguage;
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const translatedText = getTranslation(element.dataset.i18n);
-    element.textContent = translatedText;
-
-    if ("text" in element.dataset) {
-      element.dataset.text = translatedText;
-    }
+    element.textContent = getTranslation(element.dataset.i18n);
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
