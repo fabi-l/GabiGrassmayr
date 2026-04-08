@@ -448,14 +448,14 @@ button {
   right: clamp(1rem, 2.6vw, 2rem);
   bottom: clamp(1rem, 2.8vw, 2rem);
   z-index: 70;
-  width: 5.55rem;
-  height: 5.55rem;
+  width: 4.1625rem;
+  height: 4.1625rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.8rem;
+  border-radius: 1.35rem;
   background: rgba(20, 20, 20, 0.82);
   box-shadow:
     0 14px 28px rgba(0, 0, 0, 0.24),
@@ -502,8 +502,8 @@ button {
 }
 
 .scroll-top-button svg {
-  width: 5.76rem;
-  height: 5.76rem;
+  width: 4.32rem;
+  height: 4.32rem;
   display: block;
 }
 
@@ -1442,14 +1442,14 @@ button {
   }
 
   .scroll-top-button {
-    width: 4.875rem;
-    height: 4.875rem;
-    border-radius: 1.5rem;
+    width: 3.65625rem;
+    height: 3.65625rem;
+    border-radius: 1.125rem;
   }
 
   .scroll-top-button svg {
-    width: 5.04rem;
-    height: 5.04rem;
+    width: 3.78rem;
+    height: 3.78rem;
   }
 
   .hero-kicker {
