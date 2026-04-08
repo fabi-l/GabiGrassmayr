@@ -1121,10 +1121,10 @@ button {
   min-height: 100%;
   display: grid;
   place-items: center;
-  padding: 0.9rem 1rem;
-  border-radius: 1.2rem;
-  background: var(--bg);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -1147,9 +1147,6 @@ button {
 .logo-link:hover .logo-inner,
 .logo-link:focus-visible .logo-inner {
   transform: translateY(-1px) scale(1.012);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 12px 24px rgba(0, 0, 0, 0.16);
   filter: brightness(1.03);
 }
 
