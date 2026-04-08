@@ -36,7 +36,7 @@
           <a href="index.html#hero" data-i18n="nav.home">Home</a>
           <a href="index.html#worked-with" data-i18n="nav.work">Work</a>
           <a href="index.html#featured-projects" data-i18n="nav.projects">Projects</a>
-          <a href="index.html#contact-form" data-i18n="nav.contact">Contact</a>
+          <a href="#contact-form" data-i18n="nav.contact">Contact</a>
           <a href="about-me.html" aria-current="page" data-i18n="nav.about">About Me</a>
           <div class="language-switcher" aria-label="Language switcher" data-i18n-aria-label="nav.languageLabel">
             <button
@@ -131,6 +131,60 @@
                 loading="lazy"
               />
             </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact-form" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact-shell">
+            <div class="contact-heading">
+              <h2 id="contact-title" data-i18n="contact.title">LET’S CAPTURE YOUR NEXT ADVENTURE TOGETHER!</h2>
+              <p data-i18n="contact.subtitle">TELL ME YOUR STORY:</p>
+            </div>
+
+            <form class="contact-form" action="#" method="post" novalidate data-contact-form>
+              <div class="form-field">
+                <label for="contact-name" data-i18n="contact.nameLabel">Name *</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your Name..."
+                  data-i18n-placeholder="contact.namePlaceholder"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="contact-subject" data-i18n="contact.subjectLabel">Subject *</label>
+                <input
+                  id="contact-subject"
+                  name="subject"
+                  type="text"
+                  placeholder="Your Subject..."
+                  data-i18n-placeholder="contact.subjectPlaceholder"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="contact-message" data-i18n="contact.messageLabel">Message *</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="Your Message..."
+                  data-i18n-placeholder="contact.messagePlaceholder"
+                  required
+                ></textarea>
+              </div>
+
+              <p class="contact-note">
+                <img src="contact-warning.svg" alt="" aria-hidden="true" />
+                <span data-i18n="contact.notice">Attention: This will open your mail app to send the message!</span>
+              </p>
+              <button class="contact-submit" type="submit" data-i18n="contact.submit">Submit</button>
+            </form>
           </div>
         </div>
       </section>
