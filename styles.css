@@ -282,6 +282,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: relative;
   z-index: 25;
   min-width: 48px;
