@@ -540,6 +540,7 @@ if (carousel) {
   let wheelDeltaX = 0;
   let wheelDeltaY = 0;
   let wheelResetTimer = 0;
+  let wheelGestureLocked = false;
 
   if (track && hasLoopClones) {
     const prependClones = originalCards.map((card) => {
@@ -714,13 +715,20 @@ if (carousel) {
       wheelResetTimer = window.setTimeout(() => {
         wheelDeltaX = 0;
         wheelDeltaY = 0;
-      }, 140);
+        wheelGestureLocked = false;
+      }, 160);
 
       if (Math.abs(wheelDeltaX) < 40 || Math.abs(wheelDeltaX) <= Math.abs(wheelDeltaY)) {
         return;
       }
 
       event.preventDefault();
+
+      if (wheelGestureLocked) {
+        return;
+      }
+
+      wheelGestureLocked = true;
 
       if (wheelDeltaX > 0) {
         moveCarousel(1);
