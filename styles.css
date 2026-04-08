@@ -848,10 +848,11 @@ button {
   position: absolute;
   top: 50%;
   z-index: 3;
-  width: 5.025rem;
-  height: 5.025rem;
+  width: 3.77rem;
+  height: 3.77rem;
   display: grid;
   place-items: center;
+  overflow: visible;
   border: 1px solid var(--box-border-color);
   border-radius: 1.35rem;
   background: rgba(20, 20, 20, 0.82);
@@ -872,8 +873,8 @@ button {
 }
 
 .carousel-button svg {
-  width: 2.9rem;
-  height: 2.9rem;
+  width: 4.35rem;
+  height: 4.35rem;
   display: block;
 }
 
@@ -1570,8 +1571,8 @@ button {
   }
 
   .carousel-button {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 3.38rem;
+    height: 3.38rem;
   }
 }
 
@@ -1819,8 +1820,8 @@ button {
   }
 
   .carousel-button {
-    width: 4.05rem;
-    height: 4.05rem;
+    width: 3.04rem;
+    height: 3.04rem;
   }
 
   .projects-link {
