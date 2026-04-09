@@ -765,9 +765,9 @@ button {
 
 .projects-shell {
   --project-gap: 1.15rem;
-  --project-peek: clamp(0.9rem, 3vw, 2.3rem);
+  --project-peek: clamp(0.45rem, 1.8vw, 1.2rem);
   --carousel-button-size: 3.77rem;
-  --carousel-button-gutter: clamp(4.7rem, 8vw, 6.2rem);
+  --carousel-button-gutter: clamp(2.8rem, 4.8vw, 3.8rem);
   position: relative;
   width: 100%;
   padding-inline: var(--carousel-button-gutter);
@@ -1736,8 +1736,8 @@ button {
   }
 
   .projects-shell {
-    --project-peek: clamp(0.7rem, 2.4vw, 1.2rem);
-    --carousel-button-gutter: 3.85rem;
+    --project-peek: clamp(0.35rem, 1.6vw, 0.8rem);
+    --carousel-button-gutter: 2.9rem;
   }
 
   .project-card {
@@ -1867,9 +1867,9 @@ button {
   }
 
   .projects-shell {
-    --project-peek: 0.45rem;
+    --project-peek: 0.2rem;
     --carousel-button-size: 3.04rem;
-    --carousel-button-gutter: 3.25rem;
+    --carousel-button-gutter: 2.35rem;
   }
 
   .projects-link {
