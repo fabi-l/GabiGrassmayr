@@ -139,7 +139,6 @@ button {
     visibility 180ms ease;
 }
 
-.site-nav a,
 .menu-toggle {
   font-family: var(--anton);
   font-style: normal;
@@ -154,6 +153,13 @@ button {
   display: inline-flex;
   width: fit-content;
   color: var(--text);
+  font-family: var(--body);
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  font-size: 1.08rem;
   transition: opacity 180ms ease;
 }
 
@@ -206,11 +212,12 @@ button {
 
 .nav-group-title {
   margin: 0;
-  font-family: var(--anton);
+  font-family: var(--body);
   font-style: normal;
   font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.74);
 }
