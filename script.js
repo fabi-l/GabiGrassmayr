@@ -12,17 +12,32 @@ const currentPage = document.body?.dataset.page || "";
 let heroTypingRun = 0;
 let currentLanguage = "en";
 
-const shouldResetHomeScroll = () => currentPage === "home" && !window.location.hash;
+const isHomePage = currentPage === "home";
 
 const resetHomeScrollPosition = () => {
-  if (!shouldResetHomeScroll()) {
+  if (!isHomePage) {
     return;
   }
 
-  window.scrollTo(0, 0);
+  if (window.location.hash && window.location.hash !== "#hero") {
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+  }
+
+  let resetFrames = 0;
+
+  const forceTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+    if (resetFrames < 8) {
+      resetFrames += 1;
+      window.requestAnimationFrame(forceTop);
+    }
+  };
+
+  forceTop();
 };
 
-if ("scrollRestoration" in window.history && shouldResetHomeScroll()) {
+if ("scrollRestoration" in window.history && isHomePage) {
   window.history.scrollRestoration = "manual";
 }
 
