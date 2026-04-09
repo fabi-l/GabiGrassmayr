@@ -210,7 +210,7 @@ button {
   background: transparent;
 }
 
-.nav-group-title {
+.site-nav a.nav-group-title {
   margin: 0;
   font-family: var(--body);
   font-style: normal;
