@@ -768,6 +768,7 @@ button {
   --project-peek: clamp(0.45rem, 1.8vw, 1.2rem);
   --carousel-button-size: 3.77rem;
   --carousel-button-gutter: clamp(2.8rem, 4.8vw, 3.8rem);
+  --project-preview-bias: calc(((100% - (var(--carousel-button-gutter) * 2)) - (var(--project-peek) * 2)) * 0.05);
   position: relative;
   width: 100%;
   padding-inline: var(--carousel-button-gutter);
@@ -780,6 +781,7 @@ button {
   margin-inline: auto;
   padding-inline: var(--project-peek);
   touch-action: pan-y;
+  transform: translateX(calc(var(--project-preview-bias) * -1));
 }
 
 .projects-track {
