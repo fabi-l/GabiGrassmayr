@@ -8,8 +8,23 @@ const heroLines = Array.from(document.querySelectorAll(".hero-line-typed"));
 const scrollTopButton = document.querySelector("[data-scroll-top]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
+const currentPage = document.body?.dataset.page || "";
 let heroTypingRun = 0;
 let currentLanguage = "en";
+
+const shouldResetHomeScroll = () => currentPage === "home" && !window.location.hash;
+
+const resetHomeScrollPosition = () => {
+  if (!shouldResetHomeScroll()) {
+    return;
+  }
+
+  window.scrollTo(0, 0);
+};
+
+if ("scrollRestoration" in window.history && shouldResetHomeScroll()) {
+  window.history.scrollRestoration = "manual";
+}
 
 const translations = {
   en: {
@@ -533,8 +548,15 @@ currentLanguage = getStoredLanguage();
 applyTranslations(currentLanguage);
 
 window.addEventListener("load", () => {
+  resetHomeScrollPosition();
   restartHeroTyping();
   playHeroVideo();
+});
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    resetHomeScrollPosition();
+  }
 });
 
 const carousel = document.querySelector("[data-carousel]");
