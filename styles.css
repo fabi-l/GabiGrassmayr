@@ -806,7 +806,7 @@ button {
 
 .project-card {
   position: relative;
-  min-height: clamp(21rem, 43.5vw, 30.94rem);
+  min-height: clamp(15.75rem, 32.63vw, 23.2rem);
   overflow: hidden;
   border-radius: 1rem;
   background: #1f1f1f;
@@ -1787,7 +1787,7 @@ button {
   }
 
   .project-card {
-    min-height: 18.3rem;
+    min-height: 13.7rem;
   }
 
   .project-overlay {
@@ -1979,7 +1979,7 @@ button {
   }
 
   .project-card {
-    min-height: 14.1rem;
+    min-height: 10.6rem;
   }
 
   .project-overlay span {
