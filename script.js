@@ -124,6 +124,7 @@ const translations = {
       galleryLabel: "Behind the Lens",
       alt: {
         suit: "Gabriel Grassmayr smiling in a blue suit portrait.",
+        monitorSelfie: "Studio monitor showing Gabriel and a collaborator during production.",
         rescue: "Gabriel Grassmayr in a red rescue uniform portrait.",
         onSet: "Gabriel Grassmayr filming with a camera alongside a collaborator.",
         field: "Gabriel Grassmayr holding a camera outdoors while wearing headphones.",
@@ -246,6 +247,7 @@ const translations = {
       galleryLabel: "Hinter der Kamera",
       alt: {
         suit: "Gabriel Grassmayr lächelnd in einem blauen Anzug.",
+        monitorSelfie: "Studiomonitor mit Gabriel und einem Kollegen während der Produktion.",
         rescue: "Gabriel Grassmayr in einem roten Rettungsdienst-Porträt.",
         onSet: "Gabriel Grassmayr beim Filmen mit Kamera zusammen mit einem Kollegen.",
         field: "Gabriel Grassmayr draußen mit Kamera und Kopfhörern.",
