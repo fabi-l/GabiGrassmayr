@@ -765,7 +765,7 @@ button {
 
 .projects-shell {
   --project-gap: 1.15rem;
-  --project-peek: clamp(1.2rem, 4vw, 3.1rem);
+  --project-peek: clamp(0.9rem, 3vw, 2.3rem);
   --carousel-button-size: 3.77rem;
   --carousel-button-gutter: clamp(4.7rem, 8vw, 6.2rem);
   position: relative;
@@ -797,7 +797,7 @@ button {
 
 .project-card {
   position: relative;
-  min-height: clamp(22.5rem, 50vw, 33rem);
+  min-height: clamp(28rem, 58vw, 41.25rem);
   overflow: hidden;
   border-radius: 1rem;
   background: #1f1f1f;
@@ -1736,12 +1736,12 @@ button {
   }
 
   .projects-shell {
-    --project-peek: clamp(0.9rem, 3vw, 1.6rem);
+    --project-peek: clamp(0.7rem, 2.4vw, 1.2rem);
     --carousel-button-gutter: 3.85rem;
   }
 
   .project-card {
-    min-height: 19.5rem;
+    min-height: 24.4rem;
   }
 
   .project-overlay {
@@ -1933,7 +1933,7 @@ button {
   }
 
   .project-card {
-    min-height: 15rem;
+    min-height: 18.75rem;
   }
 
   .project-overlay span {
