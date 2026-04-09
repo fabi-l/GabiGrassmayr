@@ -59,7 +59,7 @@ const translations = {
       fact1: "Based in Austria",
       fact2: "21 years old",
       fact3: "5+ years of experience",
-      button: "About Me",
+      button: "More About Me",
       portraitAlt: "Gabriel Grassmayr smiling in a blue suit portrait.",
     },
     worked: {
@@ -184,7 +184,7 @@ const translations = {
       fact1: "Mit Sitz in Österreich",
       fact2: "21 Jahre alt",
       fact3: "5+ Jahre Erfahrung",
-      button: "Über mich",
+      button: "Mehr über mich",
       portraitAlt: "Gabriel Grassmayr lächelnd in einem blauen Anzug.",
     },
     worked: {
