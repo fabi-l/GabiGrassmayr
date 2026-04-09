@@ -775,7 +775,9 @@ button {
 
 .projects-viewport {
   overflow: hidden;
-  width: 100%;
+  width: calc(100% - (var(--carousel-button-gutter) * 2));
+  max-width: 100%;
+  margin-inline: auto;
   padding-inline: var(--project-peek);
   touch-action: pan-y;
 }
