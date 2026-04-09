@@ -768,6 +768,7 @@ button {
   --project-peek: clamp(0.45rem, 1.8vw, 1.2rem);
   --carousel-button-size: 3.77rem;
   --carousel-button-gutter: clamp(2.8rem, 4.8vw, 3.8rem);
+  --project-center-shift: clamp(0.3rem, 0.9vw, 0.7rem);
   position: relative;
   width: 100%;
   padding-inline: var(--carousel-button-gutter);
@@ -780,6 +781,7 @@ button {
   margin-inline: auto;
   padding-inline: var(--project-peek);
   touch-action: pan-y;
+  transform: translateX(calc(var(--project-center-shift) * -1));
 }
 
 .projects-track {
@@ -1738,6 +1740,7 @@ button {
   .projects-shell {
     --project-peek: clamp(0.35rem, 1.6vw, 0.8rem);
     --carousel-button-gutter: 2.9rem;
+    --project-center-shift: 0.38rem;
   }
 
   .project-card {
@@ -1870,6 +1873,7 @@ button {
     --project-peek: 0.2rem;
     --carousel-button-size: 3.04rem;
     --carousel-button-gutter: 2.35rem;
+    --project-center-shift: 0.22rem;
   }
 
   .projects-link {
