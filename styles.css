@@ -776,6 +776,7 @@ button {
   --carousel-button-size: 3.77rem;
   --carousel-button-gutter: clamp(2.8rem, 4.8vw, 3.8rem);
   --project-preview-bias: calc(((100% - (var(--carousel-button-gutter) * 2)) - (var(--project-peek) * 2)) * 0.05);
+  --project-card-width-factor: 0.5;
   position: relative;
   width: 100%;
   padding-inline: var(--carousel-button-gutter);
@@ -794,7 +795,7 @@ button {
 .projects-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc(100% - (var(--project-peek) * 2));
+  grid-auto-columns: calc((100% - (var(--project-peek) * 2)) * var(--project-card-width-factor));
   gap: var(--project-gap);
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
@@ -806,7 +807,7 @@ button {
 
 .project-card {
   position: relative;
-  min-height: clamp(7.88rem, 16.32vw, 11.6rem);
+  min-height: clamp(3.94rem, 8.16vw, 5.8rem);
   overflow: hidden;
   border-radius: 1rem;
   background: #1f1f1f;
@@ -1784,10 +1785,11 @@ button {
   .projects-shell {
     --project-peek: clamp(0.35rem, 1.6vw, 0.8rem);
     --carousel-button-gutter: 2.9rem;
+    --project-card-width-factor: 0.6;
   }
 
   .project-card {
-    min-height: 6.85rem;
+    min-height: 4.1rem;
   }
 
   .project-overlay {
@@ -1916,6 +1918,7 @@ button {
     --project-peek: 0.2rem;
     --carousel-button-size: 3.04rem;
     --carousel-button-gutter: 2.35rem;
+    --project-card-width-factor: 0.75;
   }
 
   .projects-link {
@@ -1979,7 +1982,7 @@ button {
   }
 
   .project-card {
-    min-height: 5.3rem;
+    min-height: 4rem;
   }
 
   .project-overlay span {
