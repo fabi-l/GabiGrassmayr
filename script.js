@@ -9,7 +9,6 @@ const scrollTopButton = document.querySelector("[data-scroll-top]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 const currentPage = document.body?.dataset.page || "";
-const cookieConsentKey = "cookieConsent";
 const externalFontHref =
   "https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap";
 let heroTypingRun = 0;
@@ -550,27 +549,6 @@ const updateMenuToggleLabel = () => {
   );
 };
 
-const readCookieConsent = () => {
-  try {
-    const value = window.localStorage.getItem(cookieConsentKey);
-    return value === "accepted" || value === "declined" ? value : "";
-  } catch {
-    return "";
-  }
-};
-
-const writeCookieConsent = (value) => {
-  try {
-    window.localStorage.setItem(cookieConsentKey, value);
-  } catch {}
-};
-
-const clearCookieConsent = () => {
-  try {
-    window.localStorage.removeItem(cookieConsentKey);
-  } catch {}
-};
-
 const getNestedPagePrefix = () =>
   currentPage === "impressum" || currentPage === "datenschutz" ? "../" : "";
 
@@ -689,13 +667,11 @@ const showCookieConsent = () => {
   updateCookieConsentCopy();
 
   declineButton.addEventListener("click", () => {
-    writeCookieConsent("declined");
     syncExternalResources("declined");
     closeCookieConsent();
   });
 
   acceptButton.addEventListener("click", () => {
-    writeCookieConsent("accepted");
     syncExternalResources("accepted");
     closeCookieConsent();
   });
@@ -704,16 +680,11 @@ const showCookieConsent = () => {
 };
 
 const initializeCookieConsent = () => {
-  const consent = readCookieConsent();
-  syncExternalResources(consent);
-
-  if (!consent) {
-    showCookieConsent();
-  }
+  syncExternalResources("");
+  showCookieConsent();
 
   document.querySelectorAll("[data-cookie-reset]").forEach((button) => {
     button.addEventListener("click", () => {
-      clearCookieConsent();
       window.location.reload();
     });
   });
