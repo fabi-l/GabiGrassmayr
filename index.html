@@ -9,12 +9,6 @@
       data-i18n-content="meta.homeDescription"
       content="Cinematic filmmaker portfolio focused on extreme sports and travel content."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="home">
@@ -142,9 +136,11 @@
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
+              data-consent-resource="simpleicons"
+              hidden
             >
               <img
-                src="https://cdn.simpleicons.org/instagram/262626?viewbox=auto"
+                data-external-src="https://cdn.simpleicons.org/instagram/262626?viewbox=auto"
                 alt=""
                 aria-hidden="true"
                 decoding="async"
@@ -156,9 +152,11 @@
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok"
+              data-consent-resource="simpleicons"
+              hidden
             >
               <img
-                src="https://cdn.simpleicons.org/tiktok/262626?viewbox=auto"
+                data-external-src="https://cdn.simpleicons.org/tiktok/262626?viewbox=auto"
                 alt=""
                 aria-hidden="true"
                 decoding="async"
@@ -548,6 +546,7 @@
 
     <footer class="contact-note" aria-label="Legal information">
       <a href="impressum/" data-i18n="nav.imprint">Impressum</a>
+      <a href="datenschutz/" data-i18n="nav.privacy">Datenschutz</a>
     </footer>
 
     <button

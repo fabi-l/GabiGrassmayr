@@ -1151,6 +1151,82 @@ body > .contact-note {
   padding: 0 1rem clamp(2.5rem, 4.5vw, 3.75rem);
 }
 
+[data-cookie-consent] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-cookie-dialog] {
+  width: min(100%, 42rem);
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+  border: 1px solid var(--box-border-color);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    #222222;
+  color: var(--text);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-cookie-dialog] h2 {
+  margin: 0;
+  font-family: var(--anton);
+  font-size: clamp(1.85rem, 4.5vw, 3rem);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[data-cookie-dialog] p {
+  margin: 1.15rem 0 0;
+  color: var(--text-soft);
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  line-height: 1.7;
+}
+
+[data-cookie-dialog] a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(193, 108, 25, 0.82);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.26em;
+}
+
+[data-cookie-actions] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  margin-top: 1.6rem;
+}
+
+[data-cookie-actions] .contact-submit {
+  margin: 0;
+}
+
+[data-cookie-decline] {
+  border: 1px solid var(--box-border-color);
+  background: transparent;
+  color: var(--text);
+  box-shadow: none;
+}
+
+[data-cookie-decline]:hover,
+[data-cookie-decline]:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .logo-panel {
   padding: clamp(1.6rem, 2vw, 2.1rem);
   border-radius: 1.45rem;
@@ -1340,6 +1416,25 @@ body > .contact-note {
   display: grid;
   gap: 1rem;
   margin: 2rem 0 0;
+  max-width: 46rem;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.about-copy p:not([class]) {
+  margin: 1.15rem 0 0;
+  max-width: 46rem;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.about-copy ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.15rem 0 0;
+  padding-left: 1.25rem;
   max-width: 46rem;
   color: var(--text-soft);
   font-size: clamp(1rem, 1.35vw, 1.12rem);

@@ -9,6 +9,9 @@ const scrollTopButton = document.querySelector("[data-scroll-top]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 const currentPage = document.body?.dataset.page || "";
+const cookieConsentKey = "cookieConsent";
+const externalFontHref =
+  "https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap";
 let heroTypingRun = 0;
 let currentLanguage = "en";
 
@@ -49,6 +52,8 @@ const translations = {
       aboutTitle: "Gabriel Grassmayr | About Me",
       aboutDescription:
         "Adventure filmmaker and photographer Gabriel Grassmayr. Discover a concise profile, cinematic introduction, and behind-the-lens gallery.",
+      imprintTitle: "Gabriel Grassmayr | Legal Notice",
+      imprintDescription: "Legal notice for Gabriel Grassmayr, filmmaker in Austria.",
     },
     nav: {
       primaryAria: "Primary navigation",
@@ -60,7 +65,8 @@ const translations = {
       aboutProfile: "Profile",
       aboutPictures: "Behind the Lens",
       aboutContact: "Contact",
-      imprint: "Impressum",
+      imprint: "Legal Notice",
+      privacy: "Privacy",
       brandHome: "Gabriel Grassmayr home",
       openMenu: "Open navigation menu",
       closeMenu: "Close navigation menu",
@@ -70,6 +76,14 @@ const translations = {
     },
     ui: {
       scrollTop: "Scroll to top",
+    },
+    cookie: {
+      title: "Privacy & Cookies",
+      body:
+        "This website is hosted on GitHub Pages. Technical access data (e.g. IP addresses) may be processed by GitHub. Additionally, icons are loaded via the external service cdn.simpleicons.org, which establishes a connection to an external server.",
+      decline: "Decline",
+      accept: "Accept",
+      moreInfo: "More information in our Privacy Policy.",
     },
     hero: {
       sectionAria: "Hero",
@@ -139,6 +153,45 @@ const translations = {
       formBodyName: "Name",
       formBodyMessage: "Message:",
     },
+    imprint: {
+      title: "Legal Notice",
+      subtitle: "Information pursuant to § 5 ECG",
+      nameLabel: "Name",
+      businessLabel: "Business name",
+      business: "Filmmaker",
+      statusLabel: "Status",
+      status: "Independent filmmaker",
+      addressLabel: "Address",
+      address: "Ulmenstraße 33, 6063 Rum, Austria",
+      emailLabel: "Email",
+      contactLabel: "Contact",
+      contact: "Please send contact inquiries by email",
+      responsibilityLabel: "Responsibility",
+      responsibility: "Responsible for the content of this website: Gabriel Grassmayr",
+      tradeLabel: "Trade",
+      trade: "Free trade",
+      professionLabel: "Professional title",
+      profession: "Filmmaker (free trade, awarded in Austria)",
+      membershipLabel: "Membership",
+      membership: "Member of the Austrian Federal Economic Chamber (WKO)",
+      regulationLabel: "Applicable legal regulation",
+      regulation: "Trade Regulation Act 1994 (GewO)",
+      regulationAccessLabel: "Access to legal regulation",
+      vatLabel: "VAT ID",
+      vat: "not available",
+      companyRegisterLabel: "Company register number",
+      companyRegister: "not available",
+      disclosureTitle: "Disclosure pursuant to § 25 Austrian Media Act",
+      mediaOwnerLabel: "Media owner",
+      basicDirectionLabel: "Basic direction",
+      basicDirection: "Portfolio website presenting cinematic work",
+      overviewAria: "Legal notice overview",
+      overviewRole: "Filmmaker",
+      overviewStatus: "Independent filmmaker",
+      overviewTrade: "Free trade",
+      overviewMembership: "Member of the WKO",
+      overviewLocation: "Rum, Austria",
+    },
     about: {
       title: "About Me",
       subtitle: "Adventure Filmmaker. Storyteller. Creator.",
@@ -175,6 +228,8 @@ const translations = {
       aboutTitle: "Gabriel Grassmayr | Über mich",
       aboutDescription:
         "Abenteuerfilmer und Fotograf Gabriel Grassmayr. Entdecke ein kompaktes Profil, eine cineastische Einführung und eine Galerie hinter der Kamera.",
+      imprintTitle: "Gabriel Grassmayr | Impressum",
+      imprintDescription: "Impressum von Gabriel Grassmayr, Filmemacher in Österreich.",
     },
     nav: {
       primaryAria: "Hauptnavigation",
@@ -187,6 +242,7 @@ const translations = {
       aboutPictures: "Behind the Lens",
       aboutContact: "Kontakt",
       imprint: "Impressum",
+      privacy: "Datenschutz",
       brandHome: "Zur Startseite von Gabriel Grassmayr",
       openMenu: "Navigation öffnen",
       closeMenu: "Navigation schließen",
@@ -196,6 +252,14 @@ const translations = {
     },
     ui: {
       scrollTop: "Nach oben scrollen",
+    },
+    cookie: {
+      title: "Datenschutz & Cookies",
+      body:
+        "Diese Website wird auf GitHub Pages gehostet. Dabei können technische Zugriffsdaten (z. B. IP-Adressen) durch GitHub verarbeitet werden. Zusätzlich werden Icons über den externen Dienst cdn.simpleicons.org geladen, wobei ebenfalls eine Verbindung zu einem externen Server hergestellt wird.",
+      decline: "Ablehnen",
+      accept: "Akzeptieren",
+      moreInfo: "Weitere Informationen in unserer Datenschutzerklärung.",
     },
     hero: {
       sectionAria: "Hero-Bereich",
@@ -264,6 +328,45 @@ const translations = {
       submit: "Absenden",
       formBodyName: "Name",
       formBodyMessage: "Nachricht:",
+    },
+    imprint: {
+      title: "Impressum",
+      subtitle: "Angaben gemäß § 5 ECG",
+      nameLabel: "Name",
+      businessLabel: "Unternehmensbezeichnung",
+      business: "Filmemacher",
+      statusLabel: "Status",
+      status: "Selbstständiger Filmemacher",
+      addressLabel: "Anschrift",
+      address: "Ulmenstraße 33, 6063 Rum, Österreich",
+      emailLabel: "E-Mail",
+      contactLabel: "Kontakt",
+      contact: "Kontaktanfragen bitte per E-Mail",
+      responsibilityLabel: "Verantwortlichkeit",
+      responsibility: "Für die Inhalte dieser Website verantwortlich: Gabriel Grassmayr",
+      tradeLabel: "Gewerbe",
+      trade: "Freies Gewerbe",
+      professionLabel: "Berufsbezeichnung",
+      profession: "Filmemacher (Freies Gewerbe, verliehen in Österreich)",
+      membershipLabel: "Mitgliedschaft",
+      membership: "Mitglied der Wirtschaftskammer Österreich (WKO)",
+      regulationLabel: "Anwendbare Rechtsvorschrift",
+      regulation: "Gewerbeordnung 1994 (GewO)",
+      regulationAccessLabel: "Zugang zur Rechtsvorschrift",
+      vatLabel: "UID-Nummer",
+      vat: "nicht vorhanden",
+      companyRegisterLabel: "Firmenbuchnummer",
+      companyRegister: "nicht vorhanden",
+      disclosureTitle: "Offenlegung gemäß § 25 MedienG",
+      mediaOwnerLabel: "Medieninhaber",
+      basicDirectionLabel: "Grundlegende Richtung",
+      basicDirection: "Portfolio-Website zur Präsentation filmischer Arbeiten",
+      overviewAria: "Impressum Übersicht",
+      overviewRole: "Filmemacher",
+      overviewStatus: "Selbstständiger Filmemacher",
+      overviewTrade: "Freies Gewerbe",
+      overviewMembership: "Mitglied der WKO",
+      overviewLocation: "Rum, Österreich",
     },
     about: {
       title: "Über mich",
@@ -447,6 +550,175 @@ const updateMenuToggleLabel = () => {
   );
 };
 
+const readCookieConsent = () => {
+  try {
+    const value = window.localStorage.getItem(cookieConsentKey);
+    return value === "accepted" || value === "declined" ? value : "";
+  } catch {
+    return "";
+  }
+};
+
+const writeCookieConsent = (value) => {
+  try {
+    window.localStorage.setItem(cookieConsentKey, value);
+  } catch {}
+};
+
+const clearCookieConsent = () => {
+  try {
+    window.localStorage.removeItem(cookieConsentKey);
+  } catch {}
+};
+
+const getNestedPagePrefix = () =>
+  currentPage === "impressum" || currentPage === "datenschutz" ? "../" : "";
+
+const getPrivacyHref = () => (currentPage === "datenschutz" ? "./" : `${getNestedPagePrefix()}datenschutz/`);
+
+const loadExternalFonts = () => {
+  if (document.querySelector(`[href="${externalFontHref}"]`)) {
+    return;
+  }
+
+  const googlePreconnect = document.createElement("link");
+  googlePreconnect.rel = "preconnect";
+  googlePreconnect.href = "https://fonts.googleapis.com";
+  googlePreconnect.dataset.consentLoaded = "fonts";
+  document.head.append(googlePreconnect);
+
+  const gstaticPreconnect = document.createElement("link");
+  gstaticPreconnect.rel = "preconnect";
+  gstaticPreconnect.href = "https://fonts.gstatic.com";
+  gstaticPreconnect.crossOrigin = "";
+  gstaticPreconnect.dataset.consentLoaded = "fonts";
+  document.head.append(gstaticPreconnect);
+
+  const fontStylesheet = document.createElement("link");
+  fontStylesheet.rel = "stylesheet";
+  fontStylesheet.href = externalFontHref;
+  fontStylesheet.dataset.consentLoaded = "fonts";
+  document.head.append(fontStylesheet);
+};
+
+const syncExternalResources = (consent) => {
+  const canLoadExternalResources = consent === "accepted";
+
+  if (canLoadExternalResources) {
+    loadExternalFonts();
+  }
+
+  document.querySelectorAll("[data-external-src]").forEach((element) => {
+    const container = element.closest("[data-consent-resource]");
+
+    if (!canLoadExternalResources) {
+      element.removeAttribute("src");
+      container?.setAttribute("hidden", "");
+      return;
+    }
+
+    element.setAttribute("src", element.dataset.externalSrc);
+    container?.removeAttribute("hidden");
+  });
+};
+
+const updateCookieConsentCopy = () => {
+  const dialog = document.querySelector("[data-cookie-dialog]");
+
+  if (!dialog) {
+    return;
+  }
+
+  dialog.querySelector("[data-cookie-title]").textContent = getTranslation("cookie.title");
+  dialog.querySelector("[data-cookie-body]").textContent = getTranslation("cookie.body");
+  dialog.querySelector("[data-cookie-decline]").textContent = getTranslation("cookie.decline");
+  dialog.querySelector("[data-cookie-accept]").textContent = getTranslation("cookie.accept");
+  dialog.querySelector("[data-cookie-privacy-link]").textContent = getTranslation("cookie.moreInfo");
+  dialog.querySelector("[data-cookie-privacy-link]").setAttribute("href", getPrivacyHref());
+};
+
+const closeCookieConsent = () => {
+  document.querySelector("[data-cookie-consent]")?.remove();
+};
+
+const showCookieConsent = () => {
+  if (document.querySelector("[data-cookie-consent]")) {
+    updateCookieConsentCopy();
+    return;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.setAttribute("data-cookie-consent", "");
+
+  const dialog = document.createElement("section");
+  dialog.setAttribute("data-cookie-dialog", "");
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-labelledby", "cookie-consent-title");
+
+  const title = document.createElement("h2");
+  title.id = "cookie-consent-title";
+  title.setAttribute("data-cookie-title", "");
+
+  const body = document.createElement("p");
+  body.setAttribute("data-cookie-body", "");
+
+  const moreInfo = document.createElement("p");
+  const privacyLink = document.createElement("a");
+  privacyLink.setAttribute("data-cookie-privacy-link", "");
+  moreInfo.append(privacyLink);
+
+  const actions = document.createElement("div");
+  actions.setAttribute("data-cookie-actions", "");
+
+  const declineButton = document.createElement("button");
+  declineButton.className = "contact-submit";
+  declineButton.type = "button";
+  declineButton.setAttribute("data-cookie-decline", "");
+
+  const acceptButton = document.createElement("button");
+  acceptButton.className = "contact-submit";
+  acceptButton.type = "button";
+  acceptButton.setAttribute("data-cookie-accept", "");
+
+  actions.append(declineButton, acceptButton);
+  dialog.append(title, body, moreInfo, actions);
+  overlay.append(dialog);
+  document.body.append(overlay);
+
+  updateCookieConsentCopy();
+
+  declineButton.addEventListener("click", () => {
+    writeCookieConsent("declined");
+    syncExternalResources("declined");
+    closeCookieConsent();
+  });
+
+  acceptButton.addEventListener("click", () => {
+    writeCookieConsent("accepted");
+    syncExternalResources("accepted");
+    closeCookieConsent();
+  });
+
+  acceptButton.focus({ preventScroll: true });
+};
+
+const initializeCookieConsent = () => {
+  const consent = readCookieConsent();
+  syncExternalResources(consent);
+
+  if (!consent) {
+    showCookieConsent();
+  }
+
+  document.querySelectorAll("[data-cookie-reset]").forEach((button) => {
+    button.addEventListener("click", () => {
+      clearCookieConsent();
+      window.location.reload();
+    });
+  });
+};
+
 const applyTranslations = (language) => {
   currentLanguage = language === "de" ? "de" : "en";
   window.localStorage.setItem("site-language", currentLanguage);
@@ -481,6 +753,7 @@ const applyTranslations = (language) => {
 
   updateLanguageButtons();
   updateMenuToggleLabel();
+  updateCookieConsentCopy();
 
   if (heroTitle && document.readyState !== "loading") {
     restartHeroTyping();
@@ -563,6 +836,7 @@ languageButtons.forEach((button) => {
 
 currentLanguage = getStoredLanguage();
 applyTranslations(currentLanguage);
+initializeCookieConsent();
 
 window.addEventListener("load", () => {
   resetHomeScrollPosition();
