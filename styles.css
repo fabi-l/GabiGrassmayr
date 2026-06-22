@@ -1095,6 +1095,23 @@ button {
   flex: 0 0 auto;
 }
 
+.contact-note a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(193, 108, 25, 0.82);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.26em;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.contact-note a:hover,
+.contact-note a:focus-visible {
+  color: #ffffff;
+  text-decoration-color: rgba(255, 255, 255, 0.84);
+}
+
 .contact-submit {
   display: block;
   margin-top: 2rem;
@@ -1127,6 +1144,11 @@ button {
 .contact-submit:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.6);
   outline-offset: 4px;
+}
+
+body > .contact-note {
+  margin: 0;
+  padding: 0 1rem clamp(2.5rem, 4.5vw, 3.75rem);
 }
 
 .logo-panel {
@@ -1301,6 +1323,55 @@ button {
   color: var(--text-soft);
   font-size: clamp(1rem, 1.35vw, 1.12rem);
   line-height: 1.75;
+}
+
+.about-copy h2 {
+  margin: clamp(2.8rem, 5vw, 4rem) 0 0;
+  font-family: var(--anton);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-copy dl {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0 0;
+  max-width: 46rem;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.about-copy dt {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-copy dd {
+  margin: 0.25rem 0 0;
+}
+
+.about-copy a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(193, 108, 25, 0.82);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.26em;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.about-copy a:hover,
+.about-copy a:focus-visible {
+  color: #ffffff;
+  text-decoration-color: rgba(255, 255, 255, 0.84);
 }
 
 .about-profile-panel {
