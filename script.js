@@ -517,13 +517,34 @@ const heroLineConfig = {
 };
 
 /* ============================================================
+   URL LANGUAGE READER
+   Reads an explicit ?lang=de or ?lang=en value from the current URL.
+   Parameters: none.
+   Returns: "de", "en", or an empty string when no supported value exists.
+   Called before localStorage so shared legal-page URLs can open directly
+   in the intended language.
+   ============================================================ */
+const getUrlLanguage = () => {
+  const language = new URLSearchParams(window.location.search).get("lang");
+  return language === "de" || language === "en" ? language : "";
+};
+
+/* ============================================================
    STORED LANGUAGE READER
-   Reads the visitor's preferred language from localStorage.
+   Reads the visitor's preferred language from the URL or localStorage.
    Parameters: none.
    Returns: "de" or "en"; falls back to English for invalid/missing values.
    Called during initial script setup.
    ============================================================ */
 const getStoredLanguage = () => {
+  const urlLanguage = getUrlLanguage();
+
+  /* An explicit URL language wins so direct links such as
+     /datenschutz/?lang=en render the legal page in English immediately. */
+  if (urlLanguage) {
+    return urlLanguage;
+  }
+
   /* localStorage stores only language preference, not cookie consent; this
      keeps UI language persistent while consent remains limited to sessionStorage. */
   const storedLanguage = window.localStorage.getItem("site-language");
@@ -732,9 +753,65 @@ const getNestedPagePrefix = () =>
 /* ============================================================
    PRIVACY PAGE HREF BUILDER
    Returns the correct relative link to the privacy page for the current
-   page depth. Used by the cookie modal link.
+   page depth. Used by the cookie modal link and includes the active
+   language so the linked legal page opens in the selected language.
    ============================================================ */
-const getPrivacyHref = () => (currentPage === "datenschutz" ? "./" : `${getNestedPagePrefix()}datenschutz/`);
+const getPrivacyHref = () => {
+  const href = currentPage === "datenschutz" ? "./" : `${getNestedPagePrefix()}datenschutz/`;
+  return `${href}?lang=${currentLanguage}`;
+};
+
+/* ============================================================
+   LANGUAGE URL SYNCHRONIZATION
+   Mirrors the active language into the URL on legal pages so reloading,
+   sharing, or directly opening privacy/imprint pages keeps the chosen
+   language without relying only on localStorage.
+   ============================================================ */
+const syncLegalPageLanguageUrl = () => {
+  if (currentPage !== "datenschutz" && currentPage !== "impressum") {
+    return;
+  }
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", currentLanguage);
+  window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+};
+
+/* ============================================================
+   LOCALIZED LEGAL HREF BUILDER
+   Adds or replaces the lang query parameter while preserving the original
+   relative path style used throughout the static site.
+   ============================================================ */
+const getLocalizedLegalHref = (href) => {
+  if (!href) {
+    return href;
+  }
+
+  const [hrefWithoutHash, hash = ""] = href.split("#");
+  const [path, query = ""] = hrefWithoutHash.split("?");
+  const isCurrentLegalPage = path === "./" && (currentPage === "datenschutz" || currentPage === "impressum");
+  const isLegalPageLink = path.includes("datenschutz/") || path.includes("impressum/") || isCurrentLegalPage;
+
+  if (!isLegalPageLink) {
+    return href;
+  }
+
+  const params = new URLSearchParams(query);
+  params.set("lang", currentLanguage);
+
+  return `${path}?${params.toString()}${hash ? `#${hash}` : ""}`;
+};
+
+/* ============================================================
+   LEGAL LINK LANGUAGE SYNCHRONIZATION
+   Adds the active language to internal legal links so moving between
+   Impressum and Datenschutz keeps the selected German/English version.
+   ============================================================ */
+const syncLegalLinksLanguage = () => {
+  document.querySelectorAll('a[href*="datenschutz/"], a[href*="impressum/"], a[href="./"]').forEach((link) => {
+    link.setAttribute("href", getLocalizedLegalHref(link.getAttribute("href")));
+  });
+};
 
 /* ============================================================
    SESSION CONSENT READER
@@ -959,6 +1036,8 @@ const applyTranslations = (language) => {
   window.localStorage.setItem("site-language", currentLanguage);
   document.documentElement.lang = currentLanguage;
   document.documentElement.dataset.language = currentLanguage;
+  syncLegalPageLanguageUrl();
+  syncLegalLinksLanguage();
 
   /* data-i18n marks visible text nodes that should switch language. */
   document.querySelectorAll("[data-i18n]").forEach((element) => {
