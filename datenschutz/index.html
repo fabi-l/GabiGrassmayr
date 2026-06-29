@@ -7,11 +7,12 @@
          ============================================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Privacy-page title used in browser tabs and link previews. -->
-    <title>Datenschutz | Gabriel Grassmayr Filmemacher</title>
+    <!-- Privacy-page title used in browser tabs and link previews; translated by script.js. -->
+    <title data-i18n="meta.privacyTitle">Datenschutz | Gabriel Grassmayr Filmemacher</title>
     <!-- Privacy-page description summarizes the page purpose. -->
     <meta
       name="description"
+      data-i18n-content="meta.privacyDescription"
       content="Datenschutzerklärung von Gabriel Grassmayr."
     />
     <!-- Privacy page is excluded from indexing because it is legal support content. -->
@@ -19,8 +20,8 @@
     <!-- Open Graph metadata gives consistent previews if the privacy page is shared. -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fabi-l.github.io/GabiGrassmayr/datenschutz/" />
-    <meta property="og:title" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
-    <meta property="og:description" content="Datenschutzerklärung von Gabriel Grassmayr." />
+    <meta property="og:title" data-i18n-content="meta.privacyTitle" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
+    <meta property="og:description" data-i18n-content="meta.privacyDescription" content="Datenschutzerklärung von Gabriel Grassmayr." />
     <meta property="og:image" content="https://fabi-l.github.io/GabiGrassmayr/profile-portrait-suit.jpeg" />
     <meta property="og:image:alt" content="Gabriel Grassmayr – Filmmaker Portrait" />
     <meta property="og:locale" content="de_AT" />
@@ -28,8 +29,8 @@
     <meta property="og:site_name" content="Gabriel Grassmayr | Filmmaker" />
     <!-- Twitter card metadata mirrors the Open Graph preview data. -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
-    <meta name="twitter:description" content="Datenschutzerklärung von Gabriel Grassmayr." />
+    <meta name="twitter:title" data-i18n-content="meta.privacyTitle" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
+    <meta name="twitter:description" data-i18n-content="meta.privacyDescription" content="Datenschutzerklärung von Gabriel Grassmayr." />
     <meta name="twitter:image" content="https://fabi-l.github.io/GabiGrassmayr/profile-portrait-suit.jpeg" />
     <!-- Shared stylesheet keeps the privacy page aligned with the portfolio design. -->
     <link rel="stylesheet" href="../styles.css" />
@@ -83,7 +84,7 @@
             </section>
           </div>
 
-          <!-- Language controls remain available even though the legal text is German. -->
+          <!-- Language controls switch the bilingual privacy content in-place. -->
           <div class="language-switcher" aria-label="Sprachauswahl" data-i18n-aria-label="nav.languageLabel">
             <button
               class="language-button"
@@ -115,7 +116,7 @@
       </div>
     </header>
 
-    <main class="about-main" lang="de">
+    <main class="about-main">
       <!-- ============================================================
            PRIVACY POLICY CONTENT
            Documents hosting, external resources, contact-form behavior,
@@ -124,24 +125,26 @@
       <section class="about-intro" id="datenschutz" aria-labelledby="datenschutz-title">
         <div class="container about-intro-grid">
           <div class="about-copy">
-            <h1 id="datenschutz-title">Datenschutzerklärung</h1>
-            <p class="about-subtitle">Stand: Juni 2025</p>
+            <h1 id="datenschutz-title" data-i18n="privacy.title">Datenschutzerklärung</h1>
+            <p class="about-subtitle" data-i18n="privacy.subtitle">Stand: Juni 2025</p>
 
-            <h2>1. Verantwortlicher</h2>
+            <h2 data-i18n="privacy.controllerTitle">1. Verantwortlicher</h2>
             <p>
               Gabriel Grassmayr<br />
-              Ulmenstraße 33, 6063 Rum, Österreich<br />
-              E-Mail:
+              <span data-i18n="privacy.address">Ulmenstraße 33, 6063 Rum, Österreich</span><br />
+              <span data-i18n="privacy.emailLabel">E-Mail:</span>
               <!-- Mailto link opens the visitor's email client for privacy inquiries. -->
               <a href="mailto:gabrielgrassmayr@icloud.com">gabrielgrassmayr@icloud.com</a>
             </p>
 
-            <h2>2. Hosting — GitHub Pages</h2>
-            <p>
+            <h2 data-i18n="privacy.hostingTitle">2. Hosting — GitHub Pages</h2>
+            <p data-i18n="privacy.hostingBody">
               Diese Website wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St.,
               San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website verarbeitet GitHub
               automatisch technische Zugriffsdaten, insbesondere IP-Adressen der Besucher.
               Weitere Informationen:
+            </p>
+            <p>
               <!-- External GitHub privacy statement explains the hosting provider's processing. -->
               <a
                 href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
@@ -150,8 +153,8 @@
               >https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement</a>
             </p>
 
-            <h2>3. Externe Ressourcen — cdn.simpleicons.org</h2>
-            <p>
+            <h2 data-i18n="privacy.externalTitle">3. Externe Ressourcen — cdn.simpleicons.org</h2>
+            <p data-i18n="privacy.externalBody">
               Auf dieser Website werden Icons über den externen Dienst cdn.simpleicons.org geladen.
               Dabei wird beim Seitenaufruf eine Verbindung zum Server von Simple Icons hergestellt,
               wodurch technische Daten (insbesondere die IP-Adresse des Besuchers) übertragen werden können.
@@ -159,23 +162,23 @@
               die Icons nicht über diesen externen Dienst geladen.
             </p>
 
-            <h2>4. Kontaktformular</h2>
-            <p>
+            <h2 data-i18n="privacy.contactTitle">4. Kontaktformular</h2>
+            <p data-i18n="privacy.contactBody">
               Das Kontaktformular auf dieser Website öffnet lediglich das lokale E-Mail-Programm
               des Nutzers (mailto-Link). Es werden keine Daten auf dem Server gespeichert oder
               verarbeitet.
             </p>
 
-            <h2>5. Ihre Rechte (DSGVO)</h2>
-            <p>Sie haben das Recht auf:</p>
+            <h2 data-i18n="privacy.rightsTitle">5. Ihre Rechte (DSGVO)</h2>
+            <p data-i18n="privacy.rightsIntro">Sie haben das Recht auf:</p>
             <ul>
-              <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
-              <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
-              <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>
-              <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-              <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+              <li data-i18n="privacy.rightAccess">Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
+              <li data-i18n="privacy.rightCorrection">Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+              <li data-i18n="privacy.rightDeletion">Löschung Ihrer Daten (Art. 17 DSGVO)</li>
+              <li data-i18n="privacy.rightRestriction">Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+              <li data-i18n="privacy.rightObjection">Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
               <li>
-                Beschwerde bei der österreichischen Datenschutzbehörde:
+                <span data-i18n="privacy.complaint">Beschwerde bei der österreichischen Datenschutzbehörde:</span>
                 <!-- External Austrian Data Protection Authority link for complaints. -->
                 <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer">
                   https://www.dsb.gv.at
@@ -183,25 +186,25 @@
               </li>
             </ul>
 
-            <h2>6. Cookie-Einstellungen erneut anzeigen</h2>
-            <p>
+            <h2 data-i18n="privacy.cookieTitle">6. Cookie-Einstellungen erneut anzeigen</h2>
+            <p data-i18n="privacy.cookieBody">
               Die Cookie-Entscheidung wird nicht dauerhaft auf Ihrem Gerät gespeichert.
               Sie gilt nur für den aktuellen Browser-Tab, damit beim Wechsel zwischen
               Unterseiten kein erneutes Pop-up erscheint.
             </p>
             <!-- Button reloads the page so the non-persistent consent modal appears again. -->
-            <button class="contact-submit" type="button" data-cookie-reset>
+            <button class="contact-submit" type="button" data-cookie-reset data-i18n="privacy.cookieButton">
               Cookie-Einstellungen erneut anzeigen
             </button>
           </div>
 
-          <section class="about-profile-panel" aria-label="Datenschutz Übersicht">
+          <section class="about-profile-panel" aria-label="Datenschutz Übersicht" data-i18n-aria-label="privacy.overviewAria">
             <ul class="about-profile-list">
-              <li class="about-profile-list-wide">Datenschutz</li>
-              <li class="about-profile-list-left">GitHub Pages</li>
-              <li class="about-profile-list-right">Cookie-Consent</li>
+              <li class="about-profile-list-wide" data-i18n="privacy.overviewTitle">Datenschutz</li>
+              <li class="about-profile-list-left" data-i18n="privacy.overviewHosting">GitHub Pages</li>
+              <li class="about-profile-list-right" data-i18n="privacy.overviewConsent">Cookie-Consent</li>
               <li>cdn.simpleicons.org</li>
-              <li>DSGVO</li>
+              <li data-i18n="privacy.overviewGdpr">DSGVO</li>
             </ul>
           </section>
         </div>
