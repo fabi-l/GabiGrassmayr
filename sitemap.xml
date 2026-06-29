@@ -17,10 +17,4 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Impressum is a legal route with low SEO priority. -->
-  <url>
-    <loc>https://fabi-l.github.io/GabiGrassmayr/impressum/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
 </urlset>

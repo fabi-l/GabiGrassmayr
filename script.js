@@ -1333,7 +1333,7 @@ if (contactForm) {
     ].join("\n");
 
     /* mailto opens the visitor's default email app with subject/body filled in. */
-    window.location.href = `mailto:Gabrielgrassmayr@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:gabrielgrassmayr@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
 
