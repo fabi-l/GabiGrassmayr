@@ -1219,8 +1219,8 @@ body > .contact-note {
 
 /* ============================================================
    COOKIE CONSENT MODAL
-   Fixed overlay shown on every page load. It blocks external fonts/icons
-   until the visitor makes a per-page-load choice.
+   Fixed overlay shown when the current browser tab has no consent choice.
+   It blocks external fonts/icons until the visitor decides for that tab.
    ============================================================ */
 [data-cookie-consent] {
   position: fixed;

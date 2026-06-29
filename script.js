@@ -14,6 +14,7 @@ const scrollTopButton = document.querySelector("[data-scroll-top]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const languageButtons = Array.from(document.querySelectorAll("[data-language-option]"));
 const currentPage = document.body?.dataset.page || "";
+const cookieConsentSessionKey = "cookieConsent";
 const externalFontHref =
   "https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap";
 /* Tracks asynchronous hero typing runs so older timeouts cannot overwrite
@@ -454,7 +455,7 @@ const heroLineConfig = {
    ============================================================ */
 const getStoredLanguage = () => {
   /* localStorage stores only language preference, not cookie consent; this
-     keeps UI language persistent while privacy consent is asked every reload. */
+     keeps UI language persistent while consent remains limited to sessionStorage. */
   const storedLanguage = window.localStorage.getItem("site-language");
   return storedLanguage === "de" || storedLanguage === "en" ? storedLanguage : "en";
 };
@@ -666,6 +667,35 @@ const getNestedPagePrefix = () =>
 const getPrivacyHref = () => (currentPage === "datenschutz" ? "./" : `${getNestedPagePrefix()}datenschutz/`);
 
 /* ============================================================
+   SESSION CONSENT READER
+   Reads the visitor's cookie choice for the current browser tab only.
+   sessionStorage prevents repeated modals during internal page navigation
+   without storing the choice permanently on the device.
+   ============================================================ */
+const getSessionCookieConsent = () => {
+  const value = window.sessionStorage.getItem(cookieConsentSessionKey);
+  return value === "accepted" || value === "declined" ? value : "";
+};
+
+/* ============================================================
+   SESSION CONSENT WRITER
+   Stores the temporary Accept/Decline choice for this tab session so
+   navigating between static pages does not reopen the modal immediately.
+   ============================================================ */
+const setSessionCookieConsent = (value) => {
+  window.sessionStorage.setItem(cookieConsentSessionKey, value);
+};
+
+/* ============================================================
+   SESSION CONSENT RESET
+   Removes the temporary tab-session consent value so the modal can be
+   shown again after the privacy-page reset button reloads the page.
+   ============================================================ */
+const clearSessionCookieConsent = () => {
+  window.sessionStorage.removeItem(cookieConsentSessionKey);
+};
+
+/* ============================================================
    EXTERNAL FONT LOADER
    Adds Google Fonts preconnect and stylesheet links only after consent.
    This prevents external font requests before the visitor chooses Accept.
@@ -756,8 +786,8 @@ const closeCookieConsent = () => {
 
 /* ============================================================
    COOKIE CONSENT MODAL CREATION
-   Builds the modal dynamically on every page load so the visitor makes a
-   fresh, non-persistent choice before external resources load.
+   Builds the modal dynamically when the current tab has not made a choice
+   yet, so external resources remain blocked until consent is known.
    ============================================================ */
 const showCookieConsent = () => {
   /* If the modal already exists, refresh its translated text instead. */
@@ -809,12 +839,14 @@ const showCookieConsent = () => {
 
   /* Decline keeps all non-essential external resources blocked for this load. */
   declineButton.addEventListener("click", () => {
+    setSessionCookieConsent("declined");
     syncExternalResources("declined");
     closeCookieConsent();
   });
 
   /* Accept loads consent-gated fonts/icons for this load and closes the modal. */
   acceptButton.addEventListener("click", () => {
+    setSessionCookieConsent("accepted");
     syncExternalResources("accepted");
     closeCookieConsent();
   });
@@ -824,16 +856,22 @@ const showCookieConsent = () => {
 
 /* ============================================================
    COOKIE CONSENT INITIALIZATION
-   Blocks external resources, shows the consent modal on every page load,
-   and wires the privacy-page reset button to reload the page.
+   Reuses the current tab-session choice across internal page navigation,
+   shows the modal only if no choice exists, and wires the privacy-page
+   reset button to clear that temporary value.
    ============================================================ */
 const initializeCookieConsent = () => {
-  syncExternalResources("");
-  showCookieConsent();
+  const consent = getSessionCookieConsent();
+  syncExternalResources(consent);
+
+  if (!consent) {
+    showCookieConsent();
+  }
 
   document.querySelectorAll("[data-cookie-reset]").forEach((button) => {
-    /* Reloading naturally shows the non-persistent consent modal again. */
+    /* Clearing sessionStorage and reloading shows the consent modal again. */
     button.addEventListener("click", () => {
+      clearSessionCookieConsent();
       window.location.reload();
     });
   });
@@ -847,7 +885,7 @@ const initializeCookieConsent = () => {
 const applyTranslations = (language) => {
   currentLanguage = language === "de" ? "de" : "en";
   /* localStorage persists only the language preference; cookie consent is
-     intentionally not stored and is requested again after reload. */
+     stored only in sessionStorage for the current browser tab. */
   window.localStorage.setItem("site-language", currentLanguage);
   document.documentElement.lang = currentLanguage;
   document.documentElement.dataset.language = currentLanguage;
@@ -992,8 +1030,8 @@ languageButtons.forEach((button) => {
   });
 });
 
-/* Initial page setup restores language preference and shows the non-persistent
-   cookie consent modal before non-essential external resources load. */
+/* Initial page setup restores language preference and initializes the
+   tab-session cookie consent state before external resources load. */
 currentLanguage = getStoredLanguage();
 applyTranslations(currentLanguage);
 initializeCookieConsent();
