@@ -1,3 +1,8 @@
+/* ============================================================
+   GLOBAL DOM REFERENCES
+   Caches elements used by multiple behaviors so later functions can
+   update navigation, hero animation, consent, carousel, and forms.
+   ============================================================ */
 const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
@@ -11,25 +16,43 @@ const languageButtons = Array.from(document.querySelectorAll("[data-language-opt
 const currentPage = document.body?.dataset.page || "";
 const externalFontHref =
   "https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@1,800&display=swap";
+/* Tracks asynchronous hero typing runs so older timeouts cannot overwrite
+   a newer language change or page lifecycle restart. */
 let heroTypingRun = 0;
+/* Stores the active language code used by the translation helpers. */
 let currentLanguage = "en";
 
 const isHomePage = currentPage === "home";
 
+/* ============================================================
+   HOME SCROLL RESET
+   Forces the homepage to start at the hero section on fresh loads.
+   Parameters: none.
+   Returns: nothing.
+   Called during page load/pageshow only on the homepage.
+   ============================================================ */
 const resetHomeScrollPosition = () => {
+  /* Non-home pages must preserve their normal scroll behavior because they
+     contain legal/profile content that visitors may revisit directly. */
   if (!isHomePage) {
     return;
   }
 
+  /* Any non-hero hash is removed so the homepage does not initially jump
+     past the cinematic opening after browser restore/navigation. */
   if (window.location.hash && window.location.hash !== "#hero") {
     window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
   }
 
   let resetFrames = 0;
 
+  /* Repeating the top scroll for a few animation frames beats browser
+     scroll restoration and late media/layout changes. */
   const forceTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
+    /* Eight frames is long enough to cover initial rendering without making
+       the page feel locked after load. */
     if (resetFrames < 8) {
       resetFrames += 1;
       window.requestAnimationFrame(forceTop);
@@ -39,10 +62,17 @@ const resetHomeScrollPosition = () => {
   forceTop();
 };
 
+/* Browser scroll restoration is disabled on the homepage so the hero remains
+   the first impression instead of restoring to a previous scroll position. */
 if ("scrollRestoration" in window.history && isHomePage) {
   window.history.scrollRestoration = "manual";
 }
 
+/* ============================================================
+   TRANSLATION DICTIONARY
+   Holds every text, aria label, placeholder, alt value, and meta value
+   used by the manual language switcher.
+   ============================================================ */
 const translations = {
   en: {
     meta: {
@@ -398,6 +428,12 @@ const translations = {
   },
 };
 
+/* ============================================================
+   HERO LINE LAYOUT CONFIGURATION
+   Provides per-language width/offset values for the typed hero headline.
+   Parameters: none directly; read through currentLanguage.
+   Returns: config objects consumed by updateHeroLineLayout().
+   ============================================================ */
 const heroLineConfig = {
   en: {
     topWidth: "max-content",
@@ -409,12 +445,32 @@ const heroLineConfig = {
   },
 };
 
+/* ============================================================
+   STORED LANGUAGE READER
+   Reads the visitor's preferred language from localStorage.
+   Parameters: none.
+   Returns: "de" or "en"; falls back to English for invalid/missing values.
+   Called during initial script setup.
+   ============================================================ */
 const getStoredLanguage = () => {
+  /* localStorage stores only language preference, not cookie consent; this
+     keeps UI language persistent while privacy consent is asked every reload. */
   const storedLanguage = window.localStorage.getItem("site-language");
   return storedLanguage === "de" || storedLanguage === "en" ? storedLanguage : "en";
 };
 
+/* ============================================================
+   TRANSLATION LOOKUP
+   Resolves dot-separated translation keys such as "nav.mainContact".
+   Parameters:
+   - key: string path into the translation object.
+   - language: optional language code, defaults to currentLanguage.
+   Returns: translated string, English fallback, or an empty string.
+   Called by applyTranslations() and UI label updates.
+   ============================================================ */
 const getTranslation = (key, language = currentLanguage) => {
+  /* Splits a dot path into nested object lookups without hard-coding every
+     possible translation key. */
   const resolve = (source) =>
     key.split(".").reduce((value, segment) => {
       if (value && typeof value === "object" && segment in value) {
@@ -428,6 +484,7 @@ const getTranslation = (key, language = currentLanguage) => {
 };
 
 const updateHeroLineLayout = () => {
+  /* Pages without a hero title, such as legal pages, safely skip hero layout. */
   if (!heroTitle) {
     return;
   }
@@ -438,6 +495,8 @@ const updateHeroLineLayout = () => {
 };
 
 const updateLanguageButtons = () => {
+  /* Each language button mirrors the active language with class and aria state
+     so both visuals and assistive technology stay synchronized. */
   languageButtons.forEach((button) => {
     const isActive = button.dataset.languageOption === currentLanguage;
     button.classList.toggle("is-active", isActive);
@@ -445,23 +504,43 @@ const updateLanguageButtons = () => {
   });
 };
 
+/* ============================================================
+   HERO VIDEO PLAYBACK
+   Attempts autoplay for the muted hero video.
+   Parameters: none.
+   Returns: nothing.
+   Called after media events and page lifecycle events.
+   ============================================================ */
 const playHeroVideo = () => {
+  /* Pages without a hero video skip playback logic. */
   if (!heroVideo) {
     return;
   }
 
   const playAttempt = heroVideo.play();
 
+  /* Browsers may reject autoplay promises; errors are intentionally ignored
+     because the page remains usable without video playback. */
   if (playAttempt && typeof playAttempt.catch === "function") {
     playAttempt.catch(() => {});
   }
 };
 
+/* ============================================================
+   HERO TYPEWRITER ANIMATION
+   Replays the stroked hero headline typing animation.
+   Parameters: none.
+   Returns: nothing.
+   Called on load, language changes, and BFCache restores.
+   ============================================================ */
 const restartHeroTyping = () => {
+  /* Non-home pages or missing hero lines skip this animation completely. */
   if (!heroTitle || !heroLines.length) {
     return;
   }
 
+  /* Reduced-motion users see the completed title immediately to avoid
+     unnecessary animated typing. */
   if (prefersReducedMotion.matches) {
     heroTitle.classList.remove("typing-active");
     heroTitle.classList.add("typing-complete");
@@ -472,6 +551,7 @@ const restartHeroTyping = () => {
     return;
   }
 
+  /* Incrementing the run id invalidates older timeouts from previous runs. */
   heroTypingRun += 1;
   const currentRun = heroTypingRun;
 
@@ -479,6 +559,7 @@ const restartHeroTyping = () => {
   heroTitle.classList.add("typing-active");
 
   heroLines.forEach((line) => {
+    /* Preserve the full translated text before clearing visible characters. */
     if (!line.dataset.fullText) {
       line.dataset.fullText = line.textContent;
     }
@@ -487,6 +568,12 @@ const restartHeroTyping = () => {
     line.classList.remove("is-cursor");
   });
 
+  /* Types one headline line with a delay per character.
+     Parameters:
+     - line: DOM element containing the text to type.
+     - delay: milliseconds between each character.
+     - onComplete: optional callback after the line finishes.
+     Returns: nothing; it schedules timeouts. */
   const typeLine = (line, delay, onComplete) => {
     const fullText = line.dataset.fullText || "";
     let charIndex = 0;
@@ -494,10 +581,14 @@ const restartHeroTyping = () => {
     line.classList.add("is-cursor");
 
     const step = () => {
+      /* If a newer typing run started, this timeout must stop to avoid
+         mixing languages or duplicate cursor states. */
       if (currentRun !== heroTypingRun) {
         return;
       }
 
+      /* While characters remain, reveal one more character and schedule the
+         next step using the line-specific delay. */
       if (charIndex < fullText.length) {
         charIndex += 1;
         line.textContent = fullText.slice(0, charIndex);
@@ -512,19 +603,26 @@ const restartHeroTyping = () => {
     window.setTimeout(step, 180);
   };
 
+  /* First line uses a 72ms character delay for a deliberate opening pace. */
   typeLine(heroLines[0], 72, () => {
+    /* If the second line is missing or the run is stale, finish cleanly. */
     if (currentRun !== heroTypingRun || !heroLines[1]) {
       heroTitle.classList.remove("typing-active");
       heroTitle.classList.add("typing-complete");
       return;
     }
 
+    /* 140ms pause creates a natural beat between the two hero lines. */
     window.setTimeout(() => {
+      /* Second line uses a slightly faster 58ms delay so the animation
+         accelerates after the opening word. */
       typeLine(heroLines[1], 58, () => {
         if (currentRun !== heroTypingRun) {
           return;
         }
 
+        /* Final 120ms pause lets the last character settle before the title
+           switches into its completed state. */
         window.setTimeout(() => {
           if (currentRun === heroTypingRun) {
             heroTitle.classList.remove("typing-active");
@@ -538,7 +636,13 @@ const restartHeroTyping = () => {
 
 let setMenuState = () => {};
 
+/* ============================================================
+   MENU TOGGLE LABEL SYNC
+   Updates the hamburger button aria-label based on open/closed state.
+   Called after menu state changes and language changes.
+   ============================================================ */
 const updateMenuToggleLabel = () => {
+  /* Without both header and button, there is no menu control to label. */
   if (!menuToggle || !header) {
     return;
   }
@@ -550,12 +654,24 @@ const updateMenuToggleLabel = () => {
   );
 };
 
+/* Nested legal/privacy pages need "../" for links back to root-level pages. */
 const getNestedPagePrefix = () =>
   currentPage === "impressum" || currentPage === "datenschutz" ? "../" : "";
 
+/* ============================================================
+   PRIVACY PAGE HREF BUILDER
+   Returns the correct relative link to the privacy page for the current
+   page depth. Used by the cookie modal link.
+   ============================================================ */
 const getPrivacyHref = () => (currentPage === "datenschutz" ? "./" : `${getNestedPagePrefix()}datenschutz/`);
 
+/* ============================================================
+   EXTERNAL FONT LOADER
+   Adds Google Fonts preconnect and stylesheet links only after consent.
+   This prevents external font requests before the visitor chooses Accept.
+   ============================================================ */
 const loadExternalFonts = () => {
+  /* Prevent duplicate font links if the user accepts more than once. */
   if (document.querySelector(`[href="${externalFontHref}"]`)) {
     return;
   }
@@ -580,16 +696,24 @@ const loadExternalFonts = () => {
   document.head.append(fontStylesheet);
 };
 
+/* ============================================================
+   EXTERNAL RESOURCE CONSENT SYNC
+   Shows or blocks external resources based on the current consent choice.
+   "accepted" loads fonts/icons; anything else keeps them blocked.
+   ============================================================ */
 const syncExternalResources = (consent) => {
   const canLoadExternalResources = consent === "accepted";
 
+  /* Accepted consent loads Google Fonts for the current page load. */
   if (canLoadExternalResources) {
     loadExternalFonts();
   }
 
+  /* data-external-src stores CDN image URLs without loading them before consent. */
   document.querySelectorAll("[data-external-src]").forEach((element) => {
     const container = element.closest("[data-consent-resource]");
 
+    /* Declined or missing consent removes src and hides the owning social link. */
     if (!canLoadExternalResources) {
       element.removeAttribute("src");
       container?.setAttribute("hidden", "");
@@ -601,9 +725,15 @@ const syncExternalResources = (consent) => {
   });
 };
 
+/* ============================================================
+   COOKIE MODAL COPY SYNC
+   Updates consent modal text and privacy link for the active language.
+   Called when the modal is shown and after language changes.
+   ============================================================ */
 const updateCookieConsentCopy = () => {
   const dialog = document.querySelector("[data-cookie-dialog]");
 
+  /* If the modal is not mounted, there is no copy to update. */
   if (!dialog) {
     return;
   }
@@ -616,11 +746,21 @@ const updateCookieConsentCopy = () => {
   dialog.querySelector("[data-cookie-privacy-link]").setAttribute("href", getPrivacyHref());
 };
 
+/* ============================================================
+   COOKIE MODAL CLOSE
+   Removes the consent overlay after the visitor chooses Accept or Decline.
+   ============================================================ */
 const closeCookieConsent = () => {
   document.querySelector("[data-cookie-consent]")?.remove();
 };
 
+/* ============================================================
+   COOKIE CONSENT MODAL CREATION
+   Builds the modal dynamically on every page load so the visitor makes a
+   fresh, non-persistent choice before external resources load.
+   ============================================================ */
 const showCookieConsent = () => {
+  /* If the modal already exists, refresh its translated text instead. */
   if (document.querySelector("[data-cookie-consent]")) {
     updateCookieConsentCopy();
     return;
@@ -667,11 +807,13 @@ const showCookieConsent = () => {
 
   updateCookieConsentCopy();
 
+  /* Decline keeps all non-essential external resources blocked for this load. */
   declineButton.addEventListener("click", () => {
     syncExternalResources("declined");
     closeCookieConsent();
   });
 
+  /* Accept loads consent-gated fonts/icons for this load and closes the modal. */
   acceptButton.addEventListener("click", () => {
     syncExternalResources("accepted");
     closeCookieConsent();
@@ -680,39 +822,57 @@ const showCookieConsent = () => {
   acceptButton.focus({ preventScroll: true });
 };
 
+/* ============================================================
+   COOKIE CONSENT INITIALIZATION
+   Blocks external resources, shows the consent modal on every page load,
+   and wires the privacy-page reset button to reload the page.
+   ============================================================ */
 const initializeCookieConsent = () => {
   syncExternalResources("");
   showCookieConsent();
 
   document.querySelectorAll("[data-cookie-reset]").forEach((button) => {
+    /* Reloading naturally shows the non-persistent consent modal again. */
     button.addEventListener("click", () => {
       window.location.reload();
     });
   });
 };
 
+/* ============================================================
+   TRANSLATION APPLICATION
+   Applies the selected language to text, placeholders, aria labels,
+   alt text, and meta descriptions. Called on startup and language clicks.
+   ============================================================ */
 const applyTranslations = (language) => {
   currentLanguage = language === "de" ? "de" : "en";
+  /* localStorage persists only the language preference; cookie consent is
+     intentionally not stored and is requested again after reload. */
   window.localStorage.setItem("site-language", currentLanguage);
   document.documentElement.lang = currentLanguage;
   document.documentElement.dataset.language = currentLanguage;
 
+  /* data-i18n marks visible text nodes that should switch language. */
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = getTranslation(element.dataset.i18n);
   });
 
+  /* Placeholders are attributes, so they require attribute-specific updates. */
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
     element.setAttribute("placeholder", getTranslation(element.dataset.i18nPlaceholder));
   });
 
+  /* aria-label attributes keep assistive technology aligned with the UI language. */
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
     element.setAttribute("aria-label", getTranslation(element.dataset.i18nAriaLabel));
   });
 
+  /* Image alt text is translated for accessibility and SEO. */
   document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
     element.setAttribute("alt", getTranslation(element.dataset.i18nAlt));
   });
 
+  /* Meta descriptions are kept in sync with the active language. */
   document.querySelectorAll("[data-i18n-content]").forEach((element) => {
     element.setAttribute("content", getTranslation(element.dataset.i18nContent));
   });
@@ -720,6 +880,7 @@ const applyTranslations = (language) => {
   updateHeroLineLayout();
 
   heroLines.forEach((line) => {
+    /* The hero typewriter needs the translated full text before replaying. */
     line.dataset.fullText = line.textContent;
   });
 
@@ -727,27 +888,38 @@ const applyTranslations = (language) => {
   updateMenuToggleLabel();
   updateCookieConsentCopy();
 
+  /* Once the document is interactive, language changes replay the hero typing. */
   if (heroTitle && document.readyState !== "loading") {
     restartHeroTyping();
   }
 };
 
+/* ============================================================
+   HERO VIDEO EVENT BINDINGS
+   Keeps the muted local video playable across browser lifecycle events.
+   These listeners are attached only on pages with a hero video.
+   ============================================================ */
 if (heroVideo) {
   heroVideo.muted = true;
   heroVideo.defaultMuted = true;
   heroVideo.loop = true;
   heroVideo.playsInline = true;
 
+  /* canplay and loadeddata both indicate the browser can attempt playback. */
   heroVideo.addEventListener("canplay", playHeroVideo);
   heroVideo.addEventListener("loadeddata", playHeroVideo);
 
+  /* When a hidden tab becomes visible again, playback is attempted again. */
   document.addEventListener("visibilitychange", () => {
+    /* Hidden tabs should not force playback attempts. */
     if (!document.hidden) {
       playHeroVideo();
     }
   });
 
+  /* pageshow handles back-forward cache restores where load may not fire. */
   window.addEventListener("pageshow", (event) => {
+    /* BFCache restores reuse DOM state, so the hero typing needs a restart. */
     if (event.persisted) {
       restartHeroTyping();
     }
@@ -756,6 +928,11 @@ if (heroVideo) {
   });
 }
 
+/* ============================================================
+   NAVIGATION EVENT BINDINGS
+   Opens/closes the mobile dropdown, closes it after link clicks, and
+   dismisses it when clicking outside.
+   ============================================================ */
 if (header && menuToggle && nav) {
   setMenuState = (isOpen) => {
     header.classList.toggle("menu-open", isOpen);
@@ -763,28 +940,35 @@ if (header && menuToggle && nav) {
     updateMenuToggleLabel();
   };
 
+  /* Click toggles the hamburger menu open or closed. */
   menuToggle.addEventListener("click", () => {
     const nextState = !header.classList.contains("menu-open");
     setMenuState(nextState);
   });
 
   navLinks.forEach((link) => {
+    /* Any navigation link closes the dropdown so the target content is visible. */
     link.addEventListener("click", () => {
       setMenuState(false);
     });
   });
 
+  /* Wide screens should not keep the mobile dropdown open after resizing. */
   window.addEventListener("resize", () => {
+    /* 760px matches the CSS breakpoint where mobile navigation changes. */
     if (window.innerWidth > 760) {
       setMenuState(false);
     }
   });
 
+  /* Clicking outside the open menu closes it, matching common mobile UX. */
   document.addEventListener("click", (event) => {
+    /* If the menu is already closed, outside-click handling is unnecessary. */
     if (!header.classList.contains("menu-open")) {
       return;
     }
 
+    /* Clicks inside the nav or on the toggle should not immediately close it. */
     if (nav.contains(event.target) || menuToggle.contains(event.target)) {
       return;
     }
@@ -794,9 +978,11 @@ if (header && menuToggle && nav) {
 }
 
 languageButtons.forEach((button) => {
+  /* Language buttons apply translations and close the menu after selection. */
   button.addEventListener("click", () => {
     const requestedLanguage = button.dataset.languageOption;
 
+    /* Empty values or selecting the current language require no update. */
     if (!requestedLanguage || requestedLanguage === currentLanguage) {
       return;
     }
@@ -806,17 +992,22 @@ languageButtons.forEach((button) => {
   });
 });
 
+/* Initial page setup restores language preference and shows the non-persistent
+   cookie consent modal before non-essential external resources load. */
 currentLanguage = getStoredLanguage();
 applyTranslations(currentLanguage);
 initializeCookieConsent();
 
+/* load runs after assets are available; it starts hero-specific behaviors. */
 window.addEventListener("load", () => {
   resetHomeScrollPosition();
   restartHeroTyping();
   playHeroVideo();
 });
 
+/* pageshow handles browser back-forward cache cases for homepage scroll reset. */
 window.addEventListener("pageshow", (event) => {
+  /* Only BFCache restores need another forced top reset. */
   if (event.persisted) {
     resetHomeScrollPosition();
   }
@@ -824,6 +1015,11 @@ window.addEventListener("pageshow", (event) => {
 
 const carousel = document.querySelector("[data-carousel]");
 
+/* ============================================================
+   FEATURED PROJECT CAROUSEL
+   Creates an infinite-feeling carousel for homepage project cards using
+   cloned cards, translate transforms, buttons, keyboard, touch, and wheel input.
+   ============================================================ */
 if (carousel) {
   const viewport = carousel.querySelector("[data-carousel-viewport]");
   const prevButton = carousel.querySelector("[data-carousel-prev]");
@@ -841,6 +1037,7 @@ if (carousel) {
   let wheelResetTimer = 0;
   let wheelGestureLocked = false;
 
+  /* Clones before and after the original cards allow seamless loop jumps. */
   if (track && hasLoopClones) {
     const prependClones = originalCards.map((card) => {
       const clone = card.cloneNode(true);
@@ -863,6 +1060,8 @@ if (carousel) {
     currentIndex = setSize;
   }
 
+  /* Enables carousel controls. Kept as a function so future disabled states
+     can be centralized without changing event handlers. */
   const syncButtons = () => {
     if (!prevButton || !nextButton) {
       return;
@@ -872,7 +1071,9 @@ if (carousel) {
     nextButton.disabled = false;
   };
 
+  /* Calculates the pixel offset required to center a specific card index. */
   const getTrackOffset = (index) => {
+    /* Missing layout pieces return zero to avoid runtime errors on partial markup. */
     if (!viewport || !cards.length || !cards[index]) {
       return 0;
     }
@@ -881,7 +1082,9 @@ if (carousel) {
     return card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
   };
 
+  /* Keeps requested carousel indexes inside the current card array bounds. */
   const clampIndex = (index) => {
+    /* Empty carousel data has no valid index, so zero is the safest fallback. */
     if (!cards.length) {
       return 0;
     }
@@ -889,14 +1092,19 @@ if (carousel) {
     return Math.min(Math.max(index, 0), cards.length - 1);
   };
 
+  /* Renders the track at currentIndex, optionally with animation. */
   const renderCarousel = ({ animate } = { animate: true }) => {
+    /* Without track, viewport, or cards, there is nothing to render. */
     if (!track || !viewport || !cards.length) {
       return;
     }
 
+    /* Jump mode disables transitions for invisible loop corrections or reduced motion. */
     track.classList.toggle("is-jumping", !animate || prefersReducedMotion.matches);
     track.style.transform = `translate3d(${-getTrackOffset(currentIndex)}px, 0, 0)`;
 
+    /* requestAnimationFrame removes no-transition mode after the browser applies
+       the immediate transform. */
     if (!animate || prefersReducedMotion.matches) {
       window.requestAnimationFrame(() => {
         track.classList.remove("is-jumping");
@@ -906,6 +1114,7 @@ if (carousel) {
     syncButtons();
   };
 
+  /* Moves immediately to an index without animation; used for loop resets. */
   const jumpToIndex = (index) => {
     if (!cards.length) {
       return;
@@ -915,6 +1124,7 @@ if (carousel) {
     renderCarousel({ animate: false });
   };
 
+  /* Moves to an index with animation; used for visible user navigation. */
   const goToIndex = (index) => {
     if (!cards.length) {
       return;
@@ -924,7 +1134,10 @@ if (carousel) {
     renderCarousel({ animate: true });
   };
 
+  /* Prepares seamless looping by jumping from clone boundaries back into the
+     equivalent real-card range before the visible movement starts. */
   const prepareLoopMove = (direction) => {
+    /* If no clones exist, no loop preparation is possible. */
     if (!hasLoopClones) {
       return false;
     }
@@ -942,18 +1155,23 @@ if (carousel) {
     return false;
   };
 
+  /* Main carousel movement helper; direction is -1 for previous and 1 for next. */
   const moveCarousel = (direction) => {
+    /* Empty carousel data cannot move. */
     if (!cards.length) {
       return;
     }
 
     const didPrepareLoop = prepareLoopMove(direction);
 
+    /* If no invisible loop jump was needed, simply animate to the next index. */
     if (!didPrepareLoop) {
       goToIndex(currentIndex + direction);
       return;
     }
 
+    /* Double requestAnimationFrame ensures the invisible jump is committed
+       before the animated movement begins. */
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         goToIndex(currentIndex + direction);
@@ -961,14 +1179,17 @@ if (carousel) {
     });
   };
 
+  /* Previous button moves one project card backward. */
   prevButton?.addEventListener("click", () => {
     moveCarousel(-1);
   });
 
+  /* Next button moves one project card forward. */
   nextButton?.addEventListener("click", () => {
     moveCarousel(1);
   });
 
+  /* Keyboard arrow navigation supports accessible carousel control. */
   viewport?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
@@ -981,17 +1202,20 @@ if (carousel) {
     }
   });
 
+  /* Touch start records the initial finger position for swipe detection. */
   viewport?.addEventListener("touchstart", (event) => {
     const touch = event.changedTouches[0];
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
   });
 
+  /* Touch end compares start/end positions to detect horizontal swipes. */
   viewport?.addEventListener("touchend", (event) => {
     const touch = event.changedTouches[0];
     const deltaX = touch.clientX - touchStartX;
     const deltaY = touch.clientY - touchStartY;
 
+    /* Small movements or mostly vertical gestures are ignored so page scroll works. */
     if (Math.abs(deltaX) < 36 || Math.abs(deltaX) <= Math.abs(deltaY)) {
       return;
     }
@@ -1004,12 +1228,15 @@ if (carousel) {
     moveCarousel(1);
   });
 
+  /* Wheel navigation lets horizontal trackpad gestures move the carousel. */
   viewport?.addEventListener(
     "wheel",
     (event) => {
+      /* Wheel deltas are accumulated because trackpads emit many small events. */
       wheelDeltaX += event.deltaX;
       wheelDeltaY += event.deltaY;
 
+      /* 160ms reset ends a wheel gesture shortly after scrolling stops. */
       window.clearTimeout(wheelResetTimer);
       wheelResetTimer = window.setTimeout(() => {
         wheelDeltaX = 0;
@@ -1017,12 +1244,15 @@ if (carousel) {
         wheelGestureLocked = false;
       }, 160);
 
+      /* Ignore weak or mostly vertical wheel gestures to preserve page scrolling. */
       if (Math.abs(wheelDeltaX) < 40 || Math.abs(wheelDeltaX) <= Math.abs(wheelDeltaY)) {
         return;
       }
 
+      /* Prevent native horizontal scrolling only after intentional carousel input. */
       event.preventDefault();
 
+      /* A lock prevents one continuous wheel gesture from skipping many cards. */
       if (wheelGestureLocked) {
         return;
       }
@@ -1041,10 +1271,12 @@ if (carousel) {
     { passive: false },
   );
 
+  /* Resize recalculates offsets because card widths and viewport size changed. */
   window.addEventListener("resize", () => {
     jumpToIndex(currentIndex);
   });
 
+  /* Initial positioning starts on the real card set after prepended clones. */
   if (hasLoopClones) {
     window.requestAnimationFrame(() => {
       jumpToIndex(setSize);
@@ -1057,26 +1289,42 @@ if (carousel) {
 }
 
 const contactForm = document.querySelector("[data-contact-form]");
+/* ============================================================
+   SCROLL-TOP BUTTON VISIBILITY
+   Shows the floating button after the user scrolls far enough down the page.
+   ============================================================ */
 const toggleScrollTopButton = () => {
+  /* Pages without the button do not need visibility logic. */
   if (!scrollTopButton) {
     return;
   }
 
+  /* 180px avoids showing the button immediately while still appearing early
+     enough on long pages to be useful. */
   scrollTopButton.classList.toggle("is-visible", window.scrollY > 180);
 };
 
+/* ============================================================
+   CONTACT FORM SUBMISSION
+   Converts form fields into a mailto URL so no server or database receives
+   visitor data.
+   ============================================================ */
 if (contactForm) {
+  /* submit is intercepted to validate fields and open the email client. */
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    /* Native validation prevents building an incomplete email. */
     if (!contactForm.reportValidity()) {
       return;
     }
 
+    /* FormData extracts visible field values without separate DOM selectors. */
     const formData = new FormData(contactForm);
     const name = String(formData.get("name") || "").trim();
     const subject = String(formData.get("subject") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    /* The email body combines sender name and message in a readable format. */
     const body = [
       `${getTranslation("contact.formBodyName")}: ${name}`,
       "",
@@ -1084,11 +1332,17 @@ if (contactForm) {
       message,
     ].join("\n");
 
+    /* mailto opens the visitor's default email app with subject/body filled in. */
     window.location.href = `mailto:Gabrielgrassmayr@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
 
+/* ============================================================
+   SCROLL-TO-TOP EVENT BINDINGS
+   Wires the floating button and scroll listener only when the button exists.
+   ============================================================ */
 if (scrollTopButton) {
+  /* Click scrolls to the top, honoring reduced-motion preferences. */
   scrollTopButton.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -1096,6 +1350,7 @@ if (scrollTopButton) {
     });
   });
 
+  /* Passive scroll listener updates visibility without blocking scrolling. */
   window.addEventListener("scroll", toggleScrollTopButton, { passive: true });
   toggleScrollTopButton();
 }

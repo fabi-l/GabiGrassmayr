@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML sitemap listing the canonical public URLs that should be discoverable
+  by search engines. Legal pages are included with low priority only where
+  requested, while robots/meta tags still prevent indexing where appropriate.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage is the highest-priority portfolio entry point. -->
   <url>
     <loc>https://fabi-l.github.io/GabiGrassmayr/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- About page contains profile and experience signals for searchers. -->
   <url>
     <loc>https://fabi-l.github.io/GabiGrassmayr/about-me.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Impressum is a legal route with low SEO priority. -->
   <url>
     <loc>https://fabi-l.github.io/GabiGrassmayr/impressum/</loc>
     <changefreq>yearly</changefreq>

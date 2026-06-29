@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+    <!-- ============================================================
+         CORE DOCUMENT METADATA
+         Sets encoding and responsive viewport behavior for the privacy page.
+         ============================================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Privacy-page title used in browser tabs and link previews. -->
     <title>Datenschutz | Gabriel Grassmayr Filmemacher</title>
+    <!-- Privacy-page description summarizes the page purpose. -->
     <meta
       name="description"
       content="Datenschutzerklärung von Gabriel Grassmayr."
     />
+    <!-- Privacy page is excluded from indexing because it is legal support content. -->
     <meta name="robots" content="noindex, nofollow" />
+    <!-- Open Graph metadata gives consistent previews if the privacy page is shared. -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fabi-l.github.io/GabiGrassmayr/datenschutz/" />
     <meta property="og:title" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
@@ -18,13 +26,20 @@
     <meta property="og:locale" content="de_AT" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:site_name" content="Gabriel Grassmayr | Filmmaker" />
+    <!-- Twitter card metadata mirrors the Open Graph preview data. -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Datenschutz | Gabriel Grassmayr Filmemacher" />
     <meta name="twitter:description" content="Datenschutzerklärung von Gabriel Grassmayr." />
     <meta name="twitter:image" content="https://fabi-l.github.io/GabiGrassmayr/profile-portrait-suit.jpeg" />
+    <!-- Shared stylesheet keeps the privacy page aligned with the portfolio design. -->
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body class="about-page" data-page="datenschutz">
+    <!-- ============================================================
+         SITE HEADER AND PRIMARY NAVIGATION
+         Reuses the common nested-page header for menu, language controls,
+         and a route back to the homepage.
+         ============================================================ -->
     <header class="site-header">
       <div class="container nav-shell">
         <button
@@ -39,6 +54,7 @@
           <span></span>
         </button>
 
+        <!-- Navigation links to homepage sections, About anchors, and legal pages. -->
         <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation" data-i18n-aria-label="nav.primaryAria">
           <div class="nav-groups">
             <section class="nav-group" aria-labelledby="nav-main-group">
@@ -67,6 +83,7 @@
             </section>
           </div>
 
+          <!-- Language controls remain available even though the legal text is German. -->
           <div class="language-switcher" aria-label="Sprachauswahl" data-i18n-aria-label="nav.languageLabel">
             <button
               class="language-button"
@@ -91,6 +108,7 @@
           </div>
         </nav>
 
+        <!-- Brand logo returns from this nested page to the homepage hero. -->
         <a class="brand" href="../index.html#hero" aria-label="Zur Startseite von Gabriel Grassmayr" data-i18n-aria-label="nav.brandHome">
           <img src="../GabrielG.png" alt="Gabriel Grassmayr Logo" />
         </a>
@@ -98,6 +116,11 @@
     </header>
 
     <main class="about-main" lang="de">
+      <!-- ============================================================
+           PRIVACY POLICY CONTENT
+           Documents hosting, external resources, contact-form behavior,
+           user rights, and cookie-consent behavior for visitors.
+           ============================================================ -->
       <section class="about-intro" id="datenschutz" aria-labelledby="datenschutz-title">
         <div class="container about-intro-grid">
           <div class="about-copy">
@@ -109,6 +132,7 @@
               Gabriel Grassmayr<br />
               Ulmenstraße 33, 6063 Rum, Österreich<br />
               E-Mail:
+              <!-- Mailto link opens the visitor's email client for privacy inquiries. -->
               <a href="mailto:gabrielgrassmayr@icloud.com">gabrielgrassmayr@icloud.com</a>
             </p>
 
@@ -118,6 +142,7 @@
               San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website verarbeitet GitHub
               automatisch technische Zugriffsdaten, insbesondere IP-Adressen der Besucher.
               Weitere Informationen:
+              <!-- External GitHub privacy statement explains the hosting provider's processing. -->
               <a
                 href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                 target="_blank"
@@ -151,6 +176,7 @@
               <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
               <li>
                 Beschwerde bei der österreichischen Datenschutzbehörde:
+                <!-- External Austrian Data Protection Authority link for complaints. -->
                 <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer">
                   https://www.dsb.gv.at
                 </a>
@@ -162,6 +188,7 @@
               Die Cookie-Entscheidung wird nicht dauerhaft auf Ihrem Gerät gespeichert.
               Beim Neuladen der Seite wird der Hinweis erneut angezeigt.
             </p>
+            <!-- Button reloads the page so the non-persistent consent modal appears again. -->
             <button class="contact-submit" type="button" data-cookie-reset>
               Cookie-Einstellungen erneut anzeigen
             </button>
@@ -180,11 +207,13 @@
       </section>
     </main>
 
+    <!-- Legal footer links between privacy and imprint pages. -->
     <footer class="contact-note" aria-label="Rechtliche Informationen">
       <a href="../impressum/" data-i18n="nav.imprint">Impressum</a>
       <a href="./" aria-current="page" data-i18n="nav.privacy">Datenschutz</a>
     </footer>
 
+    <!-- Floating scroll control returns users to the top of the privacy page. -->
     <button
       class="scroll-top-button"
       type="button"
@@ -210,6 +239,7 @@
       </svg>
     </button>
 
+    <!-- Shared JavaScript enables menu, language, cookie consent, and scroll behavior. -->
     <script src="../script.js"></script>
   </body>
 </html>

@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ============================================================
+         CORE DOCUMENT METADATA
+         Establishes UTF-8 text rendering and responsive viewport behavior
+         for the About page.
+         ============================================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO title describing the profile page for search engines and tabs. -->
     <title data-i18n="meta.aboutTitle">Über Gabriel Grassmayr | Filmmaker aus Innsbruck, Österreich</title>
+    <!-- SEO description summarizes Gabriel's background and experience. -->
     <meta
       name="description"
       data-i18n-content="meta.aboutDescription"
       content="Lerne Gabriel Grassmayr kennen – Filmemacher aus Rum bei Innsbruck. 5+ Jahre Erfahrung in Extremsport- und Reisevideos für internationale Auftraggeber."
     />
+    <!-- Search directives allow this profile page to be indexed and crawled. -->
     <meta name="robots" content="index, follow" />
+    <!-- Author and keyword metadata reinforce ownership and relevant searches. -->
     <meta name="author" content="Gabriel Grassmayr" />
     <meta
       name="keywords"
       content="Filmmaker Austria, Filmemacher Innsbruck, Extremsport Video, Travel Content Creator, Red Bull Filmmaker, Videograf Tirol, Freelance Filmmaker Austria, Gabriel Grassmayr"
     />
+    <!-- Canonical URL prevents duplicate indexing of the About page. -->
     <link rel="canonical" href="https://fabi-l.github.io/GabiGrassmayr/about-me.html" />
+    <!-- Open Graph metadata controls rich previews on social platforms. -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fabi-l.github.io/GabiGrassmayr/about-me.html" />
     <meta property="og:title" content="Über Gabriel Grassmayr | Filmmaker aus Innsbruck, Österreich" />
@@ -28,6 +39,7 @@
     <meta property="og:locale" content="de_AT" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:site_name" content="Gabriel Grassmayr | Filmmaker" />
+    <!-- Twitter card metadata mirrors Open Graph for X/Twitter previews. -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Über Gabriel Grassmayr | Filmmaker aus Innsbruck, Österreich" />
     <meta
@@ -35,9 +47,15 @@
       content="Lerne Gabriel Grassmayr kennen – Filmemacher aus Rum bei Innsbruck. 5+ Jahre Erfahrung in Extremsport- und Reisevideos für internationale Auftraggeber."
     />
     <meta name="twitter:image" content="https://fabi-l.github.io/GabiGrassmayr/profile-portrait-suit.jpeg" />
+    <!-- Shared stylesheet keeps the About page visually consistent with the homepage. -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="about-page" data-page="about">
+    <!-- ============================================================
+         SITE HEADER AND PRIMARY NAVIGATION
+         Reuses the homepage navigation model while linking main-menu items
+         back to the relevant homepage sections.
+         ============================================================ -->
     <header class="site-header">
       <div class="container nav-shell">
         <button
@@ -52,6 +70,7 @@
           <span></span>
         </button>
 
+        <!-- Navigation is grouped by homepage destinations and About-page anchors. -->
         <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-i18n-aria-label="nav.primaryAria">
           <div class="nav-groups">
             <section class="nav-group" aria-labelledby="nav-main-group">
@@ -75,6 +94,7 @@
             </section>
           </div>
 
+          <!-- Language switcher updates translatable text through script.js. -->
           <div class="language-switcher" aria-label="Language switcher" data-i18n-aria-label="nav.languageLabel">
             <button
               class="language-button"
@@ -99,6 +119,7 @@
           </div>
         </nav>
 
+        <!-- Brand logo returns visitors to the homepage hero section. -->
         <a class="brand" href="index.html#hero" aria-label="Gabriel Grassmayr home" data-i18n-aria-label="nav.brandHome">
           <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
         </a>
@@ -106,6 +127,11 @@
     </header>
 
     <main class="about-main">
+      <!-- ============================================================
+           ABOUT PROFILE SECTION
+           Presents Gabriel's professional summary, portrait, and key facts
+           for visitors who want to understand his background.
+           ============================================================ -->
       <section class="about-intro" id="about-profile" aria-labelledby="about-title">
         <div class="container about-intro-grid">
           <div class="about-copy">
@@ -121,6 +147,8 @@
 
           <section class="about-profile-panel" aria-label="Profile highlights" data-i18n-aria-label="about.profileAria">
             <figure class="about-profile-portrait">
+              <!-- Profile portrait gives the biography section a personal,
+                   recognizable visual identity. -->
               <img
                 src="profile-portrait-suit.jpeg"
                 alt="Gabriel Grassmayr – Filmmaker Portrait, Innsbruck Austria"
@@ -141,14 +169,21 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           BEHIND THE LENS GALLERY
+           Shows production and field images that support the portfolio with
+           behind-the-scenes context and proof of real filmmaking work.
+           ============================================================ -->
       <section class="about-gallery-section" id="about-pictures" aria-labelledby="behind-the-lens-title">
         <div class="container">
           <p class="about-gallery-label" id="behind-the-lens-title" data-i18n="about.galleryLabel">Behind the Lens</p>
           <figure class="about-gallery-logo" aria-hidden="true">
+            <!-- Decorative brand mark separates the gallery heading from the images. -->
             <img src="GabrielG.png" alt="" loading="lazy" />
           </figure>
           <div class="about-gallery-grid">
             <figure class="about-gallery-card about-gallery-card--intro-a">
+              <!-- Behind-the-scenes monitor image shows production collaboration. -->
               <img
                 src="behind-the-lens-monitor-selfie.jpg"
                 alt="Studio monitor showing Gabriel and a collaborator during production – Gabriel Grassmayr Filmmaker"
@@ -157,6 +192,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--intro-b">
+              <!-- Field image shows Gabriel working outdoors with camera equipment. -->
               <img
                 src="behind-the-lens-in-the-field.jpg"
                 alt="Gabriel Grassmayr holding a camera outdoors while wearing headphones – Filmmaker Innsbruck Austria"
@@ -165,6 +201,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--intro-c">
+              <!-- Rescue-uniform portrait documents another personal/professional context. -->
               <img
                 src="behind-the-lens-rescue-portrait.jpeg"
                 alt="Gabriel Grassmayr in a red rescue uniform portrait – Filmmaker Innsbruck Austria"
@@ -173,6 +210,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--intro-d">
+              <!-- On-set image shows Gabriel actively filming with another person. -->
               <img
                 src="behind-the-lens-on-set.jpeg"
                 alt="Gabriel Grassmayr filming with a camera alongside a collaborator – Gabriel Grassmayr Filmmaker"
@@ -181,6 +219,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--wide">
+              <!-- Molten-metal image demonstrates cinematic industrial/action footage. -->
               <img
                 src="behind-the-lens-molten-metal.png"
                 alt="Molten metal pouring with flames in an industrial setting – Gabriel Grassmayr Filmmaker"
@@ -189,6 +228,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--wide-secondary">
+              <!-- Volcano portrait reinforces the extreme-location filmmaking theme. -->
               <img
                 src="behind-the-lens-volcano-portrait.jpg"
                 alt="Gabriel Grassmayr standing in front of glowing volcanic lava at night – Filmmaker"
@@ -197,6 +237,7 @@
               />
             </figure>
             <figure class="about-gallery-card about-gallery-card--wide-tertiary">
+              <!-- Paraglider volcano image documents an extreme outdoor production scene. -->
               <img
                 src="behind-the-lens-volcano-paraglider.jpg"
                 alt="Nighttime filming scene with a paraglider in front of glowing volcanic lava – Gabriel Grassmayr Filmmaker"
@@ -208,6 +249,11 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           CONTACT FORM SECTION
+           Lets visitors prepare an inquiry that script.js turns into a
+           mailto link, avoiding server-side data collection.
+           ============================================================ -->
       <section class="contact-section" id="contact-form" aria-labelledby="contact-title">
         <div class="container">
           <div class="contact-shell">
@@ -216,7 +262,9 @@
               <p data-i18n="contact.subtitle">TELL ME YOUR STORY:</p>
             </div>
 
+            <!-- Contact form is intentionally client-side only; submission opens email. -->
             <form class="contact-form" action="#" method="post" novalidate data-contact-form>
+              <!-- Name field identifies the sender in the generated email body. -->
               <div class="form-field">
                 <label for="contact-name" data-i18n="contact.nameLabel">Name *</label>
                 <input
@@ -229,6 +277,7 @@
                 />
               </div>
 
+              <!-- Subject field becomes the email subject line. -->
               <div class="form-field">
                 <label for="contact-subject" data-i18n="contact.subjectLabel">Subject *</label>
                 <input
@@ -241,6 +290,7 @@
                 />
               </div>
 
+              <!-- Message field holds the visitor's project inquiry. -->
               <div class="form-field">
                 <label for="contact-message" data-i18n="contact.messageLabel">Message *</label>
                 <textarea
@@ -263,11 +313,16 @@
       </section>
     </main>
 
+    <!-- ============================================================
+         LEGAL FOOTER
+         Links to required legal and privacy pages from the bottom of the page.
+         ============================================================ -->
     <footer class="contact-note" aria-label="Legal information">
       <a href="impressum/" data-i18n="nav.imprint">Impressum</a>
       <a href="datenschutz/" data-i18n="nav.privacy">Datenschutz</a>
     </footer>
 
+    <!-- Floating scroll control appears after scrolling and returns to the top. -->
     <button
       class="scroll-top-button"
       type="button"
@@ -293,6 +348,7 @@
       </svg>
     </button>
 
+    <!-- Shared JavaScript powers navigation, translations, consent, and form behavior. -->
     <script src="script.js"></script>
   </body>
 </html>

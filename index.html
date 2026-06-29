@@ -1,29 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ============================================================
+         CORE DOCUMENT METADATA
+         Defines character encoding and viewport behavior so browsers
+         render text correctly and scale the responsive layout on mobile.
+         ============================================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ============================================================
+         PRIMARY SEO TITLE
+         Describes the homepage for search engines, browser tabs, and
+         language switching through script.js.
+         ============================================================ -->
     <title data-i18n="meta.homeTitle">Gabriel Grassmayr | Filmmaker – Extreme Sports &amp; Travel Content Austria</title>
+    <!-- ============================================================
+         SEO TITLE META TAG
+         Gives crawlers an explicit title value in addition to the
+         document title; useful for search snippets and audits.
+         ============================================================ -->
     <meta
       name="title"
       content="Gabriel Grassmayr | Filmmaker – Extreme Sports &amp; Travel Content Austria"
     />
+    <!-- ============================================================
+         SEO DESCRIPTION
+         Summarizes Gabriel's location, services, and client proof for
+         Google snippets and AI-assisted search summaries.
+         ============================================================ -->
     <meta
       name="description"
       data-i18n-content="meta.homeDescription"
       content="Gabriel Grassmayr ist freischaffender Filmemacher aus Innsbruck, Österreich. Spezialisiert auf Extremsport- und Reisecontent. Clients: Red Bull, ARD, Funk."
     />
+    <!-- ============================================================
+         AI SUMMARY META TAG
+         Provides a concise factual description tailored to systems that
+         extract machine-readable context from metadata.
+         ============================================================ -->
     <meta
       name="ai-summary"
       content="Gabriel Grassmayr is a freelance filmmaker from Rum near Innsbruck, Austria. Specialized in extreme sports and travel video content. Clients include Red Bull, ARD Mediathek, Funk, and the City of Innsbruck. 5+ years of experience. Available for freelance projects internationally."
     />
+    <!-- ============================================================
+         INDEXING DIRECTIVES
+         Allows search engines to index the homepage and follow its links.
+         ============================================================ -->
     <meta name="robots" content="index, follow" />
+    <!-- ============================================================
+         AUTHORSHIP AND KEYWORD SIGNALS
+         Identifies the site owner and reinforces relevant bilingual search
+         topics without changing visible page content.
+         ============================================================ -->
     <meta name="author" content="Gabriel Grassmayr" />
     <meta
       name="keywords"
       content="Filmmaker Austria, Filmemacher Innsbruck, Extremsport Video, Travel Content Creator, Red Bull Filmmaker, Videograf Tirol, Freelance Filmmaker Austria, Gabriel Grassmayr"
     />
+    <!-- ============================================================
+         CANONICAL URL
+         Declares the preferred absolute URL for this page to avoid
+         duplicate-indexing issues across equivalent paths.
+         ============================================================ -->
     <link rel="canonical" href="https://fabi-l.github.io/GabiGrassmayr/" />
+    <!-- ============================================================
+         OPEN GRAPH METADATA
+         Controls how the homepage appears when shared on social platforms
+         and provides rich preview context for link unfurlers.
+         ============================================================ -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fabi-l.github.io/GabiGrassmayr/" />
     <meta property="og:title" content="Gabriel Grassmayr | Filmmaker – Extreme Sports &amp; Travel Content Austria" />
@@ -36,6 +80,11 @@
     <meta property="og:locale" content="de_AT" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:site_name" content="Gabriel Grassmayr | Filmmaker" />
+    <!-- ============================================================
+         TWITTER CARD METADATA
+         Defines the large social preview card used by X/Twitter and
+         compatible crawlers when this page is shared.
+         ============================================================ -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gabriel Grassmayr | Filmmaker – Extreme Sports &amp; Travel Content Austria" />
     <meta
@@ -43,6 +92,11 @@
       content="Gabriel Grassmayr ist freischaffender Filmemacher aus Innsbruck, Österreich. Spezialisiert auf Extremsport- und Reisecontent. Clients: Red Bull, ARD, Funk."
     />
     <meta name="twitter:image" content="https://fabi-l.github.io/GabiGrassmayr/profile-portrait-suit.jpeg" />
+    <!-- ============================================================
+         PERSON JSON-LD STRUCTURED DATA
+         Describes Gabriel as a filmmaker for Google rich results and
+         AI search systems that use Schema.org entities.
+         ============================================================ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -77,6 +131,11 @@
         }
       }
     </script>
+    <!-- ============================================================
+         WEBSITE JSON-LD STRUCTURED DATA
+         Identifies this portfolio as the official website and links it to
+         Gabriel as the author for search engines and knowledge systems.
+         ============================================================ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -91,9 +150,18 @@
         }
       }
     </script>
+    <!-- ============================================================
+         GLOBAL STYLESHEET
+         Loads the shared visual system used by every page in the site.
+         ============================================================ -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="home">
+    <!-- ============================================================
+         SITE HEADER AND PRIMARY NAVIGATION
+         Fixed header containing the menu toggle, grouped navigation,
+         language controls, and brand mark for moving through the site.
+         ============================================================ -->
     <header class="site-header">
       <div class="container nav-shell">
         <button
@@ -108,6 +176,8 @@
           <span></span>
         </button>
 
+        <!-- The navigation is split into content groups so visitors can
+             reach homepage anchors and the About page without a large menu. -->
         <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-i18n-aria-label="nav.primaryAria">
           <div class="nav-groups">
             <section class="nav-group" aria-labelledby="nav-main-group">
@@ -131,6 +201,8 @@
             </section>
           </div>
 
+          <!-- Language buttons trigger script.js translations while keeping
+               the current static page and layout intact. -->
           <div class="language-switcher" aria-label="Language switcher" data-i18n-aria-label="nav.languageLabel">
             <button
               class="language-button"
@@ -155,6 +227,7 @@
           </div>
         </nav>
 
+        <!-- Brand logo links back to the hero because this is the homepage. -->
         <a class="brand" href="#hero" aria-label="Gabriel Grassmayr home" data-i18n-aria-label="nav.brandHome">
           <img src="GabrielG.png" alt="Gabriel Grassmayr logo" />
         </a>
@@ -162,7 +235,14 @@
     </header>
 
     <main>
+      <!-- ============================================================
+           HERO SECTION
+           Full-screen first impression with background video, animated
+           headline, positioning statement, and high-priority contact links.
+           ============================================================ -->
       <section class="hero" id="hero" aria-label="Hero" data-i18n-aria-label="hero.sectionAria">
+        <!-- Local video asset creates the cinematic opening without relying
+             on external video embeds or third-party trackers. -->
         <video
           class="hero-video"
           autoplay
@@ -197,7 +277,10 @@
             <span data-i18n="hero.subTop">SPECIALIZED IN EXTREME SPORTS</span>
             <span data-i18n="hero.subBottom">AND TRAVEL CONTENT</span>
           </p>
+          <!-- Social and email links provide immediate conversion paths.
+               Some icon images are consent-gated because they use an external CDN. -->
           <div class="hero-social" id="contact" aria-label="Social links" data-i18n-aria-label="social.linksAria">
+            <!-- External LinkedIn profile link used for professional B2B credibility. -->
             <a
               class="social-link"
               href="https://www.linkedin.com/in/gabrielgrassmayr/"
@@ -212,6 +295,8 @@
                 />
               </svg>
             </a>
+            <!-- External Instagram profile link; its icon loads only after consent
+                 because the image source points to cdn.simpleicons.org. -->
             <a
               class="social-link"
               href="https://www.instagram.com/gabrielgrassmayr"
@@ -228,6 +313,8 @@
                 decoding="async"
               />
             </a>
+            <!-- External TikTok profile link; the icon is consent-gated for the
+                 same privacy reason as the Instagram Simple Icons asset. -->
             <a
               class="social-link"
               href="https://www.tiktok.com/@gabrielgrassmayr"
@@ -244,6 +331,7 @@
                 decoding="async"
               />
             </a>
+            <!-- Mailto link opens the visitor's default email client for direct contact. -->
             <a
               class="social-link"
               href="mailto:Gabrielgrassmayr@icloud.com"
@@ -261,10 +349,17 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           ABOUT TEASER SECTION
+           Short homepage introduction that previews Gabriel's profile and
+           sends visitors to the fuller About page.
+           ============================================================ -->
       <section class="about-teaser" aria-labelledby="about-teaser-title">
         <div class="container">
           <div class="about-teaser-shell">
             <figure class="about-teaser-portrait">
+              <!-- Portrait image personalizes the portfolio and gives search
+                   engines a named visual identity for Gabriel. -->
               <img
                 src="profile-portrait-suit.jpeg"
                 alt="Gabriel Grassmayr – Filmmaker Portrait, Innsbruck Austria"
@@ -286,6 +381,11 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           WORKED WITH SECTION
+           Client/logo grid that provides trust signals for prospective
+           customers and search engines evaluating experience.
+           ============================================================ -->
       <section class="worked-with" id="worked-with" aria-labelledby="worked-with-title">
         <div class="container">
           <h2 id="worked-with-title" data-i18n="worked.title">Worked With</h2>
@@ -293,6 +393,7 @@
             <!-- Swap the classes or labels below later if you want to replace individual logo entries. -->
             <div class="logo-grid" aria-label="Worked with brands" data-i18n-aria-label="worked.gridAria">
               <figure class="logo-item logo-item-redbull">
+                <!-- External Red Bull homepage link identifies a client reference. -->
                 <a
                   class="logo-link"
                   href="https://www.redbull.com/"
@@ -307,6 +408,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-ama">
+                <!-- External AMA Gütesiegel link documents another collaborator/client. -->
                 <a
                   class="logo-link"
                   href="https://amainfo.at/de-at/siegel/ama-guetesiegel"
@@ -321,6 +423,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-funk">
+                <!-- External Funk Austria link supports the client logo shown here. -->
                 <a
                   class="logo-link"
                   href="https://www.funk-austria.com/"
@@ -335,6 +438,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-ard">
+                <!-- External Das Erste/ARD link supports the broadcast client reference. -->
                 <a
                   class="logo-link"
                   href="https://www.daserste.de/"
@@ -349,6 +453,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-innsbruck">
+                <!-- External Innsbruck link connects the logo to its official destination. -->
                 <a
                   class="logo-link"
                   href="https://www.innsbruck.info/"
@@ -363,6 +468,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-landjugend">
+                <!-- External Landjugend Tirol link clarifies the regional client logo. -->
                 <a
                   class="logo-link"
                   href="https://tjblj.at/at/index.php"
@@ -377,6 +483,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-yepp">
+                <!-- External YEPP link points visitors to the organization behind the logo. -->
                 <a
                   class="logo-link"
                   href="https://youthepp.eu/"
@@ -391,6 +498,7 @@
                 </a>
               </figure>
               <figure class="logo-item logo-item-ripple">
+                <!-- External Ripple link supports the displayed client/brand reference. -->
                 <a
                   class="logo-link"
                   href="https://ripple.com/"
@@ -409,6 +517,11 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           FEATURED PROJECTS SECTION
+           Carousel of selected work samples with external links to the
+           published projects, showing proof of Gabriel's filmmaking output.
+           ============================================================ -->
       <section
         class="featured-projects"
         id="featured-projects"
@@ -450,6 +563,7 @@
               data-carousel-viewport
             >
               <div class="projects-track">
+                <!-- External ARD Mediathek project link opens the published film. -->
                 <a
                   class="project-card"
                   href="https://www.ardmediathek.de/video/swr-kultur/die-vulkanfrau/swr/Y3JpZDovL3N3ci5kZS9hZXgvbzE5NDkyNzY"
@@ -458,6 +572,7 @@
                   aria-label="Open featured project: Die Vulkanfrau"
                   data-i18n-aria-label="featured.project1Aria"
                 >
+                  <!-- Project image preview for the ARD volcano film. -->
                   <img
                     src="featured-project-1.jpg"
                     alt="Nighttime filmmaker scene in front of glowing volcanic lava – Gabriel Grassmayr Filmmaker"
@@ -466,6 +581,7 @@
                   <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
+                <!-- External Instagram Reel link opens a Red Bull-related project. -->
                 <a
                   class="project-card"
                   href="https://www.instagram.com/reels/C-3GOhhNKn3/"
@@ -474,6 +590,7 @@
                   aria-label="Open featured project: Instagram reel with Red Bull event crew"
                   data-i18n-aria-label="featured.project2Aria"
                 >
+                  <!-- Project image preview for the Red Bull event crew reel. -->
                   <img
                     src="featured-project-2.jpeg"
                     alt="Crew portrait in front of a Red Bull branded bus – Gabriel Grassmayr Filmmaker"
@@ -482,6 +599,7 @@
                   <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
+                <!-- External Instagram Reel link opens a fire/molten-metal project. -->
                 <a
                   class="project-card"
                   href="https://www.instagram.com/reels/CrJH2VgK-l9/"
@@ -490,6 +608,7 @@
                   aria-label="Open featured project: Instagram reel with fire and molten metal"
                   data-i18n-aria-label="featured.project3Aria"
                 >
+                  <!-- Project image preview for the molten-metal production. -->
                   <img
                     src="featured-project-3.jpg"
                     alt="Molten metal and flames in a dark industrial setting – Gabriel Grassmayr Filmmaker"
@@ -498,6 +617,7 @@
                   <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
+                <!-- External YouTube link opens the bell-making film. -->
                 <a
                   class="project-card"
                   href="https://www.youtube.com/watch?si=rIFyeuqAIYJJLQ4b&v=YvjqEAlQnJo&feature=youtu.be&themeRefresh=1"
@@ -506,6 +626,7 @@
                   aria-label="Open featured project: YouTube film about bell making"
                   data-i18n-aria-label="featured.project4Aria"
                 >
+                  <!-- Project image preview for the bell-making workshop film. -->
                   <img
                     src="featured-project-4.jpg"
                     alt="Worker standing beside a large cast bell in a workshop – Gabriel Grassmayr Filmmaker"
@@ -514,6 +635,7 @@
                   <span class="project-overlay"><span data-i18n="featured.viewProject">View Project</span></span>
                 </a>
 
+                <!-- External YouTube Shorts link opens a studio production short. -->
                 <a
                   class="project-card"
                   href="https://youtube.com/shorts/Oju88EE6s18?si=L4toXBUgDXlH8L14"
@@ -522,6 +644,7 @@
                   aria-label="Open featured project: Studio production YouTube Short"
                   data-i18n-aria-label="featured.project5Aria"
                 >
+                  <!-- Project image preview for the studio production short. -->
                   <img
                     src="featured-project-5.png"
                     alt="Studio monitor showing a production selfie during filming – Gabriel Grassmayr Filmmaker"
@@ -558,6 +681,7 @@
             </button>
           </div>
           <div class="projects-cta">
+            <!-- External LinkedIn projects link leads to a broader project archive. -->
             <a
               class="projects-link"
               href="https://www.linkedin.com/in/gabrielgrassmayr/details/projects/"
@@ -571,6 +695,11 @@
         </div>
       </section>
 
+      <!-- ============================================================
+           CONTACT FORM SECTION
+           Collects message details locally and then opens the visitor's
+           email client via mailto; no server-side storage is used.
+           ============================================================ -->
       <section class="contact-section" id="contact-form" aria-labelledby="contact-title">
         <div class="container">
           <div class="contact-shell">
@@ -579,7 +708,10 @@
               <p data-i18n="contact.subtitle">TELL ME YOUR STORY:</p>
             </div>
 
+            <!-- Form is handled by script.js to assemble a mailto URL instead
+                 of submitting data to a backend service. -->
             <form class="contact-form" action="#" method="post" novalidate data-contact-form>
+              <!-- Name field identifies who is contacting Gabriel. -->
               <div class="form-field">
                 <label for="contact-name" data-i18n="contact.nameLabel">Name *</label>
                 <input
@@ -592,6 +724,7 @@
                 />
               </div>
 
+              <!-- Subject field becomes the email subject in the generated mailto link. -->
               <div class="form-field">
                 <label for="contact-subject" data-i18n="contact.subjectLabel">Subject *</label>
                 <input
@@ -604,6 +737,7 @@
                 />
               </div>
 
+              <!-- Message field carries the project inquiry into the generated email body. -->
               <div class="form-field">
                 <label for="contact-message" data-i18n="contact.messageLabel">Message *</label>
                 <textarea
@@ -626,11 +760,21 @@
       </section>
     </main>
 
+    <!-- ============================================================
+         LEGAL FOOTER
+         Provides required legal/privacy destinations without adding a large
+         visual footer to the compact portfolio layout.
+         ============================================================ -->
     <footer class="contact-note" aria-label="Legal information">
       <a href="impressum/" data-i18n="nav.imprint">Impressum</a>
       <a href="datenschutz/" data-i18n="nav.privacy">Datenschutz</a>
     </footer>
 
+    <!-- ============================================================
+         SCROLL-TO-TOP BUTTON
+         Floating control managed by script.js for quickly returning to the
+         top of long pages after scrolling.
+         ============================================================ -->
     <button
       class="scroll-top-button"
       type="button"
@@ -656,6 +800,11 @@
       </svg>
     </button>
 
+    <!-- ============================================================
+         GLOBAL JAVASCRIPT
+         Loads navigation, translation, carousel, cookie consent, contact
+         form, and scroll-to-top behavior shared across the site.
+         ============================================================ -->
     <script src="script.js"></script>
   </body>
 </html>

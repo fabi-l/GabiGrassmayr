@@ -1,5 +1,11 @@
 # Gabriel Grassmayr — Filmmaker
 
+<!--
+This text file summarizes the website for AI-assisted search and answer
+systems. It repeats factual, non-layout information in a plain format so
+models can understand the person, services, clients, and contact paths.
+-->
+
 ## Who is Gabriel Grassmayr?
 Gabriel Grassmayr is a freelance filmmaker based in Rum near Innsbruck, Austria.
 He specializes in extreme sports and travel video content and has 5+ years of

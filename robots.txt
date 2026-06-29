@@ -1,6 +1,10 @@
+# This file tells search-engine crawlers which public paths may be crawled.
+# Portfolio pages are allowed, while legal support pages are intentionally
+# disallowed because they are already marked noindex in their HTML.
 User-agent: *
 Allow: /
 Disallow: /impressum/
 Disallow: /datenschutz/
 
+# Absolute sitemap location helps crawlers discover indexable URLs quickly.
 Sitemap: https://fabi-l.github.io/GabiGrassmayr/sitemap.xml

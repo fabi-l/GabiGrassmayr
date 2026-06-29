@@ -1,22 +1,47 @@
+/* ============================================================
+   DESIGN TOKENS
+   Centralizes colors, gradients, sizing, and font families so the
+   whole site can share one visual system without repeating values.
+   ============================================================ */
 :root {
+  /* Main dark page background used on every section. */
   --bg: #262626;
+  /* Primary text color for headings, navigation, and buttons. */
   --text: #ffffff;
+  /* Softer text color for secondary copy and explanatory content. */
   --text-soft: rgba(255, 255, 255, 0.8);
+  /* Subtle divider color for low-contrast lines and borders. */
   --line: rgba(255, 255, 255, 0.2);
+  /* Stronger divider color for more visible separators. */
   --line-strong: rgba(255, 255, 255, 0.38);
+  /* Top overlay darkness for keeping hero text readable over video. */
   --overlay-top: rgba(0, 0, 0, 0.6);
+  /* Bottom overlay darkness for softening the lower hero video. */
   --overlay-bottom: rgba(0, 0, 0, 0.34);
+  /* Brand gradient used by the navigation and controls. */
   --header-gradient: linear-gradient(90deg, #c16c19 0%, #281812 100%);
+  /* Border gradient reserved for framed UI elements. */
   --box-border-gradient: linear-gradient(90deg, #c16c19 0%, #281812 100%);
+  /* Accent border color used on buttons, panels, and cards. */
   --box-border-color: #c16c19;
+  /* Stronger mobile header background for legibility under the overlay menu. */
   --header-bg-mobile:
     linear-gradient(90deg, rgba(193, 108, 25, 0.96) 0%, rgba(40, 24, 18, 0.97) 100%);
+  /* Maximum content width that keeps large screens readable. */
   --container: 1200px;
+  /* Fixed header height used for scroll offsets and top padding. */
   --nav-height: 96px;
+  /* Display font loaded after consent for large cinematic headings. */
   --anton: "Anton", sans-serif;
+  /* Body font loaded after consent for high-weight italic text. */
   --body: "Montserrat", sans-serif;
 }
 
+/* ============================================================
+   BASE RESET AND GLOBAL ELEMENT RULES
+   Normalizes box sizing, media behavior, links, and shared containers
+   so every page starts from the same predictable foundation.
+   ============================================================ */
 *,
 *::before,
 *::after {
@@ -70,6 +95,8 @@ button {
   margin: 0 auto;
 }
 
+/* Anchor targets need extra top margin because the fixed header would
+   otherwise cover section headings after in-page navigation. */
 #worked-with,
 #featured-projects,
 #contact-form,
@@ -81,6 +108,8 @@ button {
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
+  /* z-index 40 keeps the header above page content and hero video while
+     leaving the cookie modal and scroll button room to layer higher. */
   z-index: 40;
   background: transparent;
   border-bottom: 0;
@@ -88,6 +117,11 @@ button {
   box-shadow: none;
 }
 
+/* ============================================================
+   NAVIGATION AND LANGUAGE SWITCHER
+   Styles the fixed header, hidden dropdown menu, grouped links,
+   language buttons, and hamburger toggle used across all pages.
+   ============================================================ */
 .nav-shell {
   min-height: var(--nav-height);
   display: flex;
@@ -133,6 +167,8 @@ button {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-0.45rem);
+  /* Short transitions make the dropdown feel responsive without distracting
+     from the cinematic hero section. */
   transition:
     opacity 180ms ease,
     transform 180ms ease,
@@ -311,6 +347,8 @@ button {
   justify-content: center;
   flex-direction: column;
   position: relative;
+  /* z-index 25 keeps the toggle clickable above the dropdown surface while
+     still staying inside the header stacking context. */
   z-index: 25;
   min-width: 48px;
   min-height: 48px;
@@ -354,6 +392,11 @@ button {
   transform: translateY(0);
 }
 
+/* ============================================================
+   HERO SECTION
+   Full-viewport opening scene with video, dark overlays, animated
+   stroked headline, subtitle, and social/contact action buttons.
+   ============================================================ */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -384,11 +427,13 @@ button {
   background:
     linear-gradient(to bottom, var(--overlay-top), rgba(0, 0, 0, 0.16) 38%, var(--overlay-bottom)),
     radial-gradient(circle at center, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46));
+  /* z-index 1 places the overlay above the video but below readable content. */
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
+  /* z-index 2 keeps text and social links above the hero overlay. */
   z-index: 2;
   display: grid;
   justify-items: center;
@@ -440,6 +485,7 @@ button {
   display: block;
   position: relative;
   white-space: nowrap;
+  /* z-index 1 keeps each typed line above its invisible static layout copy. */
   z-index: 1;
 }
 
@@ -493,6 +539,7 @@ button {
   margin-left: 0.06em;
   vertical-align: -0.06em;
   background: rgba(255, 255, 255, 0.96);
+  /* Blinking caret sells the typewriter effect controlled by script.js. */
   animation: hero-caret-blink 0.85s step-end infinite;
 }
 
@@ -569,6 +616,8 @@ button {
   position: fixed;
   right: clamp(1rem, 2.6vw, 2rem);
   bottom: clamp(1rem, 2.8vw, 2rem);
+  /* z-index 70 keeps the floating button above content and header, but below
+     the cookie consent modal which uses a higher layer. */
   z-index: 70;
   width: 4.1625rem;
   height: 4.1625rem;
@@ -629,6 +678,11 @@ button {
   display: block;
 }
 
+/* ============================================================
+   HOMEPAGE ABOUT TEASER
+   Compact profile preview that combines Gabriel's portrait, key facts,
+   and a call-to-action leading to the full About page.
+   ============================================================ */
 .about-teaser {
   background: var(--bg);
   padding: clamp(4.25rem, 8vw, 6.5rem) 0 clamp(4rem, 7vw, 6rem);
@@ -738,6 +792,11 @@ button {
   box-shadow: 0 18px 32px rgba(0, 0, 0, 0.24);
 }
 
+/* ============================================================
+   WORKED-WITH AND PROJECT CAROUSEL
+   Styles client logo proof, featured project cards, carousel controls,
+   and the LinkedIn projects call-to-action.
+   ============================================================ */
 .worked-with {
   background: var(--bg);
   padding: clamp(4.5rem, 8vw, 7rem) 0 clamp(5rem, 7vw, 7rem);
@@ -870,6 +929,8 @@ button {
 .carousel-button {
   position: absolute;
   top: 50%;
+  /* z-index 3 keeps carousel arrows above cards and overlays so they remain
+     clickable while the carousel is moving. */
   z-index: 3;
   width: var(--carousel-button-size);
   height: var(--carousel-button-size);
@@ -983,6 +1044,11 @@ button {
   outline-offset: 4px;
 }
 
+/* ============================================================
+   CONTACT FORM AND LEGAL FOOTER
+   Provides the large contact section, mailto-driven form fields,
+   legal footer links, and shared button styling.
+   ============================================================ */
 .contact-section {
   background: var(--bg);
   padding: clamp(4.75rem, 9vw, 7.5rem) 0 clamp(5.5rem, 10vw, 8rem);
@@ -1151,9 +1217,16 @@ body > .contact-note {
   padding: 0 1rem clamp(2.5rem, 4.5vw, 3.75rem);
 }
 
+/* ============================================================
+   COOKIE CONSENT MODAL
+   Fixed overlay shown on every page load. It blocks external fonts/icons
+   until the visitor makes a per-page-load choice.
+   ============================================================ */
 [data-cookie-consent] {
   position: fixed;
   inset: 0;
+  /* z-index 100 places the consent modal above header, scroll button,
+     hero video, and all page content. */
   z-index: 100;
   display: grid;
   place-items: center;
@@ -1227,6 +1300,11 @@ body > .contact-note {
   background: rgba(255, 255, 255, 0.05);
 }
 
+/* ============================================================
+   CLIENT LOGO GRID
+   Frames partner/client marks consistently and keeps logo sizing
+   controlled despite different source asset proportions.
+   ============================================================ */
 .logo-panel {
   padding: clamp(1.6rem, 2vw, 2.1rem);
   border-radius: 1.45rem;
@@ -1334,6 +1412,11 @@ body > .contact-note {
   --logo-width: 96%;
 }
 
+/* ============================================================
+   ABOUT, IMPRESSUM, AND PRIVACY PAGE LAYOUT
+   Shared interior-page structure for profile content, legal text,
+   overview panels, and behind-the-scenes image grids.
+   ============================================================ */
 .about-main {
   padding: calc(var(--nav-height) + clamp(1.4rem, 2vw, 2rem)) 0 clamp(5rem, 7vw, 7rem);
 }
@@ -1633,6 +1716,11 @@ body > .contact-note {
   grid-row: 5;
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: TABLET CONTENT STACKING
+   At 980px and below, the About/legal two-column layout becomes a
+   single column to preserve readable text and balanced panels.
+   ============================================================ */
 @media (max-width: 980px) {
   .about-intro-grid {
     grid-template-columns: 1fr;
@@ -1683,6 +1771,11 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: SMALL ABOUT/LEGAL LAYOUT
+   At 680px and below, profile panels and gallery cards simplify into
+   one-column layouts for narrow mobile screens.
+   ============================================================ */
 @media (max-width: 680px) {
   .about-main {
     padding-top: calc(var(--nav-height) + 0.9rem);
@@ -1736,12 +1829,22 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: LOGO GRID TABLET
+   At 900px and below, client logos use three columns to avoid cramped
+   logo cells on medium-width displays.
+   ============================================================ */
 @media (max-width: 900px) {
   .logo-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: MOBILE NAVIGATION
+   At 760px and below, the dropdown becomes single-column and the
+   hamburger animates into a close icon.
+   ============================================================ */
 @media (max-width: 760px) {
   .nav-shell {
     gap: 0.9rem;
@@ -1839,6 +1942,11 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: MAIN MOBILE LAYOUT
+   At 640px and below, spacing, headings, cards, form fields, and logo
+   grids are reduced for comfortable phone layouts.
+   ============================================================ */
 @media (max-width: 640px) {
   .container {
     width: min(calc(100% - 1.2rem), var(--container));
@@ -2047,6 +2155,11 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: NARROW PHONES
+   At 430px and below, controls and typography tighten further so long
+   words and buttons remain inside the viewport.
+   ============================================================ */
 @media (max-width: 430px) {
   .site-nav {
     width: calc(100vw - 1.2rem);
@@ -2123,6 +2236,11 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   RESPONSIVE BREAKPOINT: EXTRA-NARROW PHONES
+   At 360px and below, hero text, navigation, and project controls
+   receive the final size reductions needed for very small screens.
+   ============================================================ */
 @media (max-width: 360px) {
   .container {
     width: min(calc(100% - 1rem), var(--container));
@@ -2206,12 +2324,22 @@ body > .contact-note {
   }
 }
 
+/* ============================================================
+   HERO CARET ANIMATION
+   Blinks the pseudo-element cursor used by the scripted hero typing
+   animation, matching the feel of typed text.
+   ============================================================ */
 @keyframes hero-caret-blink {
   50% {
     opacity: 0;
   }
 }
 
+/* ============================================================
+   REDUCED MOTION PREFERENCE
+   Disables animations and transitions for visitors who request less
+   motion at the operating-system/browser level.
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
